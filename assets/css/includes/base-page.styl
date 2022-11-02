@@ -1,0 +1,591 @@
+&.base-page
+	.page-title
+		color blue
+		font-size 34px
+		font-weight bold
+		line-height 40px
+		margin 15px 0px 30px 0px
+		&:first-child
+			margin-top 0px
+	
+	.breadcrumbs-holder
+		margin 0px
+		padding bp
+		border-radius 5px
+		background-color white
+		box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+		.breadcrumbs
+			df()
+			fdr()
+			fw(1)
+			ai('c')
+			margin 0px
+			list-style none
+			li
+				dif()
+				fdr()
+				margin-right 5px
+				font-size 14px
+				line-height 15px
+				span
+					color black
+					font-size inherit
+					line-height inherit
+					&:hover
+						color orange
+				&.current-item
+					span
+						color orange
+				& + li
+					&:before
+						content '/'
+						margin-right 5px
+		& + .white-holder
+		& + .woocommerce
+			margin-top 25px
+
+	.white-holder
+		padding bp
+		border-radius 5px
+		background-color white
+		box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+		margin 0px 0px 25px 0px
+		.breadcrumbs-holder
+			padding 0px
+			box-shadow unset
+
+	.woocommerce-notices-wrapper
+		display none
+	.notifications
+		position fixed
+		right 0px
+		bottom 0px
+		z-index 150000
+		width 300px
+		.woocommerce-message
+		.notification
+			background-color white
+			color black
+			font-size 14px
+			padding 10px 20px
+			margin 10px 30px 10px 10px
+			border-radius 5px
+			border 1px solid mblue
+			box-shadow 0px 0px 15px 0px rgba(blue,0.3)
+			a
+				display block
+				color blue
+
+	.main-row
+		ai('s')
+		padding-bottom 40px
+	
+	.slider-holder
+		position relative
+		.swiper-button-next
+		.swiper-button-prev
+			border none
+			border-radius 50%
+			width 30px
+			height 30px
+			padding 0px
+			margin 0px
+			z-index 10
+			top calc(50% - 15px)
+			background-color rgba(0,0,0,0)
+			background-size contain
+			background-image url('../images/quick-links-arrow.png')
+			background-repeat no-repeat
+			background-position center
+			display none
+			&:after
+				display none
+			&[tabindex]
+				display block
+		.swiper-button-next
+			transform scale(-1,1)
+			right -15px
+		.swiper-button-prev
+			left -15px
+
+	.quick-links-row
+		margin-bottom 15px
+		position relative
+		width 100%
+		.quick-links
+			width 100%
+			position relative
+			overflow hidden
+			border-radius 5px
+			df()
+			fdr()
+			ai('t')
+			&:before
+				content ''
+				position absolute
+				top 0px
+				left 0px
+				right 0px
+				bottom 0px
+				z-index 5
+				box-shadow inset 0px 0px 0px 1px mblue
+				border-radius 5px
+				pen()
+			.nav-menu
+				df()
+				fdr()
+				z-index 1
+				width 100%
+				.nav-menu-element
+					df()
+					fdr()
+					a
+						dif()
+						fdc()
+						jc('c')
+						ai('c')
+						width 100%
+						background-color white
+						padding 5px bp
+						color black
+						font-size 14px
+						font-weight 400
+						text-align center
+						box-shadow 0px 0px 0px 1px mblue
+						.icon
+							df()
+							jc('c')
+							ai('c')
+							width 100%
+							height 85px
+							margin-bottom 10px
+							img
+								max-width 100%
+								max-height 100%
+								obejct-fit contain
+
+	.sidebar-toggle
+		display none
+
+	.sidebar-holder
+		z-index 50
+		.nav-menu
+			df()
+			fdc()
+			border-radius 5px
+			background-color white
+			box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+			.nav-menu-splitter
+				height 1px
+				width 100%
+				background-color grey
+			.nav-menu-element
+				df()
+				fdr()
+				ai('c')
+				fw(1)
+				padding 0px
+				position relative
+				background-color white
+				&:first-of-type
+					border-radius 5px 5px 0px 0px
+				&:last-of-type
+					border-radius 0px 0px 5px 5px
+				a
+					dif()
+					width 100%
+					color blue
+					font-size 18px
+					font-weight bold
+					padding 15px 20px
+				.toggler
+					display none
+				&.active
+					& > a
+						color orange
+				&.has-childs
+					& > a
+						width calc(100% - 60px)
+					& > .toggler
+						dif()
+						margin 15px 20px
+						width 20px
+						height 18px
+						background-size contain
+						background-image url('../images/sidebar-arrow.png')
+						background-repeat no-repeat
+						background-position center
+						transform rotate(0deg)
+						transition transform .1s linear
+					&:hover
+						& > .sub-menu
+							df()
+						& > .toggler
+							transform rotate(-90deg)
+				.sub-menu
+					// df()
+					fdc()
+					display none
+					position absolute
+					top 0px
+					left calc(100% - 5px)
+					min-width 100%
+					background-color lblue
+					border-radius 5px
+					padding 10px 40px 10px 25px
+					z-index -1
+					box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+					// box-shadow inset 25px 0px 25px -25px rgba(0,0,0,0.15)
+					.nav-menu-element
+						background-color unset
+						a
+							df()
+							fdr()
+							ai('t')
+							color black
+							font-size 14px
+							font-weight 400
+							padding 5px 10px 5px 0px
+							position relative
+							&:before
+								content ''
+								dif()
+								fs(0)
+								width 5px
+								height 5px
+								margin 5px 10px 0px 0px
+								border-radius 50%
+								background-color blue
+						&.active
+							& > a
+								color orange
+
+	.categories-grid
+		.categories-grid-category-holder
+			df()
+			fdr()
+			margin-top bp
+			margin-bottom bp
+			.categories-grid-category
+				df()
+				fdc()
+				width 100%
+				background-color white
+				border-radius 5px
+				margin 0px
+				padding 15px
+				border 1px solid mblue
+				box-shadow 0px 0px 15px 0px rgba(0,0,0,0.1)
+				transition box-shadow .2s linear, border .2s linear
+				.categories-grid-category-thumbnail
+					df()
+					jc('c')
+					ai('c')
+					margin-bottom 10px
+					position relative
+					padding-top 100%
+					overflow hidden
+					border-radius 5px
+					img
+						position absolute
+						top 0px
+						left 0px
+						right 0px
+						bottom 0px
+						object-fit contain
+				.categories-grid-category-title
+					color black
+					font-size 14px
+					line-height 20px
+					margin 0px 0px 0px 0px
+					transition color .2s linear
+				&:hover
+					border 1px solid blue
+					box-shadow 0px 0px 15px 0px rgba(blue,0.30)
+					.categories-grid-category-title
+						color blue
+
+	.items-grid
+		.items-grid-item-holder
+			dr()
+			fdr()
+			margin-top bp
+			margin-bottom bp
+			.items-grid-item
+				df()
+				fdc()
+				width 100%
+				background-color white
+				border-radius 5px
+				margin 0px
+				padding 15px
+				box-shadow 0px 0px 15px 0px rgba(0,0,0,0.1)
+				transition box-shadow .2s linear
+				z-index 1
+				.items-grid-item-link
+					df()
+					fdc()
+					fg(1)
+				.items-grid-item-thumbnail
+					df()
+					jc('c')
+					ai('c')
+					margin-bottom 10px
+					position relative
+					padding-top 100%
+					overflow hidden
+					border-radius 5px
+					img
+						position absolute
+						top 0px
+						left 0px
+						right 0px
+						bottom 0px
+						min-width 100%
+						min-height 100%
+						object-fit contain
+				.items-grid-item-title
+					df()
+					fg(1)
+					color black
+					font-size 16px
+					line-height 20px
+					margin 0px 0px 10px 0px
+					transition color .2s linear
+				.items-grid-item-attributes
+					df()
+					fdc()
+					fg(1)
+					margin 0px 0px 10px 0px
+					.items-grid-item-attributes-attribute
+						df()
+						fdr()
+						ai('e')
+						margin 0px 0px 5px 0px
+						border-bottom 1px dotted rgba(0,0,0,0.5)
+						.items-grid-item-attribute-label
+							dif()
+							jc('s')
+							color blue
+							font-size 12px
+							line-height 12px
+							text-align left
+						.items-grid-item-attribute-values
+							dif()
+							fg(1)
+							jc('e')
+							color blue
+							font-size 12px
+							line-height 12px
+							padding-left 10px
+							text-align right
+				.items-grid-item-price
+					df()
+					fdr()
+					fw(1)
+					ai('e')
+					color black
+					font-size 20px
+					font-weight bold
+					margin 0px 0px 10px 0px
+					del
+						order 2
+						color black
+						font-size 14px
+						margin-left 10px
+					ins
+						order 1
+						color orange
+						text-decoration none
+				.add-to-cart-holder
+					.button
+					.added_to_cart
+						df()
+						fdr()
+						ai('c')
+						jc('c')
+						height 40px
+						padding 10px
+						margin 0px
+						color white
+						font-size 18px
+						font-weight bold
+						background-color orange
+						border-radius 5px
+						transition .2s linear
+						&:hover
+							background-color blue
+					.added_to_cart
+						color mblue
+						background-color lblue
+						&:hover
+							color blue
+							background-color mblue
+					.out-of-stock
+						color mblue
+						background-color lblue
+						cursor default
+						&:hover
+							color mblue
+							background-color lblue
+					.added
+						display none
+				&:hover
+					box-shadow 0px 0px 15px 0px rgba(orange,0.30)
+					z-index 2
+					.items-grid-item-title
+						color orange
+	
+	.items-grid-controls
+		df()
+		fdr()
+		jc('b')
+		padding bp
+		border-radius 5px
+		background-color white
+		box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+		.items-grid-controls-pagination
+			dif()
+			fdr()
+			.page-numbers
+				dif()
+				fdr()
+				li
+					dif()
+					jc('c')
+					ai('c')
+					a
+					span
+						dif()
+						jc('c')
+						ai('c')
+						margin 0px 5px
+						min-width 30px
+						min-height 30px
+						border-radius 5px
+						border 1px solid mblue
+						color blue
+						font-size 16px
+						line-height 20px
+						background-color white
+						transition .2s linear
+						svg
+							height 12px
+							path
+								fill blue
+								transition .2s linear
+					a
+						&:hover
+							color orange
+							border-color orange
+							svg
+								path
+									fill orange
+					.prev
+						svg
+							transform scale(-1,1)
+					.current
+						color white
+						border-color orange
+						background-color orange
+		.load-more
+			padding 5px 10px
+			border-radius 5px
+			border 1px solid mblue
+			color blue
+			font-size 16px
+			line-height 20px
+			background-color white
+			transition .2s linear
+			&:hover
+				color white
+				border-color orange
+				background-color orange
+	
+	.pagination-holder
+		.pagination
+			dif()
+			fdr()
+			li
+				dif()
+				jc('c')
+				ai('c')
+				a
+				span
+					dif()
+					jc('c')
+					ai('c')
+					margin 0px 5px
+					min-width 30px
+					min-height 30px
+					border-radius 5px
+					border 1px solid mblue
+					color blue
+					font-size 16px
+					line-height 20px
+					background-color white
+					transition .2s linear
+					svg
+						height 12px
+						path
+							fill blue
+							transition .2s linear
+				a
+					&:hover
+						color orange
+						border-color orange
+						svg
+							path
+								fill orange
+				.prev
+					svg
+						transform scale(-1,1)
+				.current
+					color white
+					border-color orange
+					background-color orange
+	
+	.content-holder
+	.classic-editor-block
+		// text-align justify
+		h1
+		h2
+			color blue
+			font-size 34px
+			font-weight bold
+			line-height 40px
+			margin 30px 0px 20px 0px
+		p
+		li
+		ul
+		ol
+			font-size 16px
+			line-height 24px
+		p
+			margin 0px 0px 20px 0px
+		li
+			margin 0px
+		ul
+		ol
+			margin 10px 0px
+			list-style-position inside
+		ul
+			list-style disc
+		ol
+			list-style decimal
+		
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/base-page.styl */
+	@import 'includes/992-1200/base-page'
+
+@media screen and (min-width 768px) and (max-width 991px)
+	/*! @import includes/768-991/base-page.styl */
+	@import 'includes/768-991/base-page'
+
+@media screen and (max-width 767px)
+	/*! @import includes/480-767/base-page.styl */
+	@import 'includes/480-767/base-page'
+
+@media screen and (max-width 480px)
+	/*! @import includes/480/base-page.styl */
+	@import 'includes/480/base-page'

@@ -1,0 +1,54 @@
+ul
+ol
+img
+table
+	&.self-left
+		float left
+	&.self-right
+		float right
+	&.self-center
+		display block
+		margin-left auto
+		margin-right auto
+	&.self-full
+		width 100%
+
+img[data-video-src]
+	width 300px
+	border 3px solid danger_color_border
+	&.self-left
+	&.self-right
+		float none
+	&.self-center
+		display initial
+		margin-left initial
+		margin-right initial
+	&.self-full
+		width auto
+p
+h1
+h2
+h3
+h4
+h5
+h6
+td
+th
+li
+div
+	&.self-left
+		text-align left
+	&.self-right
+		text-align right
+	&.self-center
+		text-align center
+	&.self-full
+		text-align justify
+.self-left
+	iframe
+		float left
+		margin-right 2*bp
+.self-right
+	iframe
+		float right
+		margin-left 2*bp

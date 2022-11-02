@@ -1,0 +1,128 @@
+&.cart-page
+	.woocommerce-cart-form
+		position relative
+		.cart-table
+			width 100%
+			border-collapse collapse
+			thead
+				tr
+					background-color lblue
+					th
+						padding 20px 10px
+					.product-name
+					.product-price
+					.product-quantity
+					.product-subtotal
+						text-align left
+			tbody
+				tr
+					border-bottom 1px solid lblue
+					td
+						padding 10px
+					.product-thumbnail
+						img
+							width auto
+							height auto
+							max-width 100px
+							max-height 100px
+					.backorder_notification
+						color orange
+						margin 0px
+					.product-quantity
+						.quantity
+							df()
+							fdr()
+							ai('t')
+							label
+								display none
+							.qty
+								border 1px solid mblue
+								padding 10px 20px
+								color black
+								font-size 16px
+								font-weight bold
+								line-height 16px
+								text-align center
+								border-radius 5px
+								width 85px
+							.qty-minus
+							.qty-plus
+								display none
+					.product-subtotal
+						font-weight bold
+					.product-remove
+						text-align center
+						a
+							dif()
+							jc('c')
+							ai('c')
+							border 1px solid mblue
+							border-radius 5px
+							color black
+							width 40px
+							height 40px
+							font-size 16px
+							font-weight bold
+				.total-line
+					text-align right
+					border-bottom none
+					background-color unset
+					.total
+						font-size 16px
+				.last-line
+					border-bottom none
+					background-color unset
+					td
+						padding 0px
+						.flexed
+							df()
+							fdr()
+							ai('t')
+							jc('s')
+							padding 20px 0px
+							[name="update_cart"]
+								display none
+							.catalog-button
+								dif()
+								ai('c')
+								jc('c')
+								padding 15px 50px
+								margin 0px auto 0px 0px
+								color white
+								font-size 18px
+								font-weight bold
+								background-color mblue
+								border-radius 5px
+								transition background .2s linear
+								&:hover
+									background-color blue
+							.checkout-button
+								dif()
+								ai('c')
+								jc('c')
+								padding 15px 50px
+								margin 0px
+								color white
+								font-size 18px
+								font-weight bold
+								background-color orange
+								border-radius 5px
+								transition background .2s linear
+								&:hover
+									background-color blue
+	
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/cart-page.styl */
+	@import 'includes/992-1200/cart-page'
+
+// @media screen and (min-width 768px) and (max-width 991px)
+// 	/*! @import includes/768-991/cart-page.styl */
+// 	@import 'includes/768-991/cart-page'
+
+// @media screen and (max-width 767px)
+// 	/*! @import includes/480-767/cart-page.styl */
+// 	@import 'includes/480-767/cart-page'	
+
+@media screen and (max-width 480px)
+	/*! @import includes/480/cart-page.styl */
+	@import 'includes/480/cart-page'	

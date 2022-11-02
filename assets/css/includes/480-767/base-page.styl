@@ -1,0 +1,289 @@
+&.base-page
+	.page-title
+		font-size 27px
+		line-height 32px
+		margin 12px 0px 24px 0px
+		&:first-child
+			margin-top 0px
+	
+	.breadcrumbs-holder
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		.breadcrumbs
+			li
+				margin-right 4px
+				font-size 11px
+				line-height 12px
+				& + li
+					&:before
+						margin-right 4px
+		& + .white-holder
+		& + .woocommerce
+			margin-top 20px
+
+	.white-holder
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		margin 0px 0px 20px 0px
+		.breadcrumbs-holder
+			padding 0px
+			box-shadow unset
+
+	.woocommerce-notices-wrapper
+	.notifications
+		width 240px
+		.woocommerce-message
+		.notification
+			font-size 11px
+			padding 8px 16px
+			margin 8px 24px 8px 8px
+			border-radius 4px
+			box-shadow 0px 0px 12px 0px rgba(blue,0.3)
+
+	.main-row
+		padding-bottom 32px
+	
+	.slider-holder
+		.swiper-button-next
+		.swiper-button-prev
+			width 24px
+			height 24px
+			top calc(50% - 12px)
+		.swiper-button-next
+			right -12px
+		.swiper-button-prev
+			left -12px
+
+	.quick-links-row
+		margin-bottom 12px
+		.quick-links
+			border-radius 4px
+			&:before
+				border-radius 4px
+			.nav-menu
+				.nav-menu-element
+					a
+						padding 4px bp
+						font-size 11px
+						.icon
+							height 67px
+							margin-bottom 8px
+	.sidebar-toggle
+		dif()
+		fdc()
+		ai('c')
+		jc('c')
+		position fixed
+		top calc(50% - 20px)
+		left 0px
+		bottom calc(50% - 20px)
+		width 40px
+		height 40px
+		z-index 12
+		margin 0px
+		padding 5px
+		transition left .3s linear
+		border-radius 0px 10px 10px 0px
+		background-color white
+		box-shadow 0px 0px 5px 0px rgba(0,0,0,0.2)
+		.line
+			dif()
+			width 24px
+			height 4px
+			background-color mblue
+			margin 3px 8px
+			transition .2s linear
+			&:nth-of-type(1)
+				transform rotate(0deg)
+			&:nth-of-type(2)
+				opacity 1
+			&:nth-of-type(3)
+				transform rotate(0deg)
+		&:hover
+		&:active
+			.line
+				background-color blue
+
+	.sidebar-holder
+		width 65%
+		position fixed
+		top 50px
+		left 0px
+		bottom 0px
+		z-index 100
+		transform translateX(-100%)
+		transition transform .3s linear
+		padding 0px
+		background-color white
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		overflow-y auto
+		&.open
+			transform translateX(0%)
+			& + .sidebar-toggle
+				left 65%
+				.line
+					&:nth-of-type(1)
+						transform rotate(45deg)
+						margin-bottom -7px
+					&:nth-of-type(2)
+						opacity 0
+					&:nth-of-type(3)
+						transform rotate(-45deg)
+						margin-top -7px
+		.nav-menu
+			border-radius 0px
+			box-shadow unset
+			.nav-menu-splitter
+				height 1px
+			.nav-menu-element
+				padding 0px
+				&:first-of-type
+					border-radius 0px
+				&:last-of-type
+					border-radius 0px
+				a
+					font-size 14px
+					padding 12px 16px
+				&.has-childs
+					.toggler
+						margin 12px 16px
+						width 18px
+						height 9px
+				.sub-menu
+					width 100%
+					position static
+					left 0px
+					border-radius 0px
+					box-shadow inset 0px 5px 10px -10px rgba(blue,0.3), inset 0px -5px 10px -10px rgba(blue,0.3)
+					z-index 1
+					.nav-menu-element
+						a
+							font-size 11px
+							padding 4px 8px 4px 0px
+							&:before
+								width 4px
+								height 4px
+								margin 4px 8px 0px 0px
+				&.open
+					& > .toggler
+						transform rotate(-90deg)
+					& > .sub-menu
+						display block
+					&:hover
+						& > .sub-menu
+							display block
+						& > .toggler
+							transform rotate(-90deg)
+
+	.categories-grid
+		.categories-grid-category-holder
+			.categories-grid-category
+				border-radius 4px
+				padding 12px
+				box-shadow 0px 0px 12px 0px rgba(0,0,0,0.1)
+				.categories-grid-category-thumbnail
+					margin-bottom 8px
+					border-radius 4px
+				.categories-grid-category-title
+					font-size 11px
+					line-height 16px
+					margin 0px 0px 0px 0px
+				&:hover
+					box-shadow 0px 0px 12px 0px rgba(blue,0.30)
+
+	.items-grid
+		.items-grid-item-holder
+			.items-grid-item
+				border-radius 4px
+				padding 12px
+				box-shadow 0px 0px 12px 0px rgba(0,0,0,0.1)
+				.items-grid-item-thumbnail
+					margin-bottom 8px
+					border-radius 4px
+				.items-grid-item-title
+					font-size 13px
+					line-height 16px
+					margin 0px 0px 8px 0px
+				.items-grid-item-attributes
+					margin 0px 0px 8px 0px
+					.items-grid-item-attributes-attribute
+						margin 0px 0px 4px 0px
+						.items-grid-item-attribute-label
+							font-size 10px
+							line-height 10px
+						.items-grid-item-attribute-values
+							font-size 10px
+							line-height 10px
+							padding-left 8px
+				.items-grid-item-price
+					font-size 16px
+					margin 0px 0px 8px 0px
+					del
+						font-size 11px
+						margin-left 8px
+				.add-to-cart-holder
+					.button
+					.added_to_cart
+						height 32px
+						padding 8px
+						font-size 14px
+						border-radius 4px
+				&:hover
+					box-shadow 0px 0px 12px 0px rgba(orange,0.30)
+	
+	.items-grid-controls
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		.items-grid-controls-pagination
+			.page-numbers
+				li
+					a
+					span
+						margin 0px 4px
+						min-width 24px
+						min-height 24px
+						border-radius 4px
+						font-size 13px
+						line-height 16px
+						svg
+							height 10px
+		.load-more
+			padding 4px 8px
+			border-radius 4px
+			font-size 13px
+			line-height 16px
+	
+	.pagination-holder
+		.pagination
+			li
+				a
+				span
+					margin 0px 4px
+					min-width 24px
+					min-height 24px
+					border-radius 4px
+					font-size 13px
+					line-height 16px
+					svg
+						height 10px
+	
+	.content-holder
+	.classic-editor-block
+		h1
+		h2
+			font-size 27px
+			line-height 32px
+			margin 24px 0px 16px 0px
+		p
+		li
+		ul
+		ol
+			font-size 13px
+			line-height 19px
+		p
+			margin 0px 0px 16px 0px
+		li
+			margin 0px
+		ul
+		ol
+			margin 8px 0px

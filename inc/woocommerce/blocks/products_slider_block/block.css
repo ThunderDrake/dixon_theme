@@ -1,0 +1,90 @@
+.products-slider-block {
+  margin: 120px 0px 150px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.products-slider-block .title-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.products-slider-block .title-holder a {
+  font-size: 14px;
+}
+.products-slider-block .title-holder a:hover {
+  color: #b50835;
+}
+.products-slider-block::before {
+  content: url(../../../../assets/images/bghit.png);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -35px;
+  left: -20%;
+  pointer-events: none;
+}
+
+.products-slider-block .block-title {
+  color: #000;
+  font-size: 34px;
+  font-weight: 500;
+}
+.products-slider-block .swiper-container {
+  margin-left: -15px;
+  margin-right: -15px;
+  width: calc(100% + 30px);
+}
+.products-slider-block .swiper-wrapper {
+  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  width: 100%;
+}
+.products-slider-block .swiper-wrapper .swiper-slide {
+  height: auto;
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .products-slider-block {
+    margin: 24px 0px 0px 0px;
+  }
+  .products-slider-block .block-title {
+    font-size: 27px;
+    margin: 0px 0px 24px 0px;
+  }
+  .products-slider-block .swiper-container {
+    margin-left: -15px;
+    margin-right: -15px;
+    width: calc(100% + 30px);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .products-slider-block {
+    margin: 24px 0px 0px 0px;
+  }
+  .products-slider-block .block-title {
+    font-size: 27px;
+    margin: 0px 0px 24px 0px;
+  }
+  .products-slider-block .swiper-container {
+    margin-left: -15px;
+    margin-right: -15px;
+    width: calc(100% + 30px);
+  }
+}
+@media screen and (max-width: 767px) {
+  .products-slider-block {
+    margin: 24px 0px 0px 0px;
+    overflow: hidden;
+  }
+  .products-slider-block .block-title {
+    font-size: 27px;
+    margin: 0px 0px 24px 0px;
+  }
+  .products-slider-block .swiper-container {
+    margin-left: -15px;
+    margin-right: -15px;
+    width: calc(100% + 30px);
+  }
+}

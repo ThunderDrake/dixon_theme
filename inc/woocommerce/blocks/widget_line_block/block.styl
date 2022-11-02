@@ -1,0 +1,130 @@
+@import '../../../../assets/css/includes/_mixins'
+
+.widget-line
+	padding 70px 0px
+	background-color lgrey
+	.row
+		df()
+		fdr()
+		fw(0)
+	.widget
+		dif()
+		fdr()
+		width 100%
+		background-size cover
+		background-position center
+		.widget-content
+			df()
+			fdc()
+			width 100%
+			padding 35px 40px
+			.icon
+				dif()
+				jc('c')
+				padding 0px 0px 20px 0px
+				margin -55px 0px auto 0px
+			.big-text
+				font-size 24px
+				font-weight 900
+				line-height 30px
+				text-transform uppercase
+				a
+					color inherit
+					font-size 36px
+					font-weight bold
+				.white-text
+					color white
+				.pink-text
+					color pink
+					margin 10px 0px 0px 0px
+			.small-text
+				margin-top auto
+				font-size 16px
+				font-weight 400
+				line-height 24px
+				.white-text
+					color white
+				.pink-text
+					color pink
+		& + .widget
+			margin-left 2*bp
+
+@media screen and (max-width 1199px)
+	.widget-line
+		padding 56px 0px
+		.widget
+			.widget-content
+				padding 28px 32px
+				.icon
+					padding 0px 0px 16px 0px
+					margin -44px 0px auto 0px
+				.big-text
+					font-size 19px
+					line-height 24px
+					a
+						font-size 29px
+					.pink-text
+						margin 8px 0px 0px 0px
+				.small-text
+					font-size 13px
+					line-height 19px
+
+@media screen and (min-width 768px) and (max-width 991px)
+	.widget-line
+		padding 56px 0px
+		.row
+			fw(1)
+		.widget
+			.widget-content
+				padding 28px 32px
+				fdr()
+				fw(1)
+				ai('c')
+				.icon
+					padding 0px 0px 16px 0px
+					margin 0px 30px 0px 0px
+				.big-text
+					font-size 19px
+					line-height 24px
+					a
+						font-size 29px
+					.pink-text
+						margin 10px 0px 0px 0px
+				.small-text
+					width 100%
+					margin-top 10px
+					font-size 13px
+					line-height 19px
+			& + .widget
+				margin-left 0px
+				margin-top 2*bp
+
+@media screen and (max-width 767px)
+	.widget-line
+		padding 56px 0px
+		.row
+			fw(1)
+		.widget
+			.widget-content
+				padding 28px 32px
+				fdr()
+				fw(1)
+				ai('c')
+				.icon
+					padding 0px 0px 16px 0px
+					margin 0px 30px 0px 0px
+				.big-text
+					font-size 19px
+					line-height 24px
+					a
+						font-size 29px
+					.pink-text
+						margin 10px 0px 0px 0px
+				.small-text
+					width 100%
+					margin-top 10px
+					font-size 13px
+					line-height 19px
+			& + .widget
+				margin-left 0px
+				margin-top 2*bp

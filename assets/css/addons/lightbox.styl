@@ -1,0 +1,200 @@
+.lightbox-background
+	position fixed
+	top 0px
+	left 0px
+	right 0px
+	bottom 0px
+	z-index 10000
+	background-color rgba(black,0.4)
+	opacity 1
+	transition .3s opacity
+	&.hidden
+		opacity 0
+
+.lightbox-container
+	// position fixed
+	// top 0px
+	// left 0px
+	// right 0px
+	// bottom 0px
+	// z-index 10100
+	// pointer-events none
+	position relative
+	z-index 10100
+	transition .3s opacity
+	opacity 1
+	&.hidden
+		opacity 0
+	.lightbox-content
+		pointer-events initial
+		position fixed
+		top 0px
+		left 0px
+		right 0px
+		bottom 0px
+		margin auto
+		z-index 10300
+		width 100px
+		height 100px
+		background-color white
+		transition all .5s linear
+		overflow hidden
+		.preloader
+			position absolute
+			top 0px
+			left 0px
+			right 0px
+			bottom 0px
+			margin auto
+			width 50px
+			height 50px
+		.lightbox-title
+			position absolute
+			left 0px
+			right 0px
+			bottom 0px
+			color white
+			font-size 16px
+			background-color rgba(dark,0.5)
+			padding bp
+			transform translateY(100%)
+			transition all btrans
+		img
+			width 100%
+			height 100%
+			&.hidden
+				opacity 0
+		&:hover
+			.lightbox-title
+				transform translateY(0%)
+	.lightbox-buttons
+		position fixed
+		top 0px
+		left 0px
+		right 0px
+		bottom 0px
+		z-index 10500
+		pointer-events none
+		.button
+			position absolute
+			top calc(50% - 30px)
+			width 40px
+			height 40px
+			background-color red
+			background-image url('../svg/slider-button.svg')
+			background-repeat no-repeat
+			background-position center center
+			background-size 30%
+			border none
+			padding 0px
+			margin 0px
+			cursor pointer
+			pointer-events initial
+			transition all btrans // sizeanim
+			border-radius 5px
+			&:hover
+				background-color orange
+			&.prev
+				left 20px
+				transform scale(-1,1)
+			&.next
+				right 20px
+	.close
+		position fixed
+		border 0
+		padding 0
+		top 10px
+		right 10px
+		width 60px
+		height 60px
+		background-color rgba(dark,0)
+		overflow visible
+		cursor pointer
+		background transparent
+		-webkit-appearance none
+		display block
+		outline none
+		z-index 10500
+		box-shadow none
+		pointer-events initial
+		touch-action manipulation
+		transition all btrans // sizeanim
+		color #FFF
+		font-style normal
+		font-size 28px
+		font-family Arial, Baskerville, monospace
+				
+
+@keyframes preloader1
+	0%
+		transform translate(0px,0px) rotate(0deg)
+	10%
+		transform translate(-5px,-5px) rotate(0deg)
+	////////////////////////////////////////////////////
+	35%
+	45%
+		transform translate(-20px,-20px) rotate(180deg)
+	////////////////////////////////////////////////////
+	70%
+		transform translate(-5px,-5px) rotate(360deg)
+	80%
+		transform translate(-0px,-0px) rotate(360deg)
+	////////////////////////////////////////////////////
+	100%
+		transform translate(0px,0px) rotate(360deg)
+@keyframes preloader2
+	0%
+		transform translate(0px,0px) rotate(0deg)
+	10%
+		transform translate(5px,-5px) rotate(0deg)
+	////////////////////////////////////////////////////
+	35%
+	45%
+		transform translate(20px,-20px) rotate(180deg)
+	////////////////////////////////////////////////////
+	70%
+		transform translate(5px,-5px) rotate(360deg)
+	80%
+		transform translate(0px,-0px) rotate(360deg)
+	////////////////////////////////////////////////////
+	100%
+		transform translate(0px,0px) rotate(360deg)
+@keyframes preloader3
+	0%
+		transform translate(0px,0px) rotate(0deg)
+	10%
+		transform translate(5px,5px) rotate(0deg)
+	////////////////////////////////////////////////////
+	35%
+	45%
+		transform translate(20px,20px) rotate(180deg)
+	////////////////////////////////////////////////////
+	70%
+		transform translate(5px,5px) rotate(360deg)
+	80%
+		transform translate(0px,0px) rotate(360deg)
+	////////////////////////////////////////////////////
+	100%
+		transform translate(0px,0px) rotate(360deg)
+@keyframes preloader4
+	0%
+		transform translate(0px,0px) rotate(0deg)
+	10%
+		transform translate(-5px,5px) rotate(0deg)
+	////////////////////////////////////////////////////
+	35%
+	45%
+		transform translate(-20px,20px) rotate(180deg)
+	////////////////////////////////////////////////////
+	70%
+		transform translate(-5px,5px) rotate(360deg)
+	80%
+		transform translate(0px,0px) rotate(360deg)
+	////////////////////////////////////////////////////
+	100%
+		transform translate(0px,0px) rotate(360deg)
+
+
+@media screen and (max-width 991px)
+	.lightbox-background
+		cursor pointer

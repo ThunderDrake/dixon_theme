@@ -1,0 +1,150 @@
+#header
+	padding-top 50px
+	.top-line
+		padding 5px 0px
+		height 50px
+		position fixed
+		top 0px
+		left 0px
+		right 0px
+		z-index 1500
+		.row
+			ai('c')
+			.icon-menu
+				dif()
+				fdc()
+				jc('c')
+				ai('c')
+				width 40px
+				height 40px
+				margin-left bp
+				.line
+					dif()
+					width 24px
+					height 4px
+					background-color white
+					margin 3px 8px
+					transition .2s linear
+					&:nth-of-type(1)
+						transform rotate(0deg)
+					&:nth-of-type(2)
+						opacity 1
+					&:nth-of-type(3)
+						transform rotate(0deg)
+				&:active
+					background-color white
+					.line
+						background-color blue
+				&.open
+					.line
+						&:nth-of-type(1)
+							transform rotate(45deg)
+							margin-bottom -7px
+						&:nth-of-type(2)
+							opacity 0
+						&:nth-of-type(3)
+							transform rotate(-45deg)
+							margin-top -7px
+			.menu-holder
+				position fixed
+				top 50px
+				left 0px
+				bottom 0px
+				width 65%
+				background-color blue
+				z-index 100
+				transform translateX(-100%)
+				transition transform .3s linear
+				.nav-menu
+					fdc()
+					.nav-menu-element
+						df()
+						& + .nav-menu-element
+							margin-left 0px
+							margin-top 10px
+				&.open
+					transform translateX(0%)
+	.bottom-line
+		padding-top 10px
+		padding-bottom 10px
+		.row
+			.search-holder
+				order 1
+				padding-right bp
+				margin-bottom 10px
+				.header-search
+					width 100%
+			.logo-holder
+				order 2
+			.phone-holder
+				order 4
+				margin-top 10px
+				margin-bottom 0px
+				.phone
+					margin 5px 0px
+			.cart-holder
+				order 3
+	// box-shadow 0px 0px 20px 0px rgba(black,0.2)
+	// .top-line
+	// 	padding 12px 0px
+	// 	.row
+	// 		.menu-holder
+	// 			.nav-menu
+	// 				.nav-menu-element
+	// 					& + .nav-menu-element
+	// 						margin-left 20px
+	// 					a
+	// 						font-size 13px
+	// 						line-height 22px
+	// 		.social-holder
+	// 			.social-link
+	// 				height 20px
+	// 				width 20px
+	// 				& + .social-link
+	// 					margin-left 8px
+	// .bottom-line
+	// 	padding 16px 0px
+	// 	.row
+	// 		.search-holder
+	// 			.header-search
+	// 				width 280px
+	// 				input[type="text"]
+	// 				input[type="search"]
+	// 					height 36px
+	// 					border-radius 16px
+	// 					padding 12px 52px 12px 20px
+	// 					font-size 14px
+	// 					line-height 22px
+	// 				button
+	// 				input[type="submit"]
+	// 					right 16px
+	// 					width 36px
+	// 					height 36px
+	// 					background-size 18px		
+	// 		.phone-holder
+	// 			a
+	// 				font-size 12px
+	// 				line-height 16px
+	// 				margin 8px 0px
+	// 				padding 0px 0px 0px 12px
+	// 				&:nth-of-type(2n+2)
+	// 					margin-left 12px
+	// 				&:before
+	// 					width 6px
+	// 					height 6px
+	// 		.cart-holder
+	// 			.cart-icon
+	// 				width 36px
+	// 				margin 0px 8px 0px 0px
+	// 			.cart-content
+	// 				.line
+	// 					.label
+	// 						font-size 11px
+	// 						line-height 14px
+	// 						& + .value
+	// 							margin-left 4px
+	// 					.value
+	// 						font-size 11px
+	// 						line-height 14px
+	// 						& + .label
+	// 							margin-left 4px

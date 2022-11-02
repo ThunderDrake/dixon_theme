@@ -1,0 +1,186 @@
+#header
+	box-shadow 0px 0px 25px 0px rgba(black,0.2)
+	.top-line
+		background-color blue
+		padding 15px 0px
+		df()
+		.row
+			jc('b')
+			ai('s')
+			.icon-menu
+				display none
+			.menu-holder
+				df()
+				fdr()
+				jc('s')
+				.nav-menu
+					df()
+					fdr()
+					width 100%
+					.nav-menu-element
+						dif()
+						& + .nav-menu-element
+							margin-left 25px
+						a
+							width 100%
+							color white
+							font-size 16px
+							line-height 28px
+							font-weight 300
+							&:hover
+								color orange
+						&.active
+							a
+								color orange
+								font-weight 400
+								text-decoration underline
+			.social-holder
+				df()
+				fdr()
+				jc('e')
+				.social-link
+					dif()
+					fs(0)
+					width 24px
+					height 24px
+					border-radius 50%
+					margin 0px 0px 0px 0px
+					background-size cover
+					background-position center
+					& + .social-link
+						margin-left 10px
+					&.yt
+						background-image url('../images/soc-yt.png')
+					&.vk
+						background-image url('../images/soc-vk.png')
+					&.ig
+						background-image url('../images/soc-ig.png')
+	.bottom-line
+		df()
+		background-color white
+		color black
+		padding 20px 0px
+		.row
+			ai('c')
+			.search-holder
+				jc('e')
+				ai('c')
+				padding-right 0px
+				.header-search
+					width 350px
+					position relative
+					form
+						margin 0px
+						padding 0px
+					label
+						font-size 0px
+					input[type="text"]
+					input[type="search"]
+						width 100%
+						height 45px
+						border-radius 20px
+						border 1px solid grey
+						padding 15px 65px 15px 25px
+						color bgrey
+						font-size 18px
+						line-height 28px
+						font-weight 300
+						background-color white 
+						pha(color,bgrey)
+					button
+					input[type="submit"]
+						position absolute
+						top 0px
+						right 20px
+						bottom 0px
+						width 45px
+						height 45px
+						padding 0px
+						background-size 22px
+						background-color rgba(0,0,0,0)
+						background-image url('../images/search.png')
+						background-repeat no-repeat
+						background-position center center
+			.phone-holder
+				dif()
+				fdr()
+				jc('c')
+				ai('c')
+				fw(1)
+				padding-left bp
+				padding-right bp
+				a
+					df()
+					fdr()
+					ai('c')
+					color black
+					font-size 15px
+					font-weight 600
+					line-height 20px
+					margin 10px 0px
+					padding 0px 0px 0px 15px
+					position relative
+					&:nth-of-type(2n+2)
+						margin-left 15px
+					&:before
+						content ''
+						position absolute
+						display block
+						top 0px
+						left 0px
+						bottom 0px
+						margin auto 0px
+						width 7px
+						height 7px
+						border-radius 50%
+						background-color blue
+			.cart-holder
+				df()
+				fdr()
+				jc('e')
+				padding-left bp
+				padding-right bp
+				margin-left auto
+				.cart-block
+					df()
+					fdr()
+					ai('c')
+				.cart-icon
+					width 45px
+					margin 0px 10px 0px 0px
+				.cart-content
+					df()
+					fdc()
+					ai('s')
+					jc('c')
+					.line
+						df()
+						fdr()
+						ai('c')
+						.label
+							color black
+							font-size 14px
+							font-weight 600
+							line-height 18px
+							& + .value
+								margin-left 5px
+						.value
+							color orange
+							font-size 14px
+							font-weight 600
+							line-height 18px
+							& + .label
+								margin-left 5px
+					
+					
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/_header.styl */
+	@import 'includes/992-1200/_header'
+
+@media screen and (min-width 768px) and (max-width 991px)
+	/*! @import includes/768-991/_header.styl */
+	@import 'includes/768-991/_header'
+
+@media screen and (max-width 767px)
+	/*! @import includes/480-767/_header.styl */
+	@import 'includes/480-767/_header'

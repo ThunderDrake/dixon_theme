@@ -1,0 +1,85 @@
+&.front-page
+	.main-slider
+		.swiper-container
+			box-shadow 0px 0px 25px 0px rgba(0,0,0,0.15)
+			border-radius 5px
+			overflow hidden
+			z-index 0
+		.swiper-slide
+			position relative
+			width 100%
+			.content
+				z-index 1
+				position absolute
+				top 0px
+				left 0px
+				bottom 0px
+				width 300px
+				background-color blue
+				padding 40px
+				border-radius 5px 0px 0px 5px
+				.text
+					color white
+					font-size 20px
+					font-weight bold
+					line-height 24px
+					ul
+					ol
+						list-style none
+					li
+						&:before
+							content ''
+							display inline-block
+							vertical-align middle
+							width 7px
+							height 7px
+							margin 0px 5px 5px 0px
+							border-radius 50%
+							background-color white
+						& + li
+							margin-top 15px
+				.button
+					margin-top 20px
+					a
+					button
+						padding 10px 20px
+						border-radius 5px
+						background-color orange
+						border none
+						color white
+						font-size 18px
+						font-weight 400
+						text-align center
+				.halcircle
+					position absolute
+					top 0px
+					right -65px
+					bottom 0px
+					width 70px
+					overflow hidden
+					&:after
+						content ''
+						position absolute
+						top calc(50% - 210px)
+						right 0px
+						width 420px
+						height 420px
+						background-color blue
+						border-radius 50%
+						z-index -1
+
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/front-page.styl */
+	@import 'includes/992-1200/front-page'
+	
+//@media screen and (min-width 768px) and (max-width 991px)
+//	/*! @import includes/768-991/front-page.styl */
+//	@import 'includes/768-991/front-page'
+//	
+//@media screen and (max-width 767px)
+//	/*! @import includes/480-767/front-page.styl */
+//	@import 'includes/480-767/front-page'
+//	
+@media screen and (max-width 480px)
+	/*! @import includes/480/front-page.styl */
+	@import 'includes/480/front-page'

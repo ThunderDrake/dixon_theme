@@ -1,0 +1,47 @@
+&.gallery-page
+	.galleries-grid
+		.galleries-grid-holder
+			margin-top bp
+			margin-bottom bp
+			.galleries-grid-element
+				position relative
+				border-radius 5px
+				overflow hidden
+				.image
+					position relative
+					z-index 1
+					img
+						width 100%
+				.title
+					position absolute
+					z-index 2
+					left 0px
+					right 0px
+					bottom 0px
+					background-color rgba(0,0,0,0.7)
+					padding 15px
+					color white
+					font-size 16px
+
+	.gallery-grid
+		.gallery-grid-holder
+			margin-top bp
+			margin-bottom bp
+			.gallery-grid-element
+				border-radius 5px
+				overflow hidden
+				img
+					width 100%
+					cursor pointer
+
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/gallery-page.styl */
+	@import 'includes/992-1200/gallery-page'
+	
+//@media screen and (min-width 768px) and (max-width 991px)
+//	/*! @import includes/768-991/gallery-page.styl */
+//	@import 'includes/768-991/gallery-page'
+//	
+//@media screen and (max-width 767px)
+//	/*! @import includes/480-767/gallery-page.styl */
+//	@import 'includes/480-767/gallery-page'

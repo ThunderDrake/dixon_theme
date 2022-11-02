@@ -1,0 +1,95 @@
+#footer
+	.bottom-line
+		df()
+		background-color white
+		color black
+		padding 20px 0px
+		.row
+			jc('b')
+			ai('c')
+			.copyright-holder
+				color black
+				font-size 14px
+				font-weight 400
+				line-height 40px
+			.phone-holder
+				dif()
+				fdr()
+				jc('c')
+				ai('c')
+				fw(1)
+				padding-left bp
+				padding-right bp
+				a
+					df()
+					fdr()
+					ai('c')
+					color black
+					font-size 15px
+					font-weight 600
+					line-height 20px
+					margin 10px 0px
+					padding 0px 0px 0px 15px
+					position relative
+					&:nth-of-type(2n+2)
+						margin-left 15px
+					&:before
+						content ''
+						position absolute
+						display block
+						top 0px
+						left 0px
+						bottom 0px
+						margin auto 0px
+						width 7px
+						height 7px
+						border-radius 50%
+						background-color blue
+			.social-holder
+				df()
+				fdr()
+				jc('e')
+				.item-social
+					dif()
+					margin 0px 0px 0px 10px
+				a
+					dif()
+					width 24px
+					height 24px
+					border-radius 50%
+					background-size cover
+					background-position center
+					&.yt
+						background-image url('../images/soc-yt-ft.png')
+					&.vk
+						background-image url('../images/soc-vk-ft.png')
+					&.ig
+						background-image url('../images/soc-ig-ft.png')
+	.holder-creator
+		background-color blue
+		.creator
+			width 100%
+			margin 15px 0px
+			df()
+			jc('e')
+			a
+				ai('c')
+				color white
+				font-size 16px
+				font-weight 300
+				line-height 20px
+
+@media screen and (min-width 992px) and (max-width 1199px)
+	/*! @import includes/992-1200/_footer.styl */
+	@import 'includes/992-1200/_footer'
+
+@media screen and (min-width 768px) and (max-width 991px)
+	/*! @import includes/768-991/_footer.styl */
+	@import 'includes/768-991/_footer'
+
+// @media screen and (max-width 767px)
+// 	/*! @import includes/480-767/_footer.styl */
+// 	@import 'includes/480-767/_footer'
+// @media screen and (max-width 480px)
+// 	/*! @import includes/480/_footer.styl */
+// 	@import 'includes/480/_footer'

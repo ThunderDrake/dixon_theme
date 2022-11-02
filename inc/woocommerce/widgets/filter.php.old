@@ -1,0 +1,533 @@
+<?php
+class filter_widget extends WP_Widget
+{
+	public $settings;
+	public $_ids;
+	public $filters;
+
+	function __construct()
+	{
+		$this->_ids = array();
+		$this->filters = array(
+			'price' => array(
+				'price_min' => 0,
+				'price_max' => 0,
+				'current_min_price' => 0,
+				'current_max_price' => 0,
+			)
+		);
+		$this->settings = array(
+			'title' => array(
+				'type'  => 'text',
+				'std'   => 'Фильтр товаров',
+				'label' => __( 'Title', 'woocommerce' ),
+			),
+			'hide_attributes' => array(
+				'type' => 'mselect2',
+				'std' => array(),
+				'label' => 'Скрыть атрибуты',
+				'options' => $this->get_all_filters()
+			),
+		);
+		parent::__construct(
+			// Base ID of your widget
+			'filter_widget',
+			'[DIAMOND] Фильтр товаров',
+			// Widget description
+			array( 'description' => 'Фильтр товаров категории' )
+		);
+
+		add_filter('woocommerce_product_query', [$this,'product_query']);
+	}
+
+	public function product_query($query)
+	{
+		if(!$query->is_main_query())
+		{
+			return;
+		}
+		if($query->is_tax('product_cat'))
+		{
+			$this->get_sidebar_filter_data($query);
+			$http_request = $_REQUEST;
+			$tax_query = $query->get('tax_query');
+			$meta_query = $query->get('meta_query');
+
+			foreach($this->filters as $slug => $data)
+			{
+				if($slug != 'price')
+				{
+					if(array_key_exists('f_'.$slug, $http_request))
+					{
+						$tax_query[] = array(
+							'taxonomy' => 'pa_'.$slug,
+							'field'    => 'slug',
+							'terms'    => $http_request['f_'.$slug],
+							'operator' => 'IN',
+						);
+					}
+				}
+				else
+				{
+					if($data['current_min_price'] >= 0 and $data['current_max_price'] > 0 and $data['price_min'] != $data['price_max'])
+					{
+						$meta_query[] = array(
+							array(
+								'key' => '_price',
+								'compare' => 'BETWEEN',
+								'value' => [$data['current_min_price'],$data['current_max_price']],
+								'type' => 'DECIMAL'
+							),
+						);
+					}
+				}
+			}
+			// $meta_query[] = array(
+			// 	array(
+			// 		'key'     => '_stock',
+			// 		'compare' => '>',
+			// 		'value'   => '0',
+			// 		'type' => 'DECIMAL'
+			// 	)
+			// );
+			// $query->set('order', 'DESC');
+			// $query->set('orderby', 'meta_value');
+			// $query->set('meta_key', '_stock');
+			$query->set('tax_query',$tax_query);
+			$query->set('meta_query',$meta_query);
+		}
+	}
+
+	private function active_first($a, $b)
+	{
+		if($a['active'] and $b['active'])
+		{
+			return 0;
+		}
+		if(!$a['active'] and $b['active'])
+		{
+			return 1;
+		}
+		if($a['active'] and !$b['active'])
+		{
+			return -1;
+		}
+	}
+
+	private function get_all_filters()
+	{
+		$filters = array();
+		$all = wc_get_attribute_taxonomies();
+		foreach ($all as $attr)
+		{
+			$filters[$attr->attribute_name] = $attr->attribute_label;
+		}
+		return $filters;
+	}
+
+	public function get_allowed_filters($instance=null)
+	{
+		$all = wc_get_attribute_taxonomies();
+		foreach ($all as $attr)
+		{
+			if(!array_key_exists($attr->attribute_name, $this->filters))
+			{
+				$this->filters[$attr->attribute_name] = array(
+					'name'=>$attr->attribute_label,
+					'has_active'=>false,
+					'values'=>array()
+				);
+			}
+		}
+		if($instance)
+		{
+			foreach($instance['hide_attributes'] as $attr)
+			{
+				unset($this->filters[$attr]);
+			}
+		}
+	}
+
+	public function get_sidebar_filter_data($query)
+	{
+		$http_request = $_REQUEST;
+
+		if($query->is_tax('product_cat'))
+		{
+			$category = get_queried_object();
+			$this->_ids = get_posts(
+				array(
+					'post_type'   => 'product',
+					'numberposts' => -1,
+					'fields'      => 'ids',
+					'tax_query'   => array(
+						array(
+							'taxonomy' => $category->taxonomy,
+							'field' => 'id',
+							'terms' => $category->term_id
+						)
+					)
+				)
+			);
+		}
+		if($query->is_search)
+		{
+			$this->_ids = get_posts(
+				array(
+					'post_type'   => 'product',
+					'numberposts' => -1,
+					'fields'      => 'ids',
+					's'           => get_query_var('s')
+				)
+			);
+		}
+
+		if($this->_ids)
+		{
+			$this->get_allowed_filters();
+
+			foreach($this->filters as $slug => $ignore)
+			{
+				if($slug != 'price')
+				{
+					$datas = get_terms(
+						array(
+							'taxonomy' => 'pa_'.$slug,
+							'object_ids' => $this->_ids,
+							'hide_empty' => false,
+							'hierarchical' => false,
+							'suppress_filter' => true,
+							'cache_domain' => 'category_sidebar_filter'
+						)
+					);
+
+					$fslug = 'f_'.$slug;
+
+					foreach ($datas as $taxonomy)
+					{
+						$active = false;
+						if(isset($http_request[$fslug]))
+						{
+							$active = in_array((string)$taxonomy->slug, $http_request[$fslug]);
+							if($active)
+							{
+								$this->filters[$slug]['has_active'] = true;
+							}
+						}
+						$this->filters[$slug]['values'][] = array(
+							'value'=>$taxonomy->slug,
+							'name'=>$taxonomy->name,
+							'active'=>$active
+						);
+						$t = $this->filters[$slug]['values'];
+						usort($t, [$this,"active_first"]);
+						$this->filters[$slug]['values'] = $t;
+					}
+				}
+				else
+				{
+					$_ids_string = implode(',', $this->_ids);
+					/* ▼ Minimal and maximal price in categories list ▼ */
+					global $wpdb;
+					$min_and_max_price_sql = "SELECT MIN(CAST(`meta_value` as unsigned)) AS vMin, MAX(CAST(`meta_value` as unsigned)) AS vMax FROM $wpdb->postmeta WHERE `meta_key` = '_price' AND `post_id` IN (".$_ids_string.")";
+
+					$temp = $wpdb->get_results($min_and_max_price_sql,'ARRAY_A');
+					$temp = array_shift($temp);
+
+					$this->filters['price']['price_min'] = isset($temp['vMin']) ? floatval($temp['vMin']) : 0;
+					$this->filters['price']['price_max'] = isset($temp['vMax']) ? floatval($temp['vMax']) : 0;
+
+					$this->filters['price']['current_min_price'] = isset($http_request['f_min_price']) ? $http_request['f_min_price'] : $this->filters['price']['price_min'];
+					$this->filters['price']['current_max_price'] = isset($http_request['f_max_price']) ? $http_request['f_max_price'] : $this->filters['price']['price_max'];
+
+					unset($temp);
+					unset($_ids_string);
+				}
+			}
+		}
+	}
+
+	private function is_subcategory_display_type()
+	{
+		$term = get_queried_object();
+		if($term instanceof WP_Term)
+		{
+			$term_id = $term->term_id;
+			return get_term_meta($term_id,'display_type',true) === 'subcategories' ?  true : false;
+		}
+
+		return false;
+	}
+
+	// Creating widget front-end
+	public function widget( $args, $instance )
+	{
+		if(is_product_category() or is_search())
+		{
+			global $GS;
+
+			if($this->is_subcategory_display_type())
+			{
+				return;
+			}
+
+			$this->get_allowed_filters($instance);
+
+			if($this->filters)
+			{
+				foreach ($this->filters as $attr => $values)
+				{
+					if($attr != 'price')
+					{
+						if(empty($this->filters[$attr]['values']))
+						{
+							unset($this->filters[$attr]);
+						}
+					}
+					else
+					{
+						if($this->filters[$attr]['price_min'] == $this->filters[$attr]['price_max'])
+						{
+							unset($this->filters[$attr]);
+						}
+					}
+				}
+				
+				if(!empty($this->filters))
+				{
+					$this->start($instance);
+					echo $this->render();
+					$this->end();
+				}
+			}
+		}
+	}
+
+	public function form( $instance )
+	{
+		if(empty($this->settings))
+		{
+			return;
+		}
+
+		foreach($this->settings as $key => $setting)
+		{
+			$class = isset( $setting['class'] ) ? $setting['class'] : '';
+			$value = isset( $instance[ $key ] ) ? $instance[ $key ] : $setting['std'];
+
+			switch($setting['type'])
+			{
+
+				case 'text':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; ?></label><?php // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
+						<input class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $value ); ?>" />
+					</p>
+					<?php
+					break;
+
+				case 'number':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<input class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="number" step="<?php echo esc_attr( $setting['step'] ); ?>" min="<?php echo esc_attr( $setting['min'] ); ?>" max="<?php echo esc_attr( $setting['max'] ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+					</p>
+					<?php
+					break;
+
+				case 'select':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<select class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>">
+							<?php foreach ( $setting['options'] as $option_key => $option_value ) : ?>
+								<option value="<?php echo esc_attr( $option_key ); ?>" <?php selected( $option_key, $value ); ?>><?php echo esc_html( $option_value ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+					<?php
+					break;
+
+				case 'select2':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<select class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>">
+							<?php foreach ( $setting['options'] as $option_key => $option_value ) : ?>
+								<option value="<?php echo esc_attr( $option_key ); ?>" <?php selected( $option_key, $value ); ?>><?php echo esc_html( $option_value ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+					<script>jQuery(document).ready(function(){jQuery('#<?php echo esc_attr( $this->get_field_id( $key ) ); ?>').select2({'width':'100%'});});</script>
+					<?php
+					break;
+
+				case 'mselect':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<select class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>[]" multiple="multiple">
+							<?php foreach ( $setting['options'] as $option_key => $option_value ) : ?>
+								<option value="<?php echo esc_attr( $option_key ); ?>" <?php if( in_array($option_key, $value) ) { echo 'selected="selected"'; } ?>><?php echo esc_html( $option_value ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+					<?php
+					break;
+
+				case 'mselect2':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<select class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>[]" multiple="multiple">
+							<?php foreach ( $setting['options'] as $option_key => $option_value ) : ?>
+								<option value="<?php echo esc_attr( $option_key ); ?>" <?php if( in_array($option_key, $value) ) { echo 'selected="selected"'; } ?>><?php echo esc_html( $option_value ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</p>
+					<script>jQuery(document).ready(function(){jQuery('#<?php echo esc_attr( $this->get_field_id( $key ) ); ?>').select2({'width':'100%'});});</script>
+					<?php
+					break;
+
+				case 'textarea':
+					?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<textarea class="widefat <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" cols="20" rows="3"><?php echo esc_textarea( $value ); ?></textarea>
+						<?php if ( isset( $setting['desc'] ) ) : ?>
+							<small><?php echo esc_html( $setting['desc'] ); ?></small>
+						<?php endif; ?>
+					</p>
+					<?php
+					break;
+
+				case 'checkbox':
+					?>
+					<p>
+						<input class="checkbox <?php echo esc_attr( $class ); ?>" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="checkbox" value="1" <?php checked( $value, 1 ); ?> />
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+					</p>
+					<?php
+					break;
+
+				// Default: run an action.
+				default:
+					do_action( 'woocommerce_widget_field_' . $setting['type'], $key, $value, $setting, $instance );
+					break;
+			}
+		}
+	}
+
+	public function update($new_instance, $old_instance)
+	{
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['hide_attributes'] = esc_sql( $new_instance['hide_attributes']);
+		return $instance;
+	}
+
+	private function start($instance)
+	{
+		echo '<div class="sidebar-block sidebar-filter">';
+		if($instance['title'])
+		{
+			echo '<div class="sidebar-block-title">'.$instance['title'].'</div>';
+		}
+	}
+
+	private function end()
+	{
+		echo '</div>';
+	}
+
+	private function render()
+	{
+		if($this->filters)
+		{
+		?>
+		<form id="filters-form" method="get">
+			<?php
+			if(get_query_var('s'))
+			{
+			?>
+			<input type="hidden" name="s" value="<?=get_query_var('s')?>">
+			<input type="hidden" name="post_type" value="product">
+			<?php
+			}
+			foreach ($this->filters as $slug => $data)
+			{
+				if($slug == 'price')
+				{
+					if($data['price_min'] >= 0 and $data['price_max'] > 0 and ($data['price_min'] != $data['price_max']))
+					{
+			?>
+				<div class="accordeon-block opened">
+					<div class="accordeon-block-header">
+						<span class="accordeon-block-header-title">Цена / руб.</span>
+						<span class="accordeon-block-header-toggler"></span>
+					</div>
+					<div class="accordeon-block-content range">
+						<div class="padding-box">
+							<div class="inputs">
+								<div class="group">
+									<label for="min_price">от</label>
+									<input type="number" data-type="min" name="f_min_price" value="<?=$data['current_min_price']?>">
+								</div>
+								<div class="group">
+									<label for="max_price">до</label>
+									<input type="number" data-type="max" name="f_max_price" value="<?=$data['current_max_price']?>">
+								</div>
+							</div>
+							<div class="range-slider" data-min="<?=$data['price_min']?>" data-max="<?=$data['price_max']?>"></div>
+						</div>
+					</div>
+				</div>
+			<?php
+					}
+				}
+				else
+				{
+					if(count($data['values']) > 0)
+					{
+						$opened = ($data['has_active']) ? ' opened' : '';
+			?>
+				<div class="accordeon-block<?=$opened?>">
+					<div class="accordeon-block-header">
+						<span class="accordeon-block-header-title"><?=$data['name']?></span>
+						<span class="accordeon-block-header-toggler"></span>
+					</div>
+					<div class="accordeon-block-content checkboxes">
+						<div class="padding-box">
+							<div class="inputs">
+							<?php
+							foreach($data['values'] as $params)
+							{
+								$vid = "filter_{$slug}_{$params['value']}";
+								$checked = ($params['active']) ? ' checked="checked"' : '';
+							?>
+								<div class="group">
+									<input type="checkbox" name="f_<?=$slug?>[]" id="<?=$vid?>" value="<?=$params['value']?>"<?=$checked?>>
+									<label for="<?=$vid?>"><?=$params['name']?></label>
+								</div>
+							<?php
+							}
+							?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+					}
+				}
+			}
+			?>
+			<div class="button">
+				<button type="submit">OK</button>
+			</div>
+		</form>
+		<?php
+		}
+	}
+}
+?>

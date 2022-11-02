@@ -1,0 +1,67 @@
+@import '../../../../assets/css/includes/_mixins'
+
+.dual-column
+	padding 60px 0px 65px 0px
+	.row
+		margin 0px
+	.block-content
+		column-count 2
+		column-gap 70px
+		text-align justify
+		& > *:first-child
+			margin-top 0px
+		h2
+		h3
+			font-size 20px
+			font-weight bold
+			margin 25px 0px 15px 0px
+		p
+		li
+			font-size 16px
+			line-height 20px
+		ul
+			margin 10px 0px 20px 0px
+			li
+				margin 0px 0px 10px 0px
+				padding 0px 0px 0px 20px
+				position relative
+				&:before
+					content ''
+					position absolute
+					top 8px
+					left 0px
+					width 5px
+					height 5px
+					background-color pink
+
+@media screen and (max-width 1199px)
+	.dual-column
+		padding 48px 0px 52px 0px
+		.block-content
+			column-gap 56px
+			& > *:first-child
+				margin-top 0px
+			h2
+			h3
+				font-size 16px
+				margin 20px 0px 12px 0px
+			p
+			li
+				font-size 13px
+				line-height 16px
+			ul
+				margin 8px 0px 16px 0px
+				li
+					margin 0px 0px 8px 0px
+					padding 0px 0px 0px 16px
+					&:before
+						top 6px
+						left 0px
+						width 4px
+						height 4px
+
+@media screen and (max-width 767px)
+	.dual-column
+		.block-content
+			column-count 1
+			column-gap 0px

@@ -1,0 +1,45 @@
+@import '../includes/_mixins'
+@import '../includes/grid-12c'
+
+.editor-block-list__layout
+	background-color #fff
+
+.acf-block-preview
+	*
+		line-height 100%
+		box-sizing border-box
+	a
+	input
+	select
+	button
+	textarea
+		outline none
+		font-family 'Proxima Nova', sans-serif
+		font-feature-settings 'lnum' 1 
+		-o-font-feature-settings 'lnum' 1
+		-ms-font-feature-settings 'lnum' 1
+		-moz-font-feature-settings 'lnum' 1
+		-webkit-font-feature-settings 'lnum' 1
+		appearance unset
+		border-radius 0px
+	button
+		border none
+		cursor pointer
+		border-radius 0px
+		appearance unset
+		*
+			cursor pointer
+	ol
+	ul
+		list-style none
+		margin 0px
+		padding 0px
+	img
+		vertical-align middle
+		border 0px
+		max-width 100%
+	input:not([type="submit"]):not([type="file"])
+	textarea
+		cursor text
+	blockquote
+		margin 0px

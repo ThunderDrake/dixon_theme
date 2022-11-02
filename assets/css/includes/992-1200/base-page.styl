@@ -1,0 +1,218 @@
+&.base-page
+	.page-title
+		font-size 27px
+		line-height 32px
+		margin 12px 0px 24px 0px
+		&:first-child
+			margin-top 0px
+	
+	.breadcrumbs-holder
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		.breadcrumbs
+			li
+				margin-right 4px
+				font-size 11px
+				line-height 12px
+				& + li
+					&:before
+						margin-right 4px
+		& + .white-holder
+		& + .woocommerce
+			margin-top 20px
+
+	.white-holder
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		margin 0px 0px 20px 0px
+		.breadcrumbs-holder
+			padding 0px
+			box-shadow unset
+
+	.notifications
+		width 240px
+		.woocommerce-message
+		.notification
+			font-size 11px
+			padding 8px 16px
+			margin 8px 24px 8px 8px
+			border-radius 4px
+			box-shadow 0px 0px 12px 0px rgba(blue,0.3)
+
+	.main-row
+		padding-bottom 32px
+	
+	.slider-holder
+		.swiper-button-next
+		.swiper-button-prev
+			width 24px
+			height 24px
+			top calc(50% - 12px)
+		.swiper-button-next
+			right -12px
+		.swiper-button-prev
+			left -12px
+
+	.quick-links-row
+		margin-bottom 12px
+		.quick-links
+			border-radius 4px
+			&:before
+				border-radius 4px
+			.nav-menu
+				.nav-menu-element
+					a
+						padding 4px bp
+						font-size 11px
+						.icon
+							height 67px
+							margin-bottom 8px
+
+	.sidebar-holder
+		.nav-menu
+			border-radius 4px
+			box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+			.nav-menu-splitter
+				height 1px
+			.nav-menu-element
+				padding 0px
+				&:first-of-type
+					border-radius 4px 4px 0px 0px
+				&:last-of-type
+					border-radius 0px 0px 4px 4px
+				a
+					font-size 14px
+					padding 12px 16px
+				&.has-childs
+					& > a
+						width calc(100% - 50px)
+					& > .toggler
+						margin 12px 16px
+						width 18px
+						height 14px
+				.sub-menu
+					left calc(100% - 4px)
+					border-radius 4px
+					padding 8px 32px 8px 20px
+					box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+					.nav-menu-element
+						a
+							font-size 11px
+							padding 4px 8px 4px 0px
+							&:before
+								width 4px
+								height 4px
+								margin 4px 8px 0px 0px
+
+	.categories-grid
+		.categories-grid-category-holder
+			.categories-grid-category
+				border-radius 4px
+				padding 12px
+				box-shadow 0px 0px 12px 0px rgba(0,0,0,0.1)
+				.categories-grid-category-thumbnail
+					margin-bottom 8px
+					border-radius 4px
+				.categories-grid-category-title
+					font-size 11px
+					line-height 16px
+					margin 0px 0px 0px 0px
+				&:hover
+					box-shadow 0px 0px 12px 0px rgba(blue,0.30)
+
+	.items-grid
+		.items-grid-item-holder
+			.items-grid-item
+				border-radius 4px
+				padding 12px
+				box-shadow 0px 0px 12px 0px rgba(0,0,0,0.1)
+				.items-grid-item-thumbnail
+					margin-bottom 8px
+					border-radius 4px
+				.items-grid-item-title
+					font-size 13px
+					line-height 16px
+					margin 0px 0px 8px 0px
+				.items-grid-item-attributes
+					margin 0px 0px 8px 0px
+					.items-grid-item-attributes-attribute
+						margin 0px 0px 4px 0px
+						.items-grid-item-attribute-label
+							font-size 10px
+							line-height 10px
+						.items-grid-item-attribute-values
+							font-size 10px
+							line-height 10px
+							padding-left 8px
+				.items-grid-item-price
+					font-size 16px
+					margin 0px 0px 8px 0px
+					del
+						font-size 11px
+						margin-left 8px
+				.add-to-cart-holder
+					.button
+					.added_to_cart
+						height 32px
+						padding 8px
+						font-size 14px
+						border-radius 4px
+				&:hover
+					box-shadow 0px 0px 12px 0px rgba(orange,0.30)
+	
+	.items-grid-controls
+		border-radius 4px
+		box-shadow 0px 0px 20px 0px rgba(0,0,0,0.15)
+		.items-grid-controls-pagination
+			.page-numbers
+				li
+					a
+					span
+						margin 0px 4px
+						min-width 24px
+						min-height 24px
+						border-radius 4px
+						font-size 13px
+						line-height 16px
+						svg
+							height 10px
+		.load-more
+			padding 4px 8px
+			border-radius 4px
+			font-size 13px
+			line-height 16px
+	
+	.pagination-holder
+		.pagination
+			li
+				a
+				span
+					margin 0px 4px
+					min-width 24px
+					min-height 24px
+					border-radius 4px
+					font-size 13px
+					line-height 16px
+					svg
+						height 10px
+	
+	.content-holder
+	.classic-editor-block
+		h1
+		h2
+			font-size 27px
+			line-height 32px
+			margin 24px 0px 16px 0px
+		p
+		li
+		ul
+		ol
+			font-size 13px
+			line-height 19px
+		p
+			margin 0px 0px 16px 0px
+		li
+			margin 0px
+		ul
+		ol
+			margin 8px 0px

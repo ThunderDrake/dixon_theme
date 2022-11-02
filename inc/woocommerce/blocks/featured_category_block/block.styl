@@ -1,0 +1,55 @@
+@import '../../../../assets/css/includes/_mixins'
+
+.featured-category
+	df()
+	fdr()
+	min-height 200px
+	position relative
+	overflow hidden
+	margin 0px 0px 20px 0px
+	text-decoration none
+	background-color #24292d
+	.featured-category-image
+		background-size cover
+		background-position 50% 50%
+		position absolute
+		z-index 0
+		top 0px
+		left 0px
+		right 0px
+		bottom 0px
+		transition filter .2s linear
+		&:before
+			content ''
+			position absolute
+			z-index 1
+			top 0px
+			left 0px
+			right 0px
+			bottom 0px
+			opacity .5
+			background-color #24292d
+	.featured-category-name
+		df()
+		fdr()
+		jc('c')
+		ai('c')
+		position relative
+		z-index 1
+		width 100%
+		padding 40px
+		color white
+		font-size 19px
+		font-weight 400
+		text-align center
+		span
+			padding 12px 24px
+			border-radius 30px
+			background-color rgba(#24292d,0.5)
+			transition background .2s linear
+	&:hover
+		.featured-category-image
+			filter grayscale(0.8)
+		.featured-category-name
+			span
+				background-color pink

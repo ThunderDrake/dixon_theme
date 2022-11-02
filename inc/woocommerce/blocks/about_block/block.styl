@@ -1,0 +1,34 @@
+@import '../../../../assets/css/includes/_mixins'
+
+.about-block
+	df()
+	fdr()
+	padding 80px 0px
+	background-size cover
+	background-position center
+	.image-side
+		jc('c')
+		ai('s')
+	.text-side
+		.about-title
+			color white
+			font-size 36px
+			font-weight 900
+			line-height 36px
+			text-transform uppercase
+			margin 0px 0px 50px 0px
+		.about-text
+			*
+				color white
+				font-size 20px
+				line-height 24px
+				margin 0px 0px 10px 0px
+			em
+				color pink
+				font-style normal
+
+@media screen and (max-width 768px)
+	.about-block
+		.image-side
+			margin-bottom 30px
+			ai('c')

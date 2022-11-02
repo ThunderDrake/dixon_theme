@@ -1,0 +1,65 @@
+#header
+	box-shadow 0px 0px 20px 0px rgba(black,0.2)
+	.top-line
+		padding 12px 0px
+		.row
+			.menu-holder
+				.nav-menu
+					.nav-menu-element
+						& + .nav-menu-element
+							margin-left 20px
+						a
+							font-size 13px
+							line-height 22px
+			.social-holder
+				.social-link
+					width 19px
+					height 19px
+					& + .social-link
+						margin-left 8px
+	.bottom-line
+		padding 16px 0px
+		.row
+			.search-holder
+				.header-search
+					width 280px
+					input[type="text"]
+					input[type="search"]
+						height 36px
+						border-radius 16px
+						padding 12px 52px 12px 20px
+						font-size 14px
+						line-height 22px
+					button
+					input[type="submit"]
+						right 16px
+						width 36px
+						height 36px
+						background-size 18px		
+			.phone-holder
+				a
+					font-size 12px
+					line-height 16px
+					margin 8px 0px
+					padding 0px 0px 0px 12px
+					&:nth-of-type(2n+2)
+						margin-left 12px
+					&:before
+						width 6px
+						height 6px
+			.cart-holder
+				.cart-icon
+					width 36px
+					margin 0px 8px 0px 0px
+				.cart-content
+					.line
+						.label
+							font-size 11px
+							line-height 14px
+							& + .value
+								margin-left 4px
+						.value
+							font-size 11px
+							line-height 14px
+							& + .label
+								margin-left 4px

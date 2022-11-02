@@ -1,0 +1,19 @@
+@import '../../../../assets/css/includes/_mixins'
+
+.break-block
+	height 190px
+	background-size cover
+	background-position center
+	background-attachment fixed
+	background-image url('default.jpg')
+	position relative
+	&:before
+		content ''
+		position absolute
+		top 0px
+		left 0px
+		right 0px
+		bottom 0px
+		background-size cover
+		background-image url('fixed.png')
+		background-position center

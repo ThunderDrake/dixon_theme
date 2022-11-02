@@ -1,0 +1,208 @@
+#main.base-page .repair {
+    width: 100%;
+    position: relative;
+    padding: 30px 0 70px 0;
+    display: flex;
+    flex-direction: column;
+}
+#main.base-page .wrapper_holder {
+    position: relative;
+}
+
+#main.base-page .wrapper_holder::before {
+    content: '';
+    background: url(bgdefect.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    width: 17%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+#main.base-page .repair .title__holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    z-index: 1;
+}
+#main.base-page .repair .title__holder .block__title {
+    color: #000;
+    font-size: 34px;
+    font-weight: 500;
+}
+#main.base-page .repair .repair__block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+#main.base-page .wrapper_holder::after {
+    content: "";
+    top: 0;
+    width: 17%;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    background-color: #004b85;
+    z-index: 0;
+}
+
+#main.base-page .repair .repair__block .phoneholder img {
+    max-width: 240px;
+}
+/*================== БЛОКИ НЕИСПРАВНОСТИ =================*/
+#main.base-page .repair .repair__block-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 650px;
+    width: 100%;
+}
+#main.base-page .repair .repair__block-items .block__item {
+    display: flex;
+    flex-direction: column;
+    max-width: 295px;
+    max-height: 215px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 20px 20px 30px;
+    margin: 10px;
+    position: relative;
+}
+#main.base-page .repair .repair__block-items .block__item .item__title {
+    font-weight: 900;
+    font-size: 19px;
+    width: 100%;
+    margin-bottom: 27px;
+}
+#main.base-page .repair .repair__block-items .block__item .item__title::before {
+    content: '';
+    position: absolute;
+    top: 17px;
+    left: 0;
+    width: 5px;
+    height: 25px;
+    border-radius: 0px 5px 5px 0px;
+    background-color: #004b85;
+}
+#main.base-page .repair .repair__block-items .block__item .item__list {
+    font-size: 14px;
+    font-weight: 400;
+}
+#main.base-page .repair .repair__block-items .block__item .item__list li {
+    line-height: 20px;
+}
+
+/*================== КОНТАКТНАЯ ФОРМА =================*/
+
+#main.base-page .contactform__block {
+    background-color: #004b85;
+    padding: 100px 50px 50px 50px;
+    border-radius: 20px 0px 0px 20px;
+    color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#main.base-page .contactform__block .block__title {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+#main.base-page .contactform__block .block__subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 52px;
+}
+
+#main.base-page .contactform__block .button {
+    padding: 12px 30px;
+    border: 1px solid #d40233;
+    border-radius: 40px;
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: #d40233;
+    color: #fff;
+    font-size: 15px;
+    height: 45px;
+    transition: 0.2s ease-in;
+}
+#main.base-page .contactform__block .button:hover {
+    background: #fff;
+    color: #d40233;
+}
+#main.base-page .contactform__block .contactform .wpcf7-text {
+    display: block;
+    width: 100%;
+    max-width: 255px;
+    background: #fff;
+    border: none;
+    height: 40px;
+    border-radius: 20px;
+    padding-left: 20px;
+}
+#main.base-page .contactform__block .contactform input[type="checkbox"]{
+    display: block;
+    max-width: 22px;
+    width: 100%;
+    height: 22px;
+    background: url(bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#main.base-page .contactform__block .wpcf7-list-item {
+    margin: 0;
+    display: flex;
+}
+#main.base-page .contactform__block .contactform input[type="checkbox"]:checked{
+    background: url(check.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+#main.base-page .contactform__block .contactform .wpcf7-list-item.first.last {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 1025px) {
+    #main.base-page .wrapper_holder::after {
+        display: none;
+    }
+    #main.base-page .wrapper_holder .wrapper {
+        display: block;
+    }
+    #main.base-page .repair__block {
+        flex-direction: column !important;
+    }
+    #main.base-page .repair__block .phoneholder {
+        display: none;
+    }
+    #main.base-page .contactform__block {
+        border-radius: 20px;
+        height: 480px;
+    }
+    #main.base-page .repair .repair__block-items {
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 768px) {
+    #main.base-page .contactform__block {
+        padding: 30px 20px 20px 20px;
+        text-align: center;
+    }
+    #main.base-page .contactform__block .contactform .wpcf7-text {
+        margin: 0 auto;
+    }
+}
