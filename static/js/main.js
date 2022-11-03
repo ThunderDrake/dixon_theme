@@ -3369,12 +3369,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     const onPageLoad = () => {
-      const url = window.location.href;
-
-      if (url.indexOf('?') < 0) {
-        return;
-      }
-
+      // const url = window.location.href;
+      // if (url.indexOf('?') < 0) {
+      //   return
+      // }
       const arrayOfFilters = window.location.href.substring(url.indexOf('?') + 1).split('&');
       arrayOfFilters.forEach(elem => {
         const filterDataName = elem.substring(0, elem.indexOf('='));
@@ -3424,8 +3422,8 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_components_init_tabs__WEBPACK_IMPORTED_MODULE_4__.initTabs)();
     (0,_components_init_certificates_slider__WEBPACK_IMPORTED_MODULE_8__.initCertificatesSlider)();
     (0,_components_init_popups__WEBPACK_IMPORTED_MODULE_12__.initPopups)();
-    initFilters();
-    (0,_components_init_show_more_fetch__WEBPACK_IMPORTED_MODULE_11__.initShowMoreFetch)();
+    initFilters(); // initShowMoreFetch();
+
     (0,_components_init_product_tabs__WEBPACK_IMPORTED_MODULE_14__.initProductTabs)();
     (0,_components_init_product_tooltips__WEBPACK_IMPORTED_MODULE_15__.initTooltips)();
     (0,_components_init_quantity_input__WEBPACK_IMPORTED_MODULE_16__.initQuantityInput)();
@@ -4192,24 +4190,24 @@ function initQuantityInput() {
 
   quantityButton.forEach(el => {
     let quantityNumber = el.closest('.quantity').querySelector('.quantity__value');
+    let quantityInput = el.closest('.quantity').querySelector('.quantity__input');
     el.addEventListener('click', e => {
       if (e.target.classList.contains('quantity__button--plus')) {
-        let quantity = quantityNumber.textContent;
-        quantityPlus(quantityNumber);
+        quantityPlus(quantityNumber, quantityInput);
       } else if (e.target.classList.contains('quantity__button--minus')) {
-        let quantity = quantityNumber.textContent;
-        quantityMinus(quantityNumber);
+        quantityMinus(quantityNumber, quantityInput);
       }
     });
   });
 
-  const quantityPlus = value => {
+  const quantityPlus = (value, input) => {
     let quantity = value.textContent;
     quantity++;
     value.textContent = quantity;
+    input.value = quantity;
   };
 
-  const quantityMinus = value => {
+  const quantityMinus = (value, input) => {
     let quantity = value.textContent;
     quantity--;
 
@@ -4219,6 +4217,7 @@ function initQuantityInput() {
     }
 
     value.textContent = quantity;
+    input.value = quantity;
   };
 }
 
@@ -4489,6 +4488,8 @@ class FetchMore {
     const filterParams = this._getParams(isBntReset);
 
     this._updateURL(filterParams);
+
+    console.log(`${url}${filterParams}`);
 
     if (url) {
       fetch(`${url}${filterParams}`, {

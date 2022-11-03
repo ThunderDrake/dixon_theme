@@ -32,12 +32,16 @@ class Assets {
 		if(is_page('vacancy')) {
 			$this->attach_style( '/static/css/vacancy.css' );
 		}
+
+		if(is_cart()) {
+			$this->attach_style( '/static/css/cart.css' );
+		}
 		$this->attach_script( '/static/js/main.js' );
 		// $this->attach_script( '/static/js/add-to-cart-variation.min.js' );
 		$this->attach_script( '/static/js/radio-variation.js' );
 
 		// // Custom
-		// $this->attach_style( '/custom/custom.css' );
+		$this->attach_style( '/custom/custom.css' );
 		// $this->attach_script( '/custom/custom.js' );
 	}
 

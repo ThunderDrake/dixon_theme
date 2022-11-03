@@ -32,7 +32,11 @@ class Routes {
 		/***************
 		 *** Частные ***
 		 ***************/
-		if ( is_shop() ) {
+		if ( is_cart() ) {
+			return $this->locate_template( '/cart/cart-page.php' );
+		}
+
+		if ( is_shop() || is_product_category() ) {
 			return $this->locate_template( '/product-archive/catalog-page.php' );
 		}
 

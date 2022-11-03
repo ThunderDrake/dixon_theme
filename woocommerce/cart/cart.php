@@ -36,7 +36,7 @@ do_action( 'woocommerce_before_cart' );
 			Ваш заказ
 		</div>
 		<?php do_action( 'woocommerce_cart_contents' ); ?>
-		<div class="count__items"><?=$count?> <?=plural_form($count,['товар','товара','товаров'])?><span><?php wc_cart_totals_subtotal_html(); ?></span></div>
+		<div class="count__items"><?=$count?><span><?php wc_cart_totals_subtotal_html(); ?></span></div>
 		<div class="total">К оплате: <span><?php wc_cart_totals_subtotal_html(); ?></span></div>
 		<div class="flexed">
 			<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>

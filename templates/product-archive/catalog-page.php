@@ -80,7 +80,7 @@ $taxonomy_terms = array();
         </svg>
       </button>
     </div>
-    <form class="filter__form stop-clear" action="<?= home_url(add_query_arg(array(), $wp->request)) ?>" method="get">
+    <form class="filter__form stop-clear" action="<?= home_url(add_query_arg(array(), $wp->request)) ?>/" method="get">
       <div class="filter__block" data-accordion="parent">
 	  <?php 
 		if($attribute_taxonomies):
