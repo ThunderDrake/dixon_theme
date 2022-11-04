@@ -3209,7 +3209,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_init_product_tabs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/init-product-tabs */ "./src/js/components/init-product-tabs.js");
 /* harmony import */ var _components_init_product_tooltips__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/init-product-tooltips */ "./src/js/components/init-product-tooltips.js");
 /* harmony import */ var _components_init_quantity_input__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/init-quantity-input */ "./src/js/components/init-quantity-input.js");
-/* harmony import */ var _functions_burger__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./functions/burger */ "./src/js/functions/burger.js");
+/* harmony import */ var _components_init_shipping_method_activity__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/init-shipping-method-activity */ "./src/js/components/init-shipping-method-activity.js");
+/* harmony import */ var _components_init_cart_modal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/init-cart-modal */ "./src/js/components/init-cart-modal.js");
+/* harmony import */ var _functions_burger__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./functions/burger */ "./src/js/functions/burger.js");
+
+
 
 
 
@@ -3237,6 +3241,8 @@ window.addEventListener('DOMContentLoaded', () => {
   (0,_components_init_vacancy_select__WEBPACK_IMPORTED_MODULE_9__.initVacancySelect)();
   (0,_components_init_questionary_form__WEBPACK_IMPORTED_MODULE_10__.initQuestionaryForm)();
   (0,_components_init_product_slider__WEBPACK_IMPORTED_MODULE_13__.initProductSlider)();
+  (0,_components_init_shipping_method_activity__WEBPACK_IMPORTED_MODULE_17__.initShippingActivity)();
+  (0,_components_init_cart_modal__WEBPACK_IMPORTED_MODULE_18__.initCartModal)();
 
   const initFilters = () => {
     const filters = document.querySelector('.filter');
@@ -3763,6 +3769,28 @@ const initAccordions = () => {
 
 /***/ }),
 
+/***/ "./src/js/components/init-cart-modal.js":
+/*!**********************************************!*\
+  !*** ./src/js/components/init-cart-modal.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initCartModal": () => (/* binding */ initCartModal)
+/* harmony export */ });
+/* harmony import */ var graph_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-modal */ "./node_modules/graph-modal/src/graph-modal.js");
+
+
+function initCartModal() {
+  const modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
+}
+
+
+
+/***/ }),
+
 /***/ "./src/js/components/init-certificates-slider.js":
 /*!*******************************************************!*\
   !*** ./src/js/components/init-certificates-slider.js ***!
@@ -4191,6 +4219,7 @@ function initQuantityInput() {
   quantityButton.forEach(el => {
     let quantityNumber = el.closest('.quantity').querySelector('.quantity__value');
     let quantityInput = el.closest('.quantity').querySelector('.quantity__input');
+    console.log(quantityInput.value = 5);
     el.addEventListener('click', e => {
       if (e.target.classList.contains('quantity__button--plus')) {
         quantityPlus(quantityNumber, quantityInput);
@@ -4263,6 +4292,42 @@ function initQuestionaryForm() {
     currentInput.addEventListener('blur', () => {
       if (currentInput.value == '') {
         currentPlaceholder.classList.remove('hide');
+      }
+    });
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./src/js/components/init-shipping-method-activity.js":
+/*!************************************************************!*\
+  !*** ./src/js/components/init-shipping-method-activity.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initShippingActivity": () => (/* binding */ initShippingActivity)
+/* harmony export */ });
+function initShippingActivity() {
+  const shippingMethod = document.querySelectorAll('.checkout-form__shipping-wrapper input');
+  const popups = document.querySelectorAll('.checkout-form__shipping-popup');
+
+  if (!shippingMethod) {
+    return;
+  }
+
+  shippingMethod.forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.checked) {
+        popups.forEach(el => {
+          el.classList.remove('active');
+        });
+        console.log(el);
+        el.closest('.checkout-form__shipping-wrapper').querySelector('.checkout-form__shipping-popup').classList.add('active');
       }
     });
   });
@@ -13411,6 +13476,208 @@ __webpack_exports__ = __webpack_exports__["default"];
 /******/ })()
 ;
 });
+
+/***/ }),
+
+/***/ "./node_modules/graph-modal/src/graph-modal.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/graph-modal/src/graph-modal.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ GraphModal)
+/* harmony export */ });
+class GraphModal {
+  constructor(options) {
+    let defaultOptions = {
+      isOpen: () => {},
+      isClose: () => {},
+    }
+    this.options = Object.assign(defaultOptions, options);
+    this.modal = document.querySelector('.graph-modal');
+    this.speed = 300;
+    this.animation = 'fade';
+    this._reOpen = false;
+    this._nextContainer = false;
+    this.modalContainer = false;
+    this.isOpen = false;
+    this.previousActiveElement = false;
+    this._focusElements = [
+      'a[href]',
+      'input',
+      'select',
+      'textarea',
+      'button',
+      'iframe',
+      '[contenteditable]',
+      '[tabindex]:not([tabindex^="-"])'
+    ];
+    this._fixBlocks = document.querySelectorAll('.fix-block');
+    this.events();
+  }
+
+  events() {
+    if (this.modal) {
+      document.addEventListener('click', function (e) {
+        const clickedElement = e.target.closest(`[data-graph-path]`);
+        if (clickedElement) {
+          let target = clickedElement.dataset.graphPath;
+          let animation = clickedElement.dataset.graphAnimation;
+          let speed = clickedElement.dataset.graphSpeed;
+          this.animation = animation ? animation : 'fade';
+          this.speed = speed ? parseInt(speed) : 300;
+          this._nextContainer = document.querySelector(`[data-graph-target="${target}"]`);
+          this.open();
+          return;
+        }
+
+        if (e.target.closest('.js-modal-close')) {
+          this.close();
+          return;
+        }
+      }.bind(this));
+
+      window.addEventListener('keydown', function (e) {
+        if (e.keyCode == 27 && this.isOpen) {
+          this.close();
+        }
+
+        if (e.which == 9 && this.isOpen) {
+          this.focusCatch(e);
+          return;
+        }
+      }.bind(this));
+
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('graph-modal') && e.target.classList.contains("is-open")) {
+          this.close();
+        }
+      }.bind(this));
+    }
+
+  }
+
+  open(selector) {
+    this.previousActiveElement = document.activeElement;
+
+    if (this.isOpen) {
+      this.reOpen = true;
+      this.close();
+      return;
+    }
+
+    this.modalContainer = this._nextContainer;
+
+    if (selector) {
+      this.modalContainer = document.querySelector(`[data-graph-target="${selector}"]`);
+    }
+    
+    this.modalContainer.scrollTo(0, 0)
+
+    this.modal.style.setProperty('--transition-time', `${this.speed / 1000}s`);
+    this.modal.classList.add('is-open');
+
+    document.body.style.scrollBehavior = 'auto';
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    this.disableScroll();
+
+    this.modalContainer.classList.add('graph-modal-open');
+    this.modalContainer.classList.add(this.animation);
+
+    setTimeout(() => {
+      this.options.isOpen(this);
+      this.modalContainer.classList.add('animate-open');
+      this.isOpen = true;
+      this.focusTrap();
+    }, this.speed);
+  }
+
+  close() {
+    if (this.modalContainer) {
+      this.modalContainer.classList.remove('animate-open');
+      this.modalContainer.classList.remove(this.animation);
+      this.modal.classList.remove('is-open');
+      this.modalContainer.classList.remove('graph-modal-open');
+
+      this.enableScroll();
+
+      document.body.style.scrollBehavior = 'auto';
+      document.documentElement.style.scrollBehavior = 'auto';
+
+      this.options.isClose(this);
+      this.isOpen = false;
+      this.focusTrap();
+
+      if (this.reOpen) {
+        this.reOpen = false;
+        this.open();
+      }
+    }
+  }
+
+  focusCatch(e) {
+    const nodes = this.modalContainer.querySelectorAll(this._focusElements);
+    const nodesArray = Array.prototype.slice.call(nodes);
+    const focusedItemIndex = nodesArray.indexOf(document.activeElement)
+    if (e.shiftKey && focusedItemIndex === 0) {
+      nodesArray[nodesArray.length - 1].focus();
+      e.preventDefault();
+    }
+    if (!e.shiftKey && focusedItemIndex === nodesArray.length - 1) {
+      nodesArray[0].focus();
+      e.preventDefault();
+    }
+  }
+
+  focusTrap() {
+    const nodes = this.modalContainer.querySelectorAll(this._focusElements);
+    if (this.isOpen) {
+      if (nodes.length) nodes[0].focus();
+    } else {
+      this.previousActiveElement.focus();
+    }
+  }
+
+  disableScroll() {
+    let pagePosition = window.scrollY;
+    this.lockPadding();
+    document.body.classList.add('disable-scroll');
+    document.body.dataset.position = pagePosition;
+    document.body.style.top = -pagePosition + 'px';
+  }
+
+  enableScroll() {
+    let pagePosition = parseInt(document.body.dataset.position, 10);
+    this.unlockPadding();
+    document.body.style.top = 'auto';
+    document.body.classList.remove('disable-scroll');
+    window.scrollTo({
+      top: pagePosition,
+      left: 0
+    });
+    document.body.removeAttribute('data-position');
+  }
+
+  lockPadding() {
+    let paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+    this._fixBlocks.forEach((el) => {
+      el.style.paddingRight = paddingOffset;
+    });
+    document.body.style.paddingRight = paddingOffset;
+  }
+
+  unlockPadding() {
+    this._fixBlocks.forEach((el) => {
+      el.style.paddingRight = '0px';
+    });
+    document.body.style.paddingRight = '0px';
+  }
+}
+
 
 /***/ }),
 

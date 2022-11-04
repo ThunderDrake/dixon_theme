@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru" class="page">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#111111">
-  <title>Dixon</title>
-  <link rel="preload" href="fonts/circe-light.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/circe-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/circe-bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/circe-extrabold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/gilroy-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/gilroy-medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/gilroy-extrabold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/vendor.css">
-  <link rel="stylesheet" href="css/main.css">
-  <script defer src="js/main.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#111111">
+    <title>Dixon</title>
+    <link rel="preload" href="fonts/circe-light.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/circe-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/circe-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/circe-extrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/gilroy-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/gilroy-medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/gilroy-extrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <script defer src="js/main.js"></script>
+  </head>
 
 <body class="page__body">
   <div class="site-container">
@@ -216,37 +216,136 @@
   </div>
 </header>
 
-    <main class="main">
-      <section class="callback callback-page">
-        <div class="callback__container container">
-          <form class="callback__form form" action="POST">
-            <h2 class="form__title">Оставить заявку на ремонт</h2>
-            <span class="form__subtitle">Оставьте свои данные и наш менеджер свяжется с вами в течении 15 минут.</span>
-            <label class="form__field form__field--name" for="form_name">
-              <svg class="form__field-icon" width="26" height="26">
-                <use xlink:href="img/sprite.svg#name-input-icon"></use>
-              </svg>
-              <input class="form__input" type="text" name="form_name" placeholder="Введите ваше имя">
-            </label>
-            <label class="form__field form__field--tel" for="form_phone">
-              <svg class="form__field-icon" width="26" height="26">
-                <use xlink:href="img/sprite.svg#phone-input-icon"></use>
-              </svg>
-              <input class="form__input" type="tel" name="form_phone" placeholder="Введите ваш телефон">
-            </label>
-            <label class="form__field form__field--model" for="form_model">
-              <input class="form__input form__input--no-padding" type="text" name="form_model" placeholder="Модель IMEI телефона">
-            </label>
-            <label class="form__field form__field--message" for="form_message">
-              <input class="form__input form__input--no-padding" type="text" name="form_message" placeholder="Какая у вас неисправность">
-            </label>
-            <button class="btn btn--main form__button btn-reset">Оставить заявку</button>
-            <label class="custom-checkbox form__policy">
-              <input type="checkbox" name="form_policy" class="custom-checkbox__field">
-              <span class="custom-checkbox__content">Согласен на обработку <a href="#">персональных данных</a></span>
-            </label>
+    <main class="main" style="padding-top: var(--header-height);">
+      <section class="checkout">
+        <div class="container checkout__container">
+          <div class="checkout__header">
+  <div class="checkout__header-info">
+    <a class="checkout__header-link" href="#">Кредит</a>
+    <a class="checkout__header-link" href="#">Оплата и доставка</a>
+  </div>
+  <h1 class="checkout__title h2-title">Оформить покупку</h1>
+  <div class="checkout__nav">
+    <div class="breadcrumbs">
+      <a class="breadcrumbs__item" href="/">Главная</a>
+      <span class="breadcrumbs__item breadcrumbs__item--active">Оформить покупку</span>
+    </div>
+  </div>
+</div>
+
+          <form class="checkout__form checkout-form" action="/" method="get">
+            <div class="checkout__form-wrapper">
+
+  <div class="checkout-form__group">
+    <div class="checkout-form__group-title"><span class="checkout-form__group-title-number">1</span>Ваши данные</div>
+    <label class="checkout-form__label" for="checkout-first-name">
+      <span class="checkout-form__input-title">Имя*</span>
+      <input class="checkout-form__input checkout-form__input--short" type="text" placeholder="Иван">
+    </label>
+    <label class="checkout-form__label" for="checkout-second-name">
+      <span class="checkout-form__input-title">Фамилия*</span>
+      <input class="checkout-form__input checkout-form__input--short" type="text" placeholder="Иванов">
+    </label>
+    <label class="checkout-form__label" for="checkout-phone">
+      <span class="checkout-form__input-title">Телефон*</span>
+      <input class="checkout-form__input checkout-form__input--short" type="tel" placeholder="+7 (999) 999-99-99">
+    </label>
+  </div>
+  <div class="checkout-form__group">
+    <div class="checkout-form__group-title"><span class="checkout-form__group-title-number">2</span>Ваш заказ</div>
+    <div class="checkout-form__cart-item">
+      <img loading="lazy" src="img/cart/cart-grid__image.jpg" class="checkout-form__cart-image" width="75" height="90" alt="">
+      <div class="checkout-form__cart-title">Смартфон Samsung Galaxy A23 4/64GB KZ персиковый</div>
+      <div class="checkout-form__cart-quantity">1 шт</div>
+      <div class="checkout-form__cart-price">15 000 Р.</div>
+    </div>
+  </div>
+  <div class="checkout-form__group">
+    <div class="checkout-form__group-title"><span class="checkout-form__group-title-number">3</span>Способ оплаты</div>
+    <label class="custom-checkbox checkout-form__radio">
+      <input type="radio" class="custom-checkbox__field" name="payment-method">
+      <span class="custom-checkbox__content">Оплата картой</span>
+    </label>
+    <label class="custom-checkbox checkout-form__radio">
+      <input type="radio" class="custom-checkbox__field" name="payment-method">
+      <span class="custom-checkbox__content">Наличными при получении</span>
+    </label>
+    <label class="custom-checkbox checkout-form__radio">
+      <input type="radio" class="custom-checkbox__field" name="payment-method">
+      <span class="custom-checkbox__content">Кредит</span>
+    </label>
+  </div>
+  <div class="checkout-form__group">
+    <div class="checkout-form__group-title"><span class="checkout-form__group-title-number">4</span>Способ получения</div>
+    <div class="checkout-form__shipping-wrapper">
+      <label class="custom-checkbox checkout-form__radio">
+        <input type="radio" class="custom-checkbox__field" name="shipping-method" data-shipping="pochta">
+        <span class="custom-checkbox__content">Почта России (1 класс)</span>
+      </label>
+      <div class="checkout-form__shipping-popup">
+        <img loading="lazy" src="img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">
+        <div class="checkout-form__shipping-info">
+          <div class="checkout-form__shipping-price">от 236 Р</div>
+          <div class="checkout-form__shipping-text">Дата доставки</div>
+          <div class="checkout-form__shipping-date">14.08.2022</div>
+        </div>
+      </div>
+    </div>
+    <div class="checkout-form__shipping-wrapper">
+      <label class="custom-checkbox checkout-form__radio">
+        <input type="radio" class="custom-checkbox__field" name="shipping-method" data-shipping="cdek">
+        <span class="custom-checkbox__content">СДЭК (Пункт выдачи)</span>
+      </label>
+      <div class="checkout-form__shipping-popup">
+        <img loading="lazy" src="img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">
+        <div class="checkout-form__shipping-info">
+          <div class="checkout-form__shipping-price">от 236 Р</div>
+          <div class="checkout-form__shipping-text">Дата доставки</div>
+          <div class="checkout-form__shipping-date">14.08.2022</div>
+        </div>
+      </div>
+    </div>
+    <label class="checkout-form__label" for="checkout-region">
+      <span class="checkout-form__input-title">Регион/область*</span>
+      <input class="checkout-form__input" type="text">
+    </label>
+    <label class="checkout-form__label" for="checkout-city">
+      <span class="checkout-form__input-title">Город/район*</span>
+      <input class="checkout-form__input" type="text">
+    </label>
+    <label class="checkout-form__label" for="checkout-address">
+      <span class="checkout-form__input-title">Адрес*</span>
+      <input class="checkout-form__input" type="text">
+    </label>
+  </div>
+
+</div>
+
+            <div class="checkout__total">
+  <div class="checkout__total-title">Ваш заказ</div>
+  <div class="checkout__total-table">
+    <div class="checkout__total-row">
+      <div class="checkout__total-position">3 товара на</div>
+      <div class="checkout__total-value">45 000 Р.</div>
+    </div>
+    <div class="checkout__total-row">
+      <div class="checkout__total-position">Доставка</div>
+      <div class="checkout__total-value">Бесплатно</div>
+    </div>
+  </div>
+  <div class="checkout__total-row checkout__amount">
+    <div class="checkout__total-position">Всего к оплате</div>
+    <div class="checkout__total-value">45 000 Р.</div>
+  </div>
+  <button type="submit" class="btn btn-reset btn--main checkout__submit">Оформить покупку</button>
+  <label class="custom-checkbox checkout__policy">
+    <input type="checkbox" class="custom-checkbox__field">
+    <span class="custom-checkbox__content">Подтверждая заказ, я принимаю условия Пользовательского соглашения</span>
+  </label>
+</div>
+
           </form>
-          <img loading="lazy" src="img/callback-section-human.png" class="callback__human-image" width="1040" height="950" alt="Веселый мужчина показывает палец вверх" aria-hidden="true">
+
         </div>
       </section>
     </main>
