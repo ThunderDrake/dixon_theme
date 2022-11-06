@@ -48,9 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$key = 'shipping_city';
 				woocommerce_form_field( $key, $shipping[$key], $checkout->get_value( $key ) );
 			}
-			*/
-			diamond_woocommerce_shipping_method_fields();
-			diamond_woocommerce_shipping_methods(); ?>
+			*/ ?>
 			<div class="shipping__info">
 				<?php 
 				foreach ( $shipping as $key => $field ) {

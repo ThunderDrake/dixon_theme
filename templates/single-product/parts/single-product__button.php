@@ -4,11 +4,14 @@ $product = wc_get_product( get_the_ID() );
 ?>
 
 <?php if($product->is_type('variable')): ?>
-<button class="product__cart-button product-card__button btn btn-reset btn--main" href="#">В корзину
-	<svg class="product-card__button-icon">
-		<use xlink:href="#cart-icon"></use>
-	</svg>
-</button>
+<div class="product__cart-button-wrapper">
+	<button class="product__cart-button product-card__button btn btn-reset btn--main" href="#">В корзину
+		<svg class="product-card__button-icon">
+			<use xlink:href="#cart-icon"></use>
+		</svg>
+	</button>
+	<a class="product__cart-link" href="/cart/">Перейти в корзину</a>
+</div>
 <?php else: 
 	if ( $product->is_in_stock() ) : ?>
 

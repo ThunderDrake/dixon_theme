@@ -36,6 +36,10 @@ class Assets {
 		if(is_cart()) {
 			$this->attach_style( '/static/css/cart.css' );
 		}
+
+		if(is_checkout()) {
+			$this->attach_style( '/static/css/checkout.css' );
+		}
 		$this->attach_script( '/static/js/main.js' );
 		// $this->attach_script( '/static/js/add-to-cart-variation.min.js' );
 		$this->attach_script( '/static/js/radio-variation.js' );

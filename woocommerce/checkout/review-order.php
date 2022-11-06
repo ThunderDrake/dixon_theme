@@ -116,7 +116,7 @@ $count = WC()->cart->get_cart_contents_count();
 		</div>
 
 		<?php do_action( 'woocommerce_review_order_after_order_total' ); */?>
-		<div class="count__items"><?=$count?> <?=plural_form($count,['товар','товара','товаров'])?><span><?php wc_cart_totals_subtotal_html(); ?></span></div>
+		<div class="count__items"><?=$count?><span><?php wc_cart_totals_subtotal_html(); ?></span></div>
 		<div class="total">К оплате: <span><?php wc_cart_totals_subtotal_html(); ?></span></div>
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 	</div>

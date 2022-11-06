@@ -3046,6 +3046,7 @@ a {
   stroke: #a4a4a4;
 }
 .product-card__image-wrapper {
+    height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

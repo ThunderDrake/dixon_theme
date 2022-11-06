@@ -19,21 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div class="wc_payment_method payment_method_<?php echo esc_attr( $gateway->id ); ?> update_totals_on_change">
-	<input id="payment_method_<?php echo esc_attr( $gateway->id ); ?>" type="radio" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
 
-	<label for="payment_method_<?php echo esc_attr( $gateway->id ); ?>" title="<?=$gateway->get_title()?>">
-		<?php
-		$icon = $gateway->get_icon();
-		if(!$icon)
-		{
-			echo $gateway->get_title();
-		}
-		else
-		{
-			echo $icon;
-		}
-		?>
+<div class="wc_payment_method payment_method_<?php echo esc_attr( $gateway->id ); ?> update_totals_on_change">
+	<label class="custom-checkbox checkout-form__radio" for="payment_method_<?php echo esc_attr( $gateway->id ); ?>" title="<?=$gateway->get_title()?>">
+		<input id="payment_method_<?php echo esc_attr( $gateway->id ); ?>" type="radio" class="custom-checkbox__field" name="payment_method" data-shipping="<?=$gateway->get_title()?>" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>">
+		<span class="custom-checkbox__content"><?php echo $gateway->get_title(); ?></span>
 	</label>
 	<?php
 	if($gateway->has_fields())

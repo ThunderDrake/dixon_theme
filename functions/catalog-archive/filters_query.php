@@ -4,7 +4,6 @@
  */
 function modify_query_product_archive_by_filter_params( $query ) {
 	if ( ! is_admin() && $query->is_main_query() && $query->is_tax() ) {
-		error_log( print_r( $query, true ) );
 
 		$metas = [];
 		$prod_attr = wc_get_attribute_taxonomies();
@@ -41,8 +40,6 @@ function modify_query_product_archive_by_filter_params( $query ) {
 				$metas,
 			] );
 		}
-
-		error_log( print_r( $query->get('tax_query'), true ) );
 
 	}
 	if ( ! is_admin() && $query->is_main_query() && !$query->is_tax()) {

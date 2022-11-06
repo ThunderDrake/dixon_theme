@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $count = WC()->cart->get_cart_contents_count();
 $id = get_the_ID();
 ?>
-<div class="cart-content <?php if($id == 31){ ?> active-card <?php }?>" id="cart-content-fragment">
+<div class="cart-content" id="cart-content-fragment">
 	<?php /*
 	<div class="line">
 		<div class="value"><?=$count?></div>
@@ -18,9 +18,6 @@ $id = get_the_ID();
 	</div>
 	*/ ?>
 	<div class="line">
-		<div class="cart-icon">
-			<img src="<?=asset('/images/cart.png')?>" alt="">
-		</div>
 		<?php /* <div class="label">сумма</div> */ ?>
 		<div class="value"><?=WC()->cart->get_cart_subtotal()?></div>
 	</div>

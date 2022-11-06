@@ -680,7 +680,12 @@ function truemisha_recently_viewed_product_cookie() {
 	wc_setcookie( 'woocommerce_recently_viewed_2', join( '|', $viewed_products ) );
  
 }
- 
+
+/**
+ * Возвращает последние просмотренные товары
+ *
+ * @return void
+ */
 function truemisha_recently_viewed_products() {
  
 	if( empty( $_COOKIE[ 'woocommerce_recently_viewed_2' ] ) ) {
@@ -771,7 +776,9 @@ function variation_radio_buttons($html, $args) {
   add_filter('woocommerce_variation_is_active', 'variation_check', 10, 2);
 
   add_action('woocommerce_add_to_cart_redirect', 'resolve_dupes_add_to_cart_redirect');
-
+/**
+ * Предотвращаем дублирование ссылки для вариативных товаров
+ */
 function resolve_dupes_add_to_cart_redirect($url = false) {
 
      // If another plugin beats us to the punch, let them have their way with the URL
@@ -781,4 +788,27 @@ function resolve_dupes_add_to_cart_redirect($url = false) {
      // We add the 'get_bloginfo' part so it saves a redirect on https:// sites.
      return get_bloginfo('wpurl').add_query_arg(array(), remove_query_arg('add-to-cart'));
 
+}
+/**
+ * Вывод кратких данных из корзины
+ * 
+ */
+if ( ! function_exists( 'cart_link' ) ) {
+	function cart_link() {
+		?>
+		<div class="header__cart-count cart-contents"><?=WC()->cart->get_cart_contents_count()?></div>
+		<?php
+	}
+}
+
+//Ajax Обновление кратких данных из корзины
+add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
+
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+	ob_start();
+	?>
+	<div class="header__cart-count cart-contents"><?=WC()->cart->get_cart_contents_count()?></div>
+	<?php
+	$fragments['.header__cart-count.cart-contents'] = ob_get_clean();
+	return $fragments;
 }

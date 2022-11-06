@@ -1,3 +1,96 @@
+<div class="graph-modal">
+  <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="cart">
+    <button class="btn-reset js-modal-close graph-modal__close" aria-label="Закрыть модальное окно"></button>
+    <div class="graph-modal__content modal__cart">
+	  <div class="modal__cart-title h2-title">Корзина покупок</div>
+      <div class="cart__list cart__list--modal">
+        <div class="cart__list-content">
+		<?php foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ): ?>
+			<?php 
+			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+			$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ):
+				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+			?>
+          <article class="cart-grid__item cart-item cart-grid">
+
+            <div class="cart-grid__col">
+              <div class="cart-item__image-wrapper">
+                <img loading="lazy" src="<?= wp_get_attachment_image_url( $_product->get_image_id(), 'full' ) ?>" class="cart-item__image" width="120" height="150" alt="">
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__title"><?= $_product->get_title() ?></div>
+            </div>
+
+            <div class="cart-grid__col">
+				<?php
+				if ( $_product->is_sold_individually() ) {
+					$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+				} else {
+					$product_quantity = woocommerce_quantity_input(
+						array(
+							'input_name'   => "cart[{$cart_item_key}][qty]",
+							'input_value'  => $cart_item['quantity'],
+							'max_value'    => $_product->get_max_purchase_quantity(),
+							'min_value'    => '0',
+							'product_name' => $_product->get_name(),
+						),
+						$_product,
+						false
+					);
+				}
+
+				echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+				?>
+			</div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__price">
+			  <?= $cart_item['data']-> get_price(); ?> Р.
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+				<div class="cart-item__delete">
+					<a class="cart-item__delete-button" href="<?= esc_url( wc_get_cart_remove_url( $cart_item_key ) ) ?>" data-product_id="<?= esc_attr( $product_id ) ?>" data-product_sku="<?= esc_attr( $_product->get_sku() ) ?>">
+						<svg class="cart-item__delete-icon" width="20" height="24">
+							<use xlink:href="#delete-icon"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+
+          </article>
+		  <?php endif; ?>
+		<?php endforeach; ?>
+        </div>
+		<?php 
+		
+		if(WC()->cart->get_cart()):
+		?>
+			<div class="cart__footer">
+				<div class="cart__button">
+					<a class="cart__button-to-cart" href="/cart/">Просмотр корзины</a>
+				</div>
+				<div class="cart__info">
+					<div class="cart__info-text">
+						<div class="cart__total">
+							Итого 3 товара
+						</div>
+						<div class="cart__total-amount">60 050 Р.</div>
+					</div>
+					<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
+				</div>
+			</div>
+		<?php else: ?>
+			<p class="modal__cart-empty" style="margin: 0; font-size: 18px;">Ваша корзина пуста</p>
+		<?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="footer">
   <div class="footer__container container">
     <div class="footer__logo logo">

@@ -22,6 +22,7 @@ $parent_term_id = $terms[0]->parent;
 <main class="main" style="padding-top: var(--header-height);">
 	<section class="product">
 		<div class="product__container container">
+			<?php do_action( 'woocommerce_before_single_product' ); ?>
 			<?php ct()->template( '/single-product/parts/single-product__header.php' ) ?>
 
 			<div class="product__content">
