@@ -14,6 +14,7 @@ function add_templates_to_dropdown( $templates ) {
 	// выбор шаблона в атрибутах
 	$templates['templates/cart/cart-page.php'] = 'Корзина';
 	$templates['templates/checkout/checkout-page.php'] = 'Оформление заказа';
+	$templates['templates/credit-page/credit-page.php'] = 'Оформление в кредит';
 
 	return $templates;
 }
