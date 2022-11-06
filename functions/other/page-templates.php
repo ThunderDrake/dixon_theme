@@ -16,6 +16,7 @@ function add_templates_to_dropdown( $templates ) {
 	$templates['templates/checkout/checkout-page.php']      = 'Оформление заказа';
 	$templates['templates/credit-page/credit-page.php']     = 'Оформление в кредит';
 	$templates['templates/delivery-page/delivery-page.php'] = 'Доставка и оплата';
+	$templates['templates/about-page/about-page.php']       = 'О компании';
 
 	return $templates;
 }

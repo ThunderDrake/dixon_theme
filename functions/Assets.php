@@ -14,7 +14,7 @@ class Assets {
 		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php'] )){
 			$this->attach_style( '/static/css/main.css' );
 		}
-		if(is_page('about')) {
+		if(is_page_template('templates/about-page/about-page.php')) {
 			$this->attach_style( '/static/css/about.css' );
 		}
 		if(is_product()) {
