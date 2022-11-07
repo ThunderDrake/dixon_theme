@@ -17,6 +17,9 @@ class Assets {
 		if(is_page_template('templates/about-page/about-page.php')) {
 			$this->attach_style( '/static/css/about.css' );
 		}
+		if(is_page_template('templates/questionary-page/questionary-page.php')) {
+			$this->attach_style( '/static/css/questionary.css' );
+		}
 		if(is_product()) {
 			$this->attach_style( '/static/css/product-single.css' );
 		}
@@ -29,7 +32,7 @@ class Assets {
 			$this->attach_style( '/static/css/questionary.css' );
 		}
 
-		if(is_page('vacancy')) {
+		if(is_page_template('templates/vacancy-page/vacancy-page.php')) {
 			$this->attach_style( '/static/css/vacancy.css' );
 		}
 

@@ -3106,6 +3106,9 @@ a {
   display: none;
 }
 
+.vacancy__list {
+  margin-bottom: 60px;
+}
 .vacancy__list-title {
   margin-bottom: 1.3em;
   font-weight: 400;
@@ -3119,9 +3122,6 @@ a {
   }
 }
 
-.vacancy__content {
-  margin-bottom: 60px;
-}
 .vacancy__content .choices {
   max-width: 60%;
 }
@@ -3194,12 +3194,44 @@ a {
   transform: rotate(180deg);
 }
 
+.vacancy__info {
+  display: none;
+}
 .vacancy__info-title {
   margin-bottom: 0.8em;
   font-weight: 700;
   font-size: 36px;
   line-height: 120%;
   color: #3a4097;
+}
+.vacancy__info-block ul {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+  padding-left: 30px;
+}
+.vacancy__info-block li {
+  position: relative;
+  margin-bottom: 0.3em;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: #414146;
+}
+.vacancy__info-block li::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  bottom: 0;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  background-color: #414146;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .vacancy__info-block-title {
   margin-bottom: 0.8em;
@@ -3269,31 +3301,7 @@ a {
 .vacancy__info-icon--whatsapp {
   color: #39aa26;
 }
-
-.vacancy__block-list {
-  margin-bottom: 30px;
-  padding-left: 30px;
-}
-.vacancy__block-list-item {
-  position: relative;
-  margin-bottom: 0.3em;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 150%;
-  color: #414146;
-}
-.vacancy__block-list-item::before {
-  content: "";
-  position: absolute;
-  left: -15px;
-  top: 50%;
-  bottom: 0;
-  border-radius: 50%;
-  width: 4px;
-  height: 4px;
-  background-color: #414146;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.vacancy__info.active {
+  display: block;
 }
 /*# sourceMappingURL=vacancy.css.map */

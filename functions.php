@@ -30,3 +30,4 @@ new ACF();
 require __DIR__ . '/functions/other/module.php';
 require __DIR__ . '/functions/catalog-archive/module.php';
 require __DIR__ . '/functions/checkout/module.php';
+require __DIR__ . '/functions/questionary/module.php';

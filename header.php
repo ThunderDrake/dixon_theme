@@ -7,7 +7,6 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
-  <title><?php wp_title(); ?></title>
   <link rel="preload" href="<?= ct()->get_static_url() ?>/fonts/circe-light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="<?= ct()->get_static_url() ?>/fonts/circe-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="<?= ct()->get_static_url() ?>/fonts/circe-bold.woff2" as="font" type="font/woff2" crossorigin>

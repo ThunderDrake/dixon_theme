@@ -122,43 +122,6 @@ function _show_css_for_table_with_files_and_images() {
 	$show = false;
 }
 
-/**
- * Возвращает массив ссылок (с названиями) на файлы в старой структуре сайта на Drupal.
- *
- * @return array - [ [ 'title' => 'название', 'file' => 'ссылка', ], [...], ... ]
- */
-function get_drupal_old_images() {
-	$_items = get_post_meta( get_the_ID(), 'drupal_old_images', true );
-	$items  = [];
-	$base   = get_drupal_files_dir_url();
-
-	if ( $_items && is_array( $items ) ) {
-		foreach ( $_items as $item ) {
-			$items[] = [ 'title' => $item['desc'] ?? '', 'file' => $base . $item['uri'], ];
-		}
-	}
-
-	return $items;
-}
-
-/**
- * Возвращает массив ссылок (с названиями) на файлы в старой структуре сайта на Drupal.
- *
- * @return array - [ [ 'title' => 'название', 'file' => 'ссылка', ], [...], ... ]
- */
-function get_drupal_old_files() {
-	$_items = get_post_meta( get_the_ID(), 'drupal_old_files', true );
-	$items  = [];
-	$base   = get_drupal_files_dir_url();
-
-	if ( $_items && is_array( $items ) ) {
-		foreach ( $_items as $item ) {
-			$items[] = [ 'title' => $item['desc'] ?? '', 'file' => $base . $item['uri'], ];
-		}
-	}
-
-	return $items;
-}
 
 /**
  * Возвращает направление сортировки (ASC или DESC) на основе GET параметра "sort".
@@ -289,57 +252,6 @@ function show_svg_in_media_library( $response ) {
 	return $response;
 }
 
-
-/**
- * my_wp_nav_menu_objects
- *
- * @param mixed $items
- * @param mixed $args
- *
- * @return void
- */
-add_filter( 'wp_nav_menu_objects', 'school_wp_nav_menu_objects', 10, 2 );
-function school_wp_nav_menu_objects( $items, $args ) {
-
-	// loop
-	foreach ( $items as &$item ) {
-
-		// vars
-		$icon_arr = get_field( 'menu_icon', $item );
-
-		// append icon
-		if ( $icon_arr && strpos( $icon_arr, '.svg' ) !== false ) {
-			$icon = str_replace( site_url(), '', $icon_arr );
-			$svg  = file_get_contents( ABSPATH . $icon );
-
-			$item->title = $svg . $item->title;
-
-		}
-
-		if ( 'Dixon_publishing_header' == $args->theme_location || 'Dixon_socials_header' == $args->theme_location ) {
-			$item->title .= '<span>&rarr;</span>';
-		}
-
-		if ( 'Dixon_socials_mobile_header' == $args->theme_location ) {
-			$item->title = '<span>' . $item->title . '</span><span class="icon-arrow">&rarr;</span>';
-		}
-
-		if ( 'socials_footer' == $args->theme_location ) {
-			$item->title = '<span>' . $item->title . '</span><svg width="13" height="14" aria-hidden="true"><use xlink:href="#arrow-right-up"></use></svg>';
-		}
-
-		if ( 'publishing_footer' == $args->theme_location ) {
-			$item->title = $item->title . ' <svg width="13" height="14" aria-hidden="true"><use xlink:href="#arrow-right-up"></use></svg>';
-		}
-
-	}
-
-
-	// return
-	return $items;
-
-}
-
 /**
  * Возвращает миниатюру поста.
  *
@@ -351,148 +263,6 @@ function get_post_thumb( $args = [] ) {
 	$args = array_merge( [ 'allow' => 'any' ], $args );
 
 	return kama_thumb_src( $args );
-}
-
-/**
- * Получает соседние (по дате) записи.
- *
- * @param array $args         {
- *                            Массив аргументов:
- *
- * @type int    $limit        По сколько соседних записей нужно получить.
- * @type bool   $in_same_term Получать записи только из тех же терминов в кторых находится текущая запись.
- * @type string $taxonomy     Название таксы. Когда $in_same_term = true, нужно знать с какой таксой работать.
- * @type int/WP_Post $post         Пост от которого идет отсчет. По умолчанию: текущий.
- * @type string $order        Порядок сортировки. При DESC - элемент 'prev' будет содержать новые записи, а 'next' старые. При ASC наоборот...
- * @type bool   $cache_result Нужно ли кэшировать результат в объектный кэш?
- * }
- *
- * @return array Массив вида array( 'prev'=>array(посты), 'next'=>array(посты) ) или array() если не удалось получить записи или в запросе есть ошибка.
- *
- * @ver 1.0
- */
-function get_post_adjacents( $args = [] ) {
-	global $wpdb;
-
-	$args = (object) array_merge( [
-		'limit'        => 3,
-		'in_same_term' => false,
-		'taxonomy'     => 'category',
-		'post'         => $GLOBALS['post'],
-		'order'        => 'DESC',
-		'cache_result' => false,
-	], $args );
-
-	$post = is_numeric( $args->post ) ? get_post( $args->post ) : $args->post;
-
-	// in_same_term
-	$join = $where = '';
-	if ( $args->in_same_term ) {
-		$join  .= " INNER JOIN $wpdb->term_relationships AS tr ON p.ID = tr.object_id INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id";
-		$where .= $wpdb->prepare( "AND tt.taxonomy = %s", $args->taxonomy );
-
-		if ( ! is_object_in_taxonomy( $post->post_type, $args->taxonomy ) ) {
-			return [];
-		}
-
-		$term_array = wp_get_object_terms( $post->ID, $args->taxonomy, [ 'fields' => 'ids' ] );
-
-		// Remove any exclusions from the term array to include.
-		//$term_array = array_diff( $term_array, (array) $excluded_terms );
-
-		if ( ! $term_array || is_wp_error( $term_array ) ) {
-			return [];
-		}
-
-		$term_array = array_map( 'intval', $term_array );
-
-		$where .= " AND tt.term_id IN (" . implode( ',', $term_array ) . ")";
-	}
-
-	$query = "
-	(
-		SELECT p.* FROM $wpdb->posts p $join
-		WHERE
-			p.post_date   > '" . esc_sql( $post->post_date ) . "' AND
-			p.post_type   = '" . esc_sql( $post->post_type ) . "' AND
-			p.post_status = 'publish' $where
-		ORDER BY p.post_date ASC
-		LIMIT " . intval( $args->limit ) . "
-	)
-	UNION
-	( SELECT * FROM $wpdb->posts WHERE ID = $post->ID )
-	UNION
-	(
-		SELECT p.* FROM $wpdb->posts p $join
-		WHERE
-			p.post_date   < '" . esc_sql( $post->post_date ) . "' AND
-			p.post_type   = '" . esc_sql( $post->post_type ) . "' AND
-			p.post_status = 'publish' $where
-		ORDER BY p.post_date DESC
-		LIMIT " . intval( $args->limit ) . "
-	)
-	ORDER by post_date " . ( $args->order === 'DESC' ? 'DESC' : 'ASC' ) . "
-	";
-
-	// пробуем получить кэш...
-	if ( $args->cache_result ) {
-		$query_key = 'post_adjacents_' . md5( $query );
-		$result    = wp_cache_get( $query_key, 'counts' );
-		if ( false === $result ) {
-			$result = $wpdb->get_results( $query, OBJECT_K );
-		}
-
-		// кэшируем запрос...
-		if ( ! $result ) {
-			$result = [];
-		}
-		wp_cache_set( $query_key, $result, 'counts' );
-	} else {
-		$result = $wpdb->get_results( $query, OBJECT_K );
-	}
-
-	// соберем prev/next массивы
-	if ( $result ) {
-
-		$adjacents = [ 'prev' => [], 'next' => [] ];
-		$indx      = 'prev';
-		foreach ( $result as $pst ) {
-			//unset($pst->post_content); // для дебага
-
-			// текущий пост
-			if ( $pst->ID == $post->ID ) {
-				$indx = 'next';
-				continue;
-			}
-
-			$adjacents[ $indx ][ $pst->ID ] = get_post( $pst ); // создадим объекты WP_Post
-		}
-
-	}
-
-	return $adjacents;
-}
-
-/**
- * Возвращает домен из переданной ссылки.
- *
- * @param string $url
- *
- * @return string
- */
-function get_domain_from_url( $url ) {
-	return parse_url( $url )['host'];
-}
-
-/**
- * Возвращает домен из переданной ссылки. Не учитывается www.
- *
- * @param string $url
- *
- * @return string
- */
-function get_domain_from_url_to_point( $url ) {
-	return explode( '.', str_replace( 'www.', '', get_domain_from_url( $url ) ) )[0] ?? '';
 }
 
 /**
@@ -510,6 +280,20 @@ function get_posts_by_ids( $ids ) {
 	$ids = wp_parse_id_list( $ids );
 
 	return $ids ? array_filter( array_map( 'get_post', $ids ) ) : [];
+}
+/**
+ * Возвращает ID страницы по её слагу
+ *
+ * @param string $page_slug
+ * @return number
+ */
+function get_page_id_by_slug($page_slug) {
+	$page = get_page_by_path($page_slug);
+	if ($page) {
+		return $page->ID;
+	} else {
+		return null;
+	}
 }
 
 /**
@@ -632,23 +416,6 @@ function get_param_for_filter( $key, $default = '' ) {
 	return $_GET[ $key ] ?? $default;
 }
 
-function language_switcher_data() {
-	if ( ! function_exists( 'wpml_get_active_languages_filter' ) ) {
-		return [];
-	}
-
-	$langs = array_map( function ( $lang ) {
-		$anchor = $lang['language_code'] === 'zh-hans' ? 'ch' : $lang['language_code'];
-		$anchor = ucfirst( $anchor );
-
-		$lang['anchor'] = $anchor;
-		$lang['class']  = $lang['active'] ? 'lang__link lang__link--active' : 'lang__link';
-
-		return $lang;
-	}, wpml_get_active_languages_filter( '' ) );
-
-	return $langs;
-}
 
 add_action( 'template_redirect', 'truemisha_recently_viewed_product_cookie', 20 );
  
