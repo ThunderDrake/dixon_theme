@@ -31,3 +31,4 @@ require __DIR__ . '/functions/other/module.php';
 require __DIR__ . '/functions/catalog-archive/module.php';
 require __DIR__ . '/functions/checkout/module.php';
 require __DIR__ . '/functions/questionary/module.php';
+require __DIR__ . '/functions/callback/module.php';
