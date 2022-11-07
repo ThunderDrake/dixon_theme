@@ -9,6 +9,7 @@ class ACF {
 		$this->json_dir_path = get_parent_theme_file_path( '/functions/acf/groups-and-fields' );
 
 		$this->hooks();
+		$this->create_contact_setting_page();
 	}
 
 	public function hooks() {
@@ -34,6 +35,22 @@ class ACF {
 		wp_mkdir_p( $this->json_dir_path );
 
 		return $this->json_dir_path;
+	}
+
+	/**
+	 * Создаёт страницу контактов в меню сайта
+	 *
+	 * @return string
+	 */
+	public function create_contact_setting_page() {
+		acf_add_options_page(array(
+			'page_title'    => 'Контакты организации',
+			'menu_title'    => 'Контакты',
+			'menu_slug'     => 'theme-contact-settings',
+			'capability'    => 'edit_posts',
+			'redirect'      => false,
+			'icon_url'      => 'dashicons-share',
+		));
 	}
 
 }

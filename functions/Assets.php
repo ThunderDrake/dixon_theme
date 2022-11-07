@@ -11,7 +11,7 @@ class Assets {
 	public function attach_assets() {
 		// HTML Love
 		$this->attach_style( '/static/css/vendor.css' );
-		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php'] )){
+		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php', 'templates/contact-page/contact-page.php'] )){
 			$this->attach_style( '/static/css/main.css' );
 		}
 		if(is_page_template('templates/about-page/about-page.php')) {

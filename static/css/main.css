@@ -1576,6 +1576,11 @@ a {
   letter-spacing: 0.01em;
   color: #505050;
 }
+.contacts__add-info ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 @media (max-width: 801px) {
   .contacts__add-info {
     font-size: 18px;
