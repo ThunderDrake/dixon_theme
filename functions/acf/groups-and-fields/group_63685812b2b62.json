@@ -42,8 +42,27 @@
         },
         {
             "key": "field_6368585cb8141",
-            "label": "Телефон для связи",
+            "label": "Телефон менеджера по продажам",
             "name": "contact_phone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_63685ac2c90d2",
+            "label": "Телефон ремонта и сервиса",
+            "name": "contact_phone_service",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -173,5 +192,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1667782909
+    "modified": 1667783385
 }

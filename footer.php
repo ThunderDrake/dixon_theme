@@ -1,3 +1,14 @@
+<?php
+$address = get_field('contact_address', 'option');
+$work_time = get_field('contact_work_time', 'option');
+$phone = get_field('contact_phone', 'option');
+$phone_service = get_field('contact_phone_service', 'option');
+$email = get_field('contact_email', 'option');
+$vk = get_field('contact_vk_link', 'option');
+$tg = get_field('contact_tg_link', 'option');
+$viber = get_field('contact_viber_link', 'option');
+$whatsapp = get_field('contact_whatsapp_link', 'option');
+?>
 <div class="graph-modal">
   <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="cart">
     <button class="btn-reset js-modal-close graph-modal__close" aria-label="Закрыть модальное окно"></button>
@@ -77,9 +88,9 @@
 				<div class="cart__info">
 					<div class="cart__info-text">
 						<div class="cart__total">
-							Итого 3 товара
+							Итого <?= WC()->cart->get_cart_contents_count() ?> товара
 						</div>
-						<div class="cart__total-amount">60 050 Р.</div>
+						<div class="cart__total-amount"><?= WC()->cart->get_cart_subtotal() ?> Р.</div>
 					</div>
 					<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
 				</div>
@@ -160,41 +171,41 @@
     </div>
     <div class="footer__contacts">
       <div class="footer__contacts-phone phone-number">
-        <a class="phone-number__link" href="tel:+78352600010">
+        <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone) ?>">
           <svg class="phone-number__icon" width="18" height="18">
             <use xlink:href="#phone"></use>
           </svg>
-          +7 (83-52) 60-00-10
+          <?= $phone ?>
         </a>
         <span class="phone-number__text">Менеджер по продажам</span>
       </div>
       <div class="footer__contacts-phone phone-number">
-        <a class="phone-number__link" href="tel:+78352600010">
+        <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone_service) ?>">
           <svg class="phone-number__icon" width="18" height="18">
             <use xlink:href="#phone"></use>
           </svg>
-          +7 (83-52) 60-00-10
+          <?= $phone_service ?>
         </a>
-        <span class="phone-number__text">Менеджер по продажам</span>
+        <span class="phone-number__text">Ремонт и сервис</span>
       </div>
 
       <div class="contacts__socials contacts__socials--footer">
-        <a class="contacts__socials-link" href="#">
+        <a class="contacts__socials-link" href="<?= $vk ?>">
           <svg class="contacts__socials-icon" width="30" height="30">
             <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#vk-icon"></use>
           </svg>
         </a>
-        <a class="contacts__socials-link" href="#">
+        <a class="contacts__socials-link" href="<?= $tg ?>">
           <svg class="contacts__socials-icon" width="30" height="30">
             <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#tg-icon"></use>
           </svg>
         </a>
-        <a class="contacts__socials-link" href="#">
+        <a class="contacts__socials-link" href="<?= $viber ?>">
           <svg class="contacts__socials-icon" width="30" height="30">
             <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#viber-icon"></use>
           </svg>
         </a>
-        <a class="contacts__socials-link" href="#">
+        <a class="contacts__socials-link" href="<?= $whatsapp ?>">
           <svg class="contacts__socials-icon" width="30" height="30">
             <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#whatsapp-icon"></use>
           </svg>
