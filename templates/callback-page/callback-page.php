@@ -10,7 +10,7 @@ get_header();
 	<section class="callback callback-page">
 		<div class="callback__container container">
 			<form class="callback__form form" id="callback_form">
-				<h2 class="form__title">Оставить заявку на ремонт123</h2>
+				<h2 class="form__title">Оставить заявку на ремонт</h2>
 				<span class="form__subtitle">Оставьте свои данные и наш менеджер свяжется с вами в течении 15 минут.</span>
 				<label class="form__field form__field--name" for="form_name">
 					<svg class="form__field-icon" width="26" height="26">
