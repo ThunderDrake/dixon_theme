@@ -112,9 +112,9 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
         <div class="footer__col-title">Магазин</div>
         <ul class="footer__col-list list-reset">
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Телефоны</a>
+            <a class="footer__col-link" href="/catalog/telefony/">Телефоны</a>
           </li>
-          <li class="footer__col-item">
+          <!-- <li class="footer__col-item">
             <a class="footer__col-link" href="#">Хиты продаж</a>
           </li>
           <li class="footer__col-item">
@@ -125,10 +125,10 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
           </li>
           <li class="footer__col-item">
             <a class="footer__col-link" href="#">Распродажа</a>
-          </li>
+          </li> -->
         </ul>
       </div>
-      <div class="footer__col footer__col--second">
+      <!-- <div class="footer__col footer__col--second">
         <div class="footer__col-title">Услуги</div>
         <ul class="footer__col-list list-reset">
           <li class="footer__col-item">
@@ -141,24 +141,24 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
             <a class="footer__col-link" href="#">Стоимость ремонта</a>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="footer__col footer__col--third">
         <div class="footer__col-title">Для клиента</div>
         <ul class="footer__col-list list-reset">
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Доставка и оплата</a>
+            <a class="footer__col-link" href="/sbosoby-oplaty/">Доставка и оплата</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">О компании</a>
+            <a class="footer__col-link" href="/o-kompanii/">О компании</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Контакты</a>
+            <a class="footer__col-link" href="/kontakty/">Контакты</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Оформление в кредит</a>
+            <a class="footer__col-link" href="/oformit-v-kredit/">Оформление в кредит</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Вакансии</a>
+            <a class="footer__col-link" href="/vacancy/">Вакансии</a>
           </li>
           <li class="footer__col-item footer__col-item--add">
             <a class="footer__col-link" href="#">Политика конфиденциальности</a>

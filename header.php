@@ -89,7 +89,7 @@
 
             <li class="navigation__item" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
-                <a class="link navigation__link" href="/shop/">Магазин</a>
+                <a class="link navigation__link" href="/catalog/">Магазин</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu shop-submenu" data-submenu>
@@ -97,7 +97,7 @@
                     <div class="school-submenu__wrap">
                       <ul class="submenu__list">
                         <li class="submenu__item">
-                          <a class="submenu__link" href="/shop-1/">Магазин 1</a>
+                          <a class="submenu__link" href="/catalog/telefony/">Телефоны</a>
                         </li>
                       </ul>
                     </div>
@@ -106,7 +106,7 @@
               </div>
             </li>
 
-            <li class="navigation__item" data-has-submenu data-accordion="element">
+            <!-- <li class="navigation__item" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
                 <a class="link navigation__link" href="/service/">Ремонт и сервис</a>
               </div>
@@ -123,11 +123,11 @@
                   </div>
                 </div>
               </div>
-            </li>
+            </li> -->
 
             <li class="navigation__item" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
-                <a class="link navigation__link" href="/about/">О компании</a>
+                <a class="link navigation__link" href="/o-kompanii/">О компании</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu shop-submenu" data-submenu>
@@ -135,7 +135,10 @@
                     <div class="school-submenu__wrap">
                       <ul class="submenu__list">
                         <li class="submenu__item">
-                          <a class="submenu__link" href="/about-1/">О компании 1</a>
+                          <a class="submenu__link" href="/o-kompanii/">О компании</a>
+                        </li>
+                        <li class="submenu__item">
+                          <a class="submenu__link" href="/kontakty/">Контакты</a>
                         </li>
                       </ul>
                     </div>
@@ -145,7 +148,7 @@
             </li>
 
             <li class="navigation__item" data-no-submenu>
-              <a class="link navigation__link link--inline" href="/">Вакансии</a>
+              <a class="link navigation__link link--inline" href="/vacancy/">Вакансии</a>
             </li>
           </ul>
         </nav>
