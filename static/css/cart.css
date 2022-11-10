@@ -819,7 +819,6 @@ a {
   width: auto;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-radius: 0 0 20px 20px;
   -webkit-transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, -webkit-box-shadow 0.3s ease;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, -webkit-box-shadow 0.3s ease;
   -o-transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
@@ -900,6 +899,7 @@ a {
   }
 }
 .submenu__list .submenu__item {
+    padding: 10px;
   margin-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
