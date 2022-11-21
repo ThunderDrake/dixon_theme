@@ -684,6 +684,23 @@ template {
   display: block;
 }
 
+.show-more-btn {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  color: #0095e5;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin: auto;
+  -webkit-transition: color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.show-more-btn:hover {
+  color: red;
+}
+
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -809,7 +826,24 @@ html {
   -webkit-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);
-} /**
+}
+
+.tabs__panel {
+  display: none;
+}
+
+.tabs__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.tabs__panel--active {
+  display: block;
+}
+
+/**
  * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com

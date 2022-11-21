@@ -36,6 +36,11 @@ class Assets {
 			$this->attach_style( '/static/css/vacancy.css' );
 		}
 
+		if(is_post_type_archive('models')) {
+			$this->attach_style( '/static/css/pricelist.css' );
+			$this->attach_script( '/static/js/pricelist-change.js' );
+		}
+
 		if(is_cart()) {
 			$this->attach_style( '/static/css/cart.css' );
 		}

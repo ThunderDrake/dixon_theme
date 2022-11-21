@@ -21,6 +21,7 @@ function add_templates_to_dropdown( $templates ) {
 	$templates['templates/questionary-page/questionary-page.php']   = 'Анкета соискателя';
 	$templates['templates/contact-page/contact-page.php']           = 'Контакты';
 	$templates['templates/callback-page/callback-page.php']         = 'Связаться с нами';
+	$templates['templates/pricelist-page/pricelist-page.php']       = 'Прайс-лист';
 
 	return $templates;
 }

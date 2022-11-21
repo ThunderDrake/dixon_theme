@@ -899,7 +899,7 @@ a {
   }
 }
 .submenu__list .submenu__item {
-    padding: 10px;
+  padding: 10px;
   margin-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1577,9 +1577,9 @@ a {
   color: #505050;
 }
 .contacts__add-info ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 @media (max-width: 801px) {
   .contacts__add-info {
@@ -3818,7 +3818,7 @@ a {
   margin: 0;
   margin-bottom: 1.5em;
 }
-.credit-page__content h2 {
+.credit-page__content span {
   display: inline-block;
   margin: 0;
   margin-bottom: 5px;
