@@ -23,6 +23,7 @@ function add_templates_to_dropdown( $templates ) {
 	$templates['templates/callback-page/callback-page.php']         = 'Связаться с нами';
 	$templates['templates/pricelist-page/pricelist-page.php']       = 'Прайс-лист';
 	$templates['templates/review-page/review-page.php']             = 'Отзывы о нас';
+	$templates['templates/repair-page/repair-page.php']             = 'Заявка на ремонт телефона';
 
 	return $templates;
 }
