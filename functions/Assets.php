@@ -36,6 +36,10 @@ class Assets {
 			$this->attach_style( '/static/css/vacancy.css' );
 		}
 
+		if(is_page_template('templates/review-page/review-page.php')) {
+			$this->attach_style( '/static/css/reviews.css' );
+		}
+
 		if(is_post_type_archive('models')) {
 			$this->attach_style( '/static/css/pricelist.css' );
 			$this->attach_script( '/static/js/pricelist-change.js' );

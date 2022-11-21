@@ -22,6 +22,7 @@ function add_templates_to_dropdown( $templates ) {
 	$templates['templates/contact-page/contact-page.php']           = 'Контакты';
 	$templates['templates/callback-page/callback-page.php']         = 'Связаться с нами';
 	$templates['templates/pricelist-page/pricelist-page.php']       = 'Прайс-лист';
+	$templates['templates/review-page/review-page.php']             = 'Отзывы о нас';
 
 	return $templates;
 }
