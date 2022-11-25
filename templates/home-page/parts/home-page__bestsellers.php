@@ -26,6 +26,7 @@ $products_list_sell_out = get_posts( array(
 	'posts_per_page' => 8,
 	'product_tag' => 'rasprodazha'
 ) );
+
 ?>
 <section class="bestsellers">
   <div class="bestsellers__container container">
@@ -79,10 +80,10 @@ $products_list_sell_out = get_posts( array(
 						<?php if($product_obj->get_regular_price()): ?>
 						<div class="product-card__prices">
 							<?php if($product_obj->get_sale_price()): ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-								<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+								<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php else: ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php endif; ?>
 						</div>
 						<?php else: ?>
@@ -142,10 +143,10 @@ $products_list_sell_out = get_posts( array(
 						<?php if($product_obj->get_regular_price()): ?>
 						<div class="product-card__prices">
 							<?php if($product_obj->get_sale_price()): ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-								<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+								<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php else: ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php endif; ?>
 						</div>
 						<?php else: ?>
@@ -205,10 +206,10 @@ $products_list_sell_out = get_posts( array(
 						<?php if($product_obj->get_regular_price()): ?>
 						<div class="product-card__prices">
 							<?php if($product_obj->get_sale_price()): ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-								<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+								<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php else: ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php endif; ?>
 						</div>
 						<?php else: ?>
@@ -268,10 +269,10 @@ $products_list_sell_out = get_posts( array(
 						<?php if($product_obj->get_regular_price()): ?>
 						<div class="product-card__prices">
 							<?php if($product_obj->get_sale_price()): ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-								<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+								<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php else: ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php endif; ?>
 						</div>
 						<?php else: ?>
@@ -331,10 +332,10 @@ $products_list_sell_out = get_posts( array(
 						<?php if($product_obj->get_regular_price()): ?>
 						<div class="product-card__prices">
 							<?php if($product_obj->get_sale_price()): ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-								<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+								<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php else: ?>
-								<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+								<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 							<?php endif; ?>
 						</div>
 						<?php else: ?>

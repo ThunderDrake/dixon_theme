@@ -30,7 +30,7 @@ $cart_total = WC()->cart->get_total();
 	<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="btn btn-reset btn--main checkout__submit" name="woocommerce_checkout_place_order" id="place_order" value="Оформить покупку" data-value="Оформить покупку">Оформить покупку</button>' ); ?>
 	<label class="custom-checkbox checkout__policy">
 		<input type="checkbox" class="custom-checkbox__field">
-		<span class="custom-checkbox__content">Подтверждая заказ, я принимаю условия Пользовательского соглашения</span>
+		<span class="custom-checkbox__content">Подтверждая заказ, я принимаю условия <a href="<?= get_privacy_policy_url() ?>">Пользовательского соглашения</a></span>
 	</label>
 	<?php wp_nonce_field( 'woocommerce-process_checkout', 'woocommerce-process-checkout-nonce' ); ?>
 </div>

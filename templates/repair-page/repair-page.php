@@ -6,7 +6,6 @@
  */
 get_header();
 $repair_list = get_field('repair_list_items', get_the_ID());
-error_log( print_r( $repair_list, true ) );
 ?>
 <main class="main" style="padding-top: var(--header-height);">
 	<section class="repair">
@@ -79,7 +78,7 @@ error_log( print_r( $repair_list, true ) );
 						<button type="submit" class="btn btn-reset btn--main repair__form-submit">Оставить заявку</button>
 						<label class="repair__form-policy custom-checkbox">
 							<input type="checkbox" class="custom-checkbox__field">
-							<span class="custom-checkbox__content">Согласен на обработку <a href="#">персональных данных</a></span>
+							<span class="custom-checkbox__content">Согласен на обработку <a href="<?= get_privacy_policy_url() ?>">персональных данных</a></span>
 						</label>
 					</div>
 				</div>

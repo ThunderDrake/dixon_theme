@@ -3902,12 +3902,15 @@ __webpack_require__.r(__webpack_exports__);
 
 function initHeroSlider() {
   const heroSlider = document.querySelector('.hero-slider');
-  swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination]);
+  swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
   const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](heroSlider, {
     slidesPerView: 1,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets'
+    },
+    autoplay: {
+      delay: 5000
     }
   });
 }

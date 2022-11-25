@@ -36,47 +36,19 @@
 
     <div class="header__search-block header__search-block--mobile submenu-search">
 		<?php echo do_shortcode('[fibosearch]'); ?>
-      <!-- <form method="get" action="#">
-        <div class="submenu-search__form-wrap">
-          <div class="custom-input">
-            <label>
-              <button class="submenu-search__button btn-reset">
-                <svg class="submenu-search__icon" width="20" height="20">
-                  <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#search"></use>
-                </svg>
-              </button>
-              <input type="search" id="submenu-search" name="s" placeholder="Поиск">
-            </label>
-          </div>
-        </div>
-      </form> -->
     </div>
 
     <div class="header__navigation-block" data-menu>
 
       <div class="header__search-block submenu-search">
 		<?php echo do_shortcode('[fibosearch]'); ?>
-        <!-- <form method="get" action="#">
-          <div class="submenu-search__form-wrap">
-            <div class="custom-input">
-              <label>
-                <button class="submenu-search__button btn-reset">
-                  <svg class="submenu-search__icon" width="20" height="20">
-                    <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#search"></use>
-                  </svg>
-                </button>
-                <input type="search" id="submenu-search" name="s" placeholder="Поиск">
-              </label>
-            </div>
-          </div>
-        </form> -->
       </div>
 
       <div class="header__adress-block adress">
         <svg class="adress__icon" width="16" height="21">
           <use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#adress"></use>
         </svg>
-        <div class="adress__text">Чебоксары, ул. Калинина, 91 к1</div>
+        <div class="adress__text"><?= get_field('contact_address', 'option') ?></div>
       </div>
 
       <div class="header__nav main-nav">
@@ -99,6 +71,26 @@
                         <li class="submenu__item">
                           <a class="submenu__link" href="/catalog/telefony/">Телефоны</a>
                         </li>
+                        <li class="submenu__item">
+                          <a class="submenu__link" href="/catalog/accessories/">Аксессуары</a>
+                        </li>
+						<?php 
+						$terms = get_terms( [
+							'taxonomy' => 'product_tag',
+							'hide_empty' => true,
+						] );
+						?>
+						<?php foreach($terms as $term): ?>
+						<li class="submenu__item">
+                          <a class="submenu__link" href="/catalog/<?= $term->slug ?>/"><?= $term->name ?></a>
+                        </li>
+						<?php endforeach; ?>
+						<li class="submenu__item">
+                          <a class="submenu__link" href="/payment-methods/">Оплата и доставка</a>
+                        </li>
+						<li class="submenu__item">
+                          <a class="submenu__link" href="/oformit-v-kredit/">Оформление в кредит</a>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -106,9 +98,9 @@
               </div>
             </li>
 
-            <!-- <li class="navigation__item" data-has-submenu data-accordion="element">
+            <li class="navigation__item" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
-                <a class="link navigation__link" href="/service/">Ремонт и сервис</a>
+                <a class="link navigation__link" href="/pricelist/">Ремонт и сервис</a>
               </div>
               <div class="accordion__content" data-accordion="content">
                 <div class="submenu shop-submenu" data-submenu>
@@ -116,14 +108,20 @@
                     <div class="school-submenu__wrap">
                       <ul class="submenu__list">
                         <li class="submenu__item">
-                          <a class="submenu__link" href="/service-1/">Ремонт и сервис 1</a>
+                          <a class="submenu__link" href="/pricelist/">Прайс</a>
+                        </li>
+                        <li class="submenu__item">
+                          <a class="submenu__link" href="/repair/">Рассчитать стоимость</a>
+                        </li>
+                        <li class="submenu__item">
+                          <a class="submenu__link" href="/work-status/">Узнать статус ремонта</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </li> -->
+            </li>
 
             <li class="navigation__item" data-has-submenu data-accordion="element">
               <div class="accordion__button" data-accordion="button" tabindex="0">
@@ -157,21 +155,21 @@
       <div class="header__contacts header__contacts--mobile">
 
         <div class="header__contacts-phone phone-number">
-          <a class="phone-number__link" href="tel:+78352600010">
+          <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', get_field('contact_phone', 'option')) ?>">
             <svg class="phone-number__icon" width="18" height="18">
               <use xlink:href="#phone"></use>
             </svg>
-            +7 (83-52) 60-00-10
+            <?= get_field('contact_phone', 'option') ?>
           </a>
           <span class="phone-number__text">Менеджер по продажам</span>
         </div>
 
         <div class="header__contacts-phone phone-number">
-          <a class="phone-number__link" href="tel:+78352364202">
+          <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', get_field('contact_phone_service', 'option')) ?>">
             <svg class="phone-number__icon" width="18" height="18">
               <use xlink:href="#phone"></use>
             </svg>
-            +7 (83-52) 36-42-02
+            <?= get_field('contact_phone_service', 'option') ?>
           </a>
           <span class="phone-number__text">Ремонт и сервис</span>
         </div>
@@ -182,21 +180,21 @@
     <div class="header__contacts">
 
       <div class="header__contacts-phone phone-number">
-        <a class="phone-number__link" href="tel:+78352600010">
+        <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', get_field('contact_phone', 'option')) ?>">
           <svg class="phone-number__icon" width="18" height="18">
             <use xlink:href="#phone"></use>
           </svg>
-          +7 (83-52) 60-00-10
+          <?= get_field('contact_phone', 'option') ?>
         </a>
         <span class="phone-number__text">Менеджер по продажам</span>
       </div>
 
       <div class="header__contacts-phone phone-number">
-        <a class="phone-number__link" href="tel:+78352364202">
+        <a class="phone-number__link" href="tel:<?= str_replace([' ', '(', ')', '-'], '', get_field('contact_phone_service', 'option')) ?>">
           <svg class="phone-number__icon" width="18" height="18">
             <use xlink:href="#phone"></use>
           </svg>
-          +7 (83-52) 36-42-02
+          <?= get_field('contact_phone_service', 'option') ?>
         </a>
         <span class="phone-number__text">Ремонт и сервис</span>
       </div>

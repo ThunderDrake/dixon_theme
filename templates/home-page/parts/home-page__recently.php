@@ -1,13 +1,13 @@
 <?php $recently_list = truemisha_recently_viewed_products(); ?>
+<?php if(!$recently_list) {
+	return;
+} ?>
 <?php $recently_posts = get_posts( array(
 		'post_type' => 'product',
 		'include' => implode(", ", array_slice($recently_list, 0, 4)),
 	));
 ?>
 
-<?php if(!$recently_list) {
-	return;
-} ?>
 <section class="recently">
   <div class="recently__container container">
     <h2 class="recently__title h2-title">Недавно просмотренные</h2>
@@ -48,10 +48,10 @@
 			<?php if($product_obj->get_regular_price()): ?>
 			<div class="product-card__prices">
 				<?php if($product_obj->get_sale_price()): ?>
-					<div class="product-card__prices-current"><?= $product_obj->get_sale_price()(); ?> Р.</div>
-					<div class="product-card__prices-old"><?= $product_obj->get_regular_price(); ?> Р.</div>
+					<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_sale_price()); ?> Р.</div>
+					<div class="product-card__prices-old"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 				<?php else: ?>
-					<div class="product-card__prices-current"><?= $product_obj->get_regular_price(); ?> Р.</div>
+					<div class="product-card__prices-current"><?= price_format(" ", $product_obj->get_regular_price()); ?> Р.</div>
 				<?php endif; ?>
 			</div>
 			<?php else: ?>

@@ -35,7 +35,7 @@ get_header();
 				<button class="btn btn--main form__button btn-reset">Оставить заявку</button>
 				<label class="custom-checkbox form__policy">
 					<input type="checkbox" name="form_policy" class="custom-checkbox__field form__input--policy">
-					<span class="custom-checkbox__content">Согласен на обработку <a href="/policy/">персональных данных</a></span>
+					<span class="custom-checkbox__content">Согласен на обработку <a href="<?= get_privacy_policy_url() ?>">персональных данных</a></span>
 				</label>
 			</form>
 			<img loading="lazy" src="<?= ct()->get_static_url() ?>/img/callback-section-human.png" class="callback__human-image" width="1040" height="950"

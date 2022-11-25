@@ -579,3 +579,14 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	$fragments['.header__cart-count.cart-contents'] = ob_get_clean();
 	return $fragments;
 }
+/**
+ * Форматирует цену в человекопонятный формат
+ *
+ * @param string $divider
+ * @param string $raw_price
+ * @return string
+ */
+function price_format($divider, $raw_price) {
+	$regex = "/\B(?=(\d{3})+(?!\d))/i";
+	return preg_replace($regex, $divider, $raw_price);
+}
