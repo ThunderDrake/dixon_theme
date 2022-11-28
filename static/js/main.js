@@ -3826,7 +3826,7 @@ function initCertificatesSlider() {
     return;
   }
 
-  swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation]);
+  swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
   const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](certificatesSlider, {
     slidesPerView: 4,
     loop: true,
@@ -3855,6 +3855,9 @@ function initCertificatesSlider() {
         slidesPerView: 4,
         spaceBetween: 14
       }
+    },
+    autoplay: {
+      delay: 5000
     }
   });
 }
@@ -4397,6 +4400,7 @@ function initRepairForm() {
   const nextBtns = document.querySelectorAll('.repair__form-next-step');
   const formSteps = document.querySelectorAll('.repair__form-step');
   const stepBar = document.querySelector('.repair__form-counter-bar--active');
+  const currentStep = document.querySelector('.repair__form-counter-text--current');
 
   if (!form) {
     return;
@@ -4419,6 +4423,7 @@ function initRepairForm() {
     });
     formSteps[formStepNum].classList.add('repair__form-step--active');
     stepBar.style.width = (formStepNum + 1) / maxSteps * 100 + '%';
+    currentStep.innerText = formStepNum + 1;
   }
 }
 

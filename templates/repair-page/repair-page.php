@@ -16,7 +16,7 @@ $repair_list = get_field('repair_list_items', get_the_ID());
 			</div>
 			<form class="repair__form" id="repair_form">
 				<div class="repair__form-counter">
-					<span class="repair__form-counter-text">Шаг 1 из 4</span>
+					<span class="repair__form-counter-text">Шаг <span class="repair__form-counter-text--current">1</span> из 4</span>
 					<div class="repair__form-counter-bar">
 						<div class="repair__form-counter-bar--active"></div>
 					</div>

@@ -150,6 +150,14 @@ label[for="billing_country"] {
     padding: 0;
 }
 
+.submenu__item:hover {
+    background-color: #fff;
+}
+
+.submenu__item:hover .submenu__link {
+    color: #3a4097;
+}
+
 .hero-slider__item {
     position: relative;
     height: 100%;
