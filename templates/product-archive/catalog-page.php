@@ -10,8 +10,12 @@ global $woocommerce;
 
 $attribute_taxonomies = wc_get_attribute_taxonomies();
 $taxonomy_terms = array();
-
-error_log( print_r( get_queried_object(), true ) );
+$title = '';
+if(get_class( get_queried_object() ) == 'WP_Term') {
+	$title = get_queried_object()->name;
+} else {
+	$title = get_queried_object()->label;
+};
 ?>
 <?php $recently_list = truemisha_recently_viewed_products(); ?>
 <main class="main" style="padding-top: var(--header-height);">
@@ -22,12 +26,12 @@ error_log( print_r( get_queried_object(), true ) );
 					<a class="product-header__link" href="/oformit-v-kredit/">Кредит</a>
 					<a class="product-header__link" href="/payment-methods/">Оплата и доставка</a>
 				</div>
-				<h1 class="catalog__title h2-title"><?= get_queried_object()->name ?></h1>
+				<h1 class="catalog__title h2-title"><?= $title ?></h1>
 				<div class="product-header__nav">
 					<div class="breadcrumbs">
 						<a class="breadcrumbs__item" href="/">Главная</a>
 						<a class="breadcrumbs__item" href="/catalog/">Каталог товаров</a>
-						<span class="breadcrumbs__item breadcrumbs__item--active"><?= get_queried_object()->name ?></span>
+						<span class="breadcrumbs__item breadcrumbs__item--active"><?= $title ?></span>
 					</div>
 
 					<div class="product-header__sort" data-accordion="parent">
