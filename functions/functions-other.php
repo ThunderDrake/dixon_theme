@@ -579,6 +579,226 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	$fragments['.header__cart-count.cart-contents'] = ob_get_clean();
 	return $fragments;
 }
+
+//Ajax Обновление модальной корзины
+add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_modal_cart_fragment' );
+
+function woocommerce_modal_cart_fragment( $fragments ) {
+	ob_start();
+	?>
+	<div class="cart__list cart__list--modal">
+        <div class="cart__list-content">
+		<?php foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ): ?>
+			<?php 
+			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+			$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ):
+				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+			?>
+          <article class="cart-grid__item cart-item cart-grid">
+
+            <div class="cart-grid__col">
+              <div class="cart-item__image-wrapper">
+                <img loading="lazy" src="<?= wp_get_attachment_image_url( $_product->get_image_id(), 'full' ) ?>" class="cart-item__image" width="120" height="150" alt="">
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__title"><?= $_product->get_title() ?></div>
+            </div>
+
+            <div class="cart-grid__col">
+				<?php
+				if ( $_product->is_sold_individually() ) {
+					$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+				} else {
+					$product_quantity = woocommerce_quantity_input(
+						array(
+							'input_name'   => "cart[{$cart_item_key}][qty]",
+							'input_value'  => $cart_item['quantity'],
+							'max_value'    => $_product->get_max_purchase_quantity(),
+							'min_value'    => '0',
+							'product_name' => $_product->get_name(),
+						),
+						$_product,
+						false
+					);
+				}
+
+				echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+				?>
+			</div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__price">
+			  <?= $cart_item['data']-> get_price(); ?> Р.
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+				<div class="cart-item__delete">
+					<a class="cart-item__delete-button" href="<?= esc_url( wc_get_cart_remove_url( $cart_item_key ) ) ?>" data-product_id="<?= esc_attr( $product_id ) ?>" data-product_sku="<?= esc_attr( $_product->get_sku() ) ?>" data-cart_item_key="<?= esc_attr( $cart_item_key ) ?>">
+						<svg class="cart-item__delete-icon" width="20" height="24">
+							<use xlink:href="#delete-icon"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+
+          </article>
+		  <?php endif; ?>
+		<?php endforeach; ?>
+        </div>
+		<?php 
+		
+		if(WC()->cart->get_cart()):
+		?>
+			<div class="cart__footer">
+				<div class="cart__button">
+					<a class="cart__button-to-cart" href="/cart/">Просмотр корзины</a>
+				</div>
+				<div class="cart__info">
+					<div class="cart__info-text">
+						<div class="cart__total">
+							Итого <?= WC()->cart->get_cart_contents_count() ?> товара
+						</div>
+						<div class="cart__total-amount"><?= WC()->cart->get_cart_subtotal() ?> Р.</div>
+					</div>
+					<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
+				</div>
+			</div>
+		<?php else: ?>
+			<p class="modal__cart-empty" style="margin: 0; font-size: 18px;">Ваша корзина пуста</p>
+		<?php endif; ?>
+      </div>
+	<?php
+	$fragments['.cart__list.cart__list--modal'] = ob_get_clean();
+	return $fragments;
+}
+
+
+// AJAX product remove
+function warp_ajax_product_remove()
+{
+    // Get mini cart
+    ob_start();
+
+    foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item)
+    {
+        if($cart_item['product_id'] == $_POST['product_id'] && $cart_item_key == $_POST['cart_item_key'] )
+        {
+            WC()->cart->remove_cart_item($cart_item_key);
+        }
+    }
+
+    WC()->cart->calculate_totals();
+    WC()->cart->maybe_set_cart_cookies();
+
+    ?>
+        <div class="cart__list-content">
+		<?php foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ): ?>
+			<?php 
+			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+			$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ):
+				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+			?>
+          <article class="cart-grid__item cart-item cart-grid">
+
+            <div class="cart-grid__col">
+              <div class="cart-item__image-wrapper">
+                <img loading="lazy" src="<?= wp_get_attachment_image_url( $_product->get_image_id(), 'full' ) ?>" class="cart-item__image" width="120" height="150" alt="">
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__title"><?= $_product->get_title() ?></div>
+            </div>
+
+            <div class="cart-grid__col">
+				<?php
+				if ( $_product->is_sold_individually() ) {
+					$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+				} else {
+					$product_quantity = woocommerce_quantity_input(
+						array(
+							'input_name'   => "cart[{$cart_item_key}][qty]",
+							'input_value'  => $cart_item['quantity'],
+							'max_value'    => $_product->get_max_purchase_quantity(),
+							'min_value'    => '0',
+							'product_name' => $_product->get_name(),
+						),
+						$_product,
+						false
+					);
+				}
+
+				echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+				?>
+			</div>
+
+            <div class="cart-grid__col">
+              <div class="cart-item__price">
+			  <?= $cart_item['data']-> get_price(); ?> Р.
+              </div>
+            </div>
+
+            <div class="cart-grid__col">
+				<div class="cart-item__delete">
+					<a class="cart-item__delete-button" href="<?= esc_url( wc_get_cart_remove_url( $cart_item_key ) ) ?>" data-product_id="<?= esc_attr( $product_id ) ?>" data-product_sku="<?= esc_attr( $_product->get_sku() ) ?>" data-cart_item_key="<?= esc_attr( $cart_item_key ) ?>">
+						<svg class="cart-item__delete-icon" width="20" height="24">
+							<use xlink:href="#delete-icon"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+
+          </article>
+		  <?php endif; ?>
+		<?php endforeach; ?>
+        </div>
+		<?php 
+		
+		if(WC()->cart->get_cart()):
+		?>
+			<div class="cart__footer">
+				<div class="cart__button">
+					<a class="cart__button-to-cart" href="/cart/">Просмотр корзины</a>
+				</div>
+				<div class="cart__info">
+					<div class="cart__info-text">
+						<div class="cart__total">
+							Итого <?= WC()->cart->get_cart_contents_count() ?> товара
+						</div>
+						<div class="cart__total-amount"><?= WC()->cart->get_cart_subtotal() ?> Р.</div>
+					</div>
+					<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
+				</div>
+			</div>
+		<?php else: ?>
+			<p class="modal__cart-empty" style="margin: 0; font-size: 18px;">Ваша корзина пуста</p>
+		<?php endif; ?>
+	<?php
+
+    $mini_cart = ob_get_clean();
+
+    // Fragments and mini cart are returned
+    $data = array(
+        'fragments' => apply_filters( 'woocommerce_add_to_cart_fragments', array(
+                'div.cart__list.cart__list--modal' => '<div class="cart__list cart__list--modal">' . $mini_cart . '</div>'
+            )
+        ),
+        'cart_hash' => apply_filters( 'woocommerce_add_to_cart_hash', WC()->cart->get_cart_for_session() ? md5( json_encode( WC()->cart->get_cart_for_session() ) ) : '', WC()->cart->get_cart_for_session() )
+    );
+
+    wp_send_json( $data );
+
+    die();
+}
+
+add_action( 'wp_ajax_product_remove', 'warp_ajax_product_remove' );
+add_action( 'wp_ajax_nopriv_product_remove', 'warp_ajax_product_remove' );
+
 /**
  * Форматирует цену в человекопонятный формат
  *

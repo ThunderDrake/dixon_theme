@@ -63,6 +63,7 @@ class Assets {
 		$this->attach_script( '/static/js/main.js' );
 		// $this->attach_script( '/static/js/add-to-cart-variation.min.js' );
 		$this->attach_script( '/static/js/radio-variation.js' );
+		$this->attach_script( '/static/js/cart-item-remove-ajax.js' );
 
 		// // Custom
 		$this->attach_style( '/custom/custom.css' );

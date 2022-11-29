@@ -10,6 +10,8 @@ global $woocommerce;
 
 $attribute_taxonomies = wc_get_attribute_taxonomies();
 $taxonomy_terms = array();
+
+error_log( print_r( get_queried_object(), true ) );
 ?>
 <?php $recently_list = truemisha_recently_viewed_products(); ?>
 <main class="main" style="padding-top: var(--header-height);">
