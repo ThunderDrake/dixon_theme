@@ -215,3 +215,17 @@ label[for="billing_country"] {
     max-width: 50%;
     text-align: center;
 }
+
+.tabs__search {
+    display: block;
+    max-width: 50%;
+    margin-bottom: 25px;
+}
+
+.work-list {
+    display: none;
+}
+
+.work-list.active {
+    display: grid;
+}

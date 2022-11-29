@@ -42,5 +42,44 @@ function filter_products() {
     exit; // this is required to terminate immediately and return a proper response
   }
 
-  add_action('wp_ajax_filter_model', 'filter_products');
-  add_action('wp_ajax_nopriv_filter_model', 'filter_products');
+add_action('wp_ajax_filter_model', 'filter_products');
+add_action('wp_ajax_nopriv_filter_model', 'filter_products');
+  
+function search_model() {
+	global $post;
+    $term_slug = $_POST['term_slug'];
+	$search = $_POST['search_value'];
+	error_log( print_r( $search, true ) );
+    $args = array(
+        'post_type' => 'models',
+		'tax_query' => [[
+			'taxonomy' => 'model_type',
+			'field'    => 'slug',
+			'terms'    => $term_slug
+		]],
+		's' => $search
+    );
+
+    $ajaxposts = get_posts($args);
+    $response = ""; // Initialize empty response string
+
+    if ($ajaxposts) {
+		ob_start(); // Start the buffer
+        foreach($ajaxposts as $post) {
+			setup_postdata($post); ?>
+			<div class="pricelist__item" data-post-id="<?= get_the_ID() ?>"><?php the_title(); ?></div>
+			<?php
+        }
+        $response = ob_get_contents(); // Add the buffer contents to $response
+        ob_end_clean(); // Clear the buffer
+    } else {
+        $response = "Ничего не найдено";
+    }
+
+    echo json_encode($response); // Echo the response
+    wp_reset_postdata();
+    exit; // this is required to terminate immediately and return a proper response
+  }
+
+  add_action('wp_ajax_search_model', 'search_model');
+  add_action('wp_ajax_nopriv_search_model', 'search_model');
