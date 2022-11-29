@@ -73,7 +73,7 @@ $models_list = get_terms([
 				]);
 				foreach($models_list as $post) {
 					setup_postdata($post); ?>
-					<div class="pricelist__works-list work-list" data-post-items="<?= get_the_ID() ?>">
+					<div class="pricelist__works-list work-list work-list--repair" data-post-items="<?= get_the_ID() ?>">
 					<?php $item_works = get_field('pricelist_item') ?>
 					<?php if($item_works): ?>
 						<?php foreach($item_works as $item): ?>

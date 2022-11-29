@@ -5,7 +5,7 @@
  * @package dixon_theme
  */
 get_header();
-$repair_list = get_field('repair_list_items', get_the_ID());
+$repair_list = get_field('repair_list_items');
 ?>
 <main class="main" style="padding-top: var(--header-height);">
 	<section class="repair">

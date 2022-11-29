@@ -222,10 +222,10 @@ label[for="billing_country"] {
     margin-bottom: 25px;
 }
 
-.work-list {
+.work-list--repair {
     display: none;
 }
 
-.work-list.active {
+.work-list--repair.active {
     display: grid;
 }
