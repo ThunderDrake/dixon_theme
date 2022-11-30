@@ -80,8 +80,27 @@
         },
         {
             "key": "field_6368586bb8142",
-            "label": "E-mail",
+            "label": "E-mail отдела продаж",
             "name": "contact_email",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6386a23e302df",
+            "label": "E-mail ремонтного сервиса",
+            "name": "contact_email_service",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -172,6 +191,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_6386a3634ce41",
+            "label": "Юридическая информация",
+            "name": "contact_info",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br"
         }
     ],
     "location": [
@@ -192,5 +230,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1667783385
+    "modified": 1669768074
 }

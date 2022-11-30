@@ -36,7 +36,7 @@ class Routes {
 			return $this->locate_template( '/cart/cart-page.php' );
 		}
 
-		if ( is_shop() || is_product_category() ) {
+		if ( is_shop() || is_product_category() || is_product_tag() ) {
 			return $this->locate_template( '/product-archive/catalog-page.php' );
 		}
 

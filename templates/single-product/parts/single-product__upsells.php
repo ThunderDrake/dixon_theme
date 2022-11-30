@@ -48,7 +48,7 @@ if(!$upsells) {
 					<div class="product-card__info">
 						<div class="product-card__rating" style="<?php echo '--rating-width: '. ( $average / 5 ) * 100 . '%' ?>">
 						</div>
-						<a class="product-card__reviews" href="#"><?= $product_obj->get_review_count(); ?> отзывов</a>
+						<span class="product-card__reviews"><?= $product_obj->get_review_count(); ?> отзывов</span>
 					</div>
 
 					<?php if($product_obj->get_regular_price()): ?>

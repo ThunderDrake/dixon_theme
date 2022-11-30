@@ -82,7 +82,7 @@
 						?>
 						<?php foreach($terms as $term): ?>
 						<li class="submenu__item">
-                          <a class="submenu__link" href="/catalog/<?= $term->slug ?>/"><?= $term->name ?></a>
+                          <a class="submenu__link" href="/tag/<?= $term->slug ?>/"><?= $term->name ?></a>
                         </li>
 						<?php endforeach; ?>
 						<li class="submenu__item">

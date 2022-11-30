@@ -22,11 +22,7 @@
 		<article class="product-card">
 			<!-- <div class="product-card__label">Хит продаж</div> -->
 			<div class="product-card__add">
-				<button class="product-card__wishlist btn-reset">
-					<svg class="product-card__wishlist-icon" width="22" height="20">
-					<use xlink:href="#favorite"></use>
-					</svg>
-				</button>
+				<?php echo do_shortcode('[ti_wishlists_addtowishlist]');?>
 			</div> <!-- favorite-button -->
 
 			<div class="product-card__image-wrapper">
@@ -42,7 +38,7 @@
 			<div class="product-card__info">
 				<div class="product-card__rating" style="<?php echo '--rating-width: '. ( $average / 5 ) * 100 . '%' ?>">
 				</div>
-				<a class="product-card__reviews" href="#"><?= $product_obj->get_review_count(); ?> отзывов</a>
+				<span class="product-card__reviews"><?= $product_obj->get_review_count(); ?> отзывов</span>
 			</div>
 
 			<?php if($product_obj->get_regular_price()): ?>

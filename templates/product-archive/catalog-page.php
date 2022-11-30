@@ -173,7 +173,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 							<div class="product-card__info">
 								<div class="product-card__rating" style="<?php echo '--rating-width: '. ( $average / 5 ) * 100 . '%' ?>">
 								</div>
-								<a class="product-card__reviews" href="#"><?= $product_obj->get_review_count(); ?> отзывов</a>
+								<span class="product-card__reviews"><?= $product_obj->get_review_count(); ?> отзывов</span>
 							</div>
 
 							<?php if($product_obj->get_regular_price()): ?>
@@ -238,11 +238,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 									<article class="product-card">
 										<!-- <div class="product-card__label">Хит продаж</div> -->
 										<div class="product-card__add">
-											<button class="product-card__wishlist btn-reset">
-												<svg class="product-card__wishlist-icon" width="22" height="20">
-													<use xlink:href="#favorite"></use>
-												</svg>
-											</button>
+											<?php echo do_shortcode('[ti_wishlists_addtowishlist]');?>
 										</div> <!-- favorite-button -->
 
 										<div class="product-card__image-wrapper">
@@ -260,7 +256,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 										<div class="product-card__info">
 											<div class="product-card__rating" style="<?php echo '--rating-width: '. ( $average / 5 ) * 100 . '%' ?>">
 											</div>
-											<a class="product-card__reviews" href="#"><?= $product_obj->get_review_count(); ?> отзывов</a>
+											<span class="product-card__reviews"><?= $product_obj->get_review_count(); ?> отзывов</span>
 										</div>
 
 										<?php if($product_obj->get_regular_price()): ?>
@@ -281,7 +277,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 										</div>
 										<?php endif; ?>
 
-										<a class="product-card__button btn btn-reset btn--main" href="#">В корзину
+										<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">В корзину
 											<svg class="product-card__button-icon">
 												<use xlink:href="#cart-icon"></use>
 											</svg>
