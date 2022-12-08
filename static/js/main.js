@@ -3383,10 +3383,12 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     const onPageLoad = () => {
-      // const url = window.location.href;
-      // if (url.indexOf('?') < 0) {
-      //   return
-      // }
+      const url = window.location.href;
+
+      if (url.indexOf('?') < 0) {
+        return;
+      }
+
       const arrayOfFilters = window.location.href.substring(url.indexOf('?') + 1).split('&');
       arrayOfFilters.forEach(elem => {
         const filterDataName = elem.substring(0, elem.indexOf('='));
@@ -4398,6 +4400,7 @@ __webpack_require__.r(__webpack_exports__);
 function initRepairForm() {
   const form = document.querySelector('.repair__form');
   const nextBtns = document.querySelectorAll('.repair__form-next-step');
+  const prevBtns = document.querySelectorAll('.repair__form-prev-step');
   const formSteps = document.querySelectorAll('.repair__form-step');
   const stepBar = document.querySelector('.repair__form-counter-bar--active');
   const currentStep = document.querySelector('.repair__form-counter-text--current');
@@ -4413,6 +4416,14 @@ function initRepairForm() {
       e.preventDefault();
       window.scrollTo(top);
       formStepNum++;
+      updateFormStep();
+    });
+  });
+  prevBtns.forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo(top);
+      formStepNum--;
       updateFormStep();
     });
   });

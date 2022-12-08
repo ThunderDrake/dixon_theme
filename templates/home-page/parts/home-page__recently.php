@@ -56,7 +56,7 @@
 			</div>
 			<?php endif; ?>
 
-			<a class="product-card__button btn btn-reset btn--main" href="#">В корзину
+			<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
 			<svg class="product-card__button-icon">
 				<use xlink:href="#cart-icon"></use>
 			</svg>

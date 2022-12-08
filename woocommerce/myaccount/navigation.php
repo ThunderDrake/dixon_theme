@@ -23,12 +23,16 @@ do_action( 'woocommerce_before_account_navigation' );
 ?>
 
 <nav class="woocommerce-MyAccount-navigation">
-	<ul>
-		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
-			</li>
-		<?php endforeach; ?>
+	<ul class="woocommerce-MyAccount-navigation-list list-reset">
+		<li class="<?php echo wc_get_account_menu_item_classes( 'dashboard' ); ?> woocommerce-nav-list-item">
+			<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'dashboard' ) ); ?>"><?php echo esc_html( 'Личные данные' ); ?></a>
+		</li>
+		<li class="<?php echo wc_get_account_menu_item_classes( 'wishlist' ); ?> woocommerce-nav-list-item">
+			<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'wishlist' ) ); ?>"><?php echo esc_html( 'Список желаний' ); ?></a>
+		</li>
+		<li class="<?php echo wc_get_account_menu_item_classes( 'orders' ); ?> woocommerce-nav-list-item">
+			<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'orders' ) ); ?>"><?php echo esc_html( 'Заказы' ); ?></a>
+		</li>
 	</ul>
 </nav>
 

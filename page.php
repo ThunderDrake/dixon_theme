@@ -2,16 +2,20 @@
 the_post();
 get_header();
 ?>
-<main id="main" class="base-page">
-	<div class="wrapper">
-		<div class="row main-row">
-			<div class="content-holder col-xs-12">
-				<div class="white-holder">
-					<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
-					<?php the_content() ?>
-				</div>
+<?php if(is_checkout() || is_account_page()): ?>
+	<main class="main" style="padding-top: var(--header-height);">
+		<?php the_content(); ?>
+	</main>
+<?php else: ?>
+<main class="main" style="padding-top: var(--header-height); flex: 1;">
+	<section class="credit-page">
+		<div class="container credit-page__container">
+			<h1 class="credit-page__title h2-title"><?php the_title(); ?></h1>
+			<div class="credit-page__content">
+				<?php the_content(); ?>
 			</div>
 		</div>
-	</div>
+	</section>
 </main>
+<?php endif; ?>
 <?php get_footer(); ?>

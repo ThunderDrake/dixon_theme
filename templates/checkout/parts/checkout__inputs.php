@@ -1,7 +1,6 @@
 <?php 
 $checkout = WC()->checkout();
 $fields = $checkout->get_checkout_fields( 'billing' );
-error_log( print_r( $fields, true ) );
 ?>
 <div class="checkout__form-wrapper">
 
@@ -12,6 +11,8 @@ error_log( print_r( $fields, true ) );
 		<?php woocommerce_form_field( "billing_phone", $fields["billing_phone"], $checkout->get_value( "billing_phone" ) ); ?>
 	</div>
 	<div class="checkout-form__group">
+		<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 		<div class="checkout-form__group-title"><span class="checkout-form__group-title-number">2</span>Ваш заказ</div>
 		<?php 
         foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ):
@@ -21,10 +22,11 @@ error_log( print_r( $fields, true ) );
         ?>
         <div class="checkout-form__cart-item">
 			<img loading="lazy" src="<?= wp_get_attachment_image_url( $_product->get_image_id(), 'full' ) ?>" class="checkout-form__cart-image" width="75" height="90" alt="">
-			<div class="checkout-form__cart-title"><?php echo $_product->get_title() ?></div>
+			<a class="checkout-form__cart-title" href="<?= $_product->get_permalink() ?>"><?php echo $_product->get_title() ?></a>
 			<div class="checkout-form__cart-quantity"><?php echo $cart_item['quantity'] ?> шт</div>
-			<div class="checkout-form__cart-price"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ) ?> Р.</div>
+			<div class="checkout-form__cart-price"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ) ?></div>
 		</div>
+		<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
         <?php 
           endif;
 		endforeach;
@@ -52,6 +54,7 @@ error_log( print_r( $fields, true ) );
 	</div>
 	<div class="checkout-form__group">
 		<div class="checkout-form__group-title"><span class="checkout-form__group-title-number">4</span>Способ получения</div>
+		<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
 		<?php 
 			WC()->cart->calculate_shipping();
 			$packages = WC()->shipping()->get_packages();
@@ -84,10 +87,13 @@ error_log( print_r( $fields, true ) );
 							printf('<span class="custom-checkbox__content">%1$s</span>', wc_cart_totals_shipping_method_label( $method ));
 							printf( '</label>' ); // WPCS: XSS ok.
 							printf('<div class="checkout-form__shipping-popup">');
+								if('rpaefw_post_calc:5' === $method->id){
+								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+								} else {
 								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+								}
 								printf('<div class="checkout-form__shipping-info">');
 									printf('<div class="checkout-form__shipping-price">от %1$s Р</div>', $method->get_cost() );
-									printf('<div class="checkout-form__shipping-text">Дата доставки</div>');
 								printf('</div>');
 							printf('</div>');
 							do_action( 'woocommerce_after_shipping_rate', $method, $i );
@@ -99,6 +105,7 @@ error_log( print_r( $fields, true ) );
 				$first = false;
 			} 
 		?>
+		<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
 		<?php woocommerce_form_field( "billing_country", $fields["billing_country"], $checkout->get_value( "billing_country" ) ); ?>
 		<?php woocommerce_form_field( "billing_state", $fields["billing_state"], $checkout->get_value( "billing_state" ) ); ?>
 		<?php woocommerce_form_field( "billing_city", $fields["billing_city"], $checkout->get_value( "billing_city" ) ); ?>

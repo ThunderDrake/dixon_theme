@@ -10,114 +10,67 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     3.3.0
+ * @see https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 5.2.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-$thumb_size = [60,60];
-$count = WC()->cart->get_cart_contents_count();
+defined( 'ABSPATH' ) || exit;
 ?>
-<div class="shop_table woocommerce-checkout-review-order-table">
-	<div class="products">
-		<?php /*
-			do_action( 'woocommerce_review_order_before_cart_contents' );
 
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item )
-			{
-				$_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-				if($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key))
-				{
-		?>
-		<div class="products-product">
-			<div class="product-image">
-				<?php
-					$image = get_thumb($_product->get_id(),$thumb_size,true);
-					if(!$image)
-					{
-						$image = wc_placeholder_img( 'woocommerce_thumbnail' );
-					}
-					echo $image;
-				?>
-			</div>
-			<div class="product-info">
-				<div class="product-name">
-					<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
-					<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
-				</div>
-				<div class="product-total">
-					<div class="product-price"><?php echo WC()->cart->get_product_price( $_product ); ?> / шт.</div>
-					<div class="product-quantity"><?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', sprintf( '%s шт.', $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?></div>
-					<div class="product-subtotal"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?></div>
-				</div>
-			</div>
-		</div>
-		<?php
+	<div class="shop_table woocommerce-checkout-review-order-table" style="position: static !important;">
+		<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+		<?php 
+			WC()->cart->calculate_shipping();
+			$packages = WC()->shipping()->get_packages();
+			$first    = true;
+			foreach ( $packages as $i => $package ) {
+				$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
+				$product_names = array();
+			
+				if ( count( $packages ) > 1 ) {
+				foreach ( $package['contents'] as $item_id => $values ) {
+					$product_names[ $item_id ] = $values['data']->get_name() . ' &times;' . $values['quantity'];
 				}
-			}
+				$product_names = apply_filters( 'woocommerce_shipping_package_details_array', $product_names, $package );
+				}
+				$formatted_destination    = isset( $formatted_destination ) ? $formatted_destination : WC()->countries->get_formatted_address( $package['destination'], ', ' );
+				$has_calculated_shipping  = ! empty( $has_calculated_shipping );
+				$show_shipping_calculator = ! empty( $show_shipping_calculator );
+				$calculator_text          = '';
 
-			do_action( 'woocommerce_review_order_after_cart_contents' );
+				?>
+				<?php foreach ( $package['rates'] as $method ) : ?>
+					<div class="checkout-form__shipping-wrapper">
+						<?php
+							printf( '<label class="custom-checkbox checkout-form__radio" for="shipping_method_%1$s_%2$s">', $i, esc_attr( sanitize_title( $method->id ) ) ); // WPCS: XSS ok.
+								if ( 1 < count( $package['rates'] ) ) {
+								printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+								} else {
+								printf( '<input type="hidden" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ) ); // WPCS: XSS ok.
+								}
+							printf('<span class="custom-checkbox__content">%1$s</span>', wc_cart_totals_shipping_method_label( $method ));
+							printf( '</label>' ); // WPCS: XSS ok.
+							printf('<div class="checkout-form__shipping-popup">');
+								if('rpaefw_post_calc:5' === $method->id){
+								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+								} else {
+								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+								}
+								printf('<div class="checkout-form__shipping-info">');
+									printf('<div class="checkout-form__shipping-price">от %1$s Р</div>', $method->get_cost() );
+								printf('</div>');
+							printf('</div>');
+							do_action( 'woocommerce_after_shipping_rate', $method, $i );
+						?>
+					</div>
+				<?php endforeach; ?>
+				<?php
+			
+				$first = false;
+			} 
 		?>
+		<?php ct()->template( '/checkout/parts/checkout__total.php' ) ?>
+		<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
 	</div>
-	<div class="totals">
-
-		<div class="totals-row cart-subtotal">
-			<div class="label"><?php _e( 'Subtotal', 'woocommerce' ); ?></div>
-			<div class="value"><?php wc_cart_totals_subtotal_html(); ?></div>
-		</div>
-
-		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-		<div class="totals-row cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-			<div class="label"><?php wc_cart_totals_coupon_label( $coupon ); ?></div>
-			<div class="value"><?php wc_cart_totals_coupon_html( $coupon ); ?></div>
-		</div>
-		<?php endforeach; ?>
-
-		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
-		<div class="totals-row fee">
-			<div class="label"><?php echo esc_html( $fee->name ); ?></div>
-			<div class="value"><?php wc_cart_totals_fee_html( $fee ); ?></div>
-		</div>
-		<?php endforeach; ?>
-
-		<?php if ( wc_tax_enabled() && ! WC()->cart->display_prices_including_tax() ) : ?>
-		<?php if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) : ?>
-		<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
-		<div class="totals-row tax-rate tax-rate-<?php echo sanitize_title( $code ); ?>">
-			<div class="label"><?php echo esc_html( $tax->label ); ?></div>
-			<div class="value"><?php echo wp_kses_post( $tax->formatted_amount ); ?></div>
-		</div>
-		<?php endforeach; ?>
-		<?php else : ?>
-		<div class="totals-row tax-total">
-			<div class="label"><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></div>
-			<div class="value"><?php wc_cart_totals_taxes_total_html(); ?></div>
-		</div>
-		<?php endif; ?>
-		<?php endif; ?>
-
-		<?php if ($shipping = WC()->cart->get_cart_shipping_total()) : ?>
-		<div class="totals-row fee">
-			<div class="label">Доставка</div>
-			<div class="value"><?php echo $shipping; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
-
-		<div class="totals-row order-total">
-			<div class="label"><?php _e( 'Total', 'woocommerce' ); ?></div>
-			<div class="value"><?php wc_cart_totals_order_total_html(); ?></div>
-		</div>
-
-		<?php do_action( 'woocommerce_review_order_after_order_total' ); */?>
-		<div class="count__items"><?=$count?><span><?php wc_cart_totals_subtotal_html(); ?></span></div>
-		<div class="total">К оплате: <span><?php wc_cart_totals_subtotal_html(); ?></span></div>
-		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-	</div>
-</div>
+	

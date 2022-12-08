@@ -52,7 +52,7 @@ get_header();
 									<div class="cart-item__image-wrapper">
 										<img loading="lazy" src="<?= wp_get_attachment_image_url( $_product->get_image_id(), 'full' ) ?>" class="cart-item__image" width="120" height="150" alt="">
 									</div>
-									<div class="cart-item__title"><?= $_product->get_title() ?></div>
+									<a class="cart-item__title" href="<?= $_product->get_permalink() ?>"><?= $_product->get_title() ?></a>
 								</div>
 
 								<div class="cart-grid__col">
@@ -85,7 +85,7 @@ get_header();
 
 								<div class="cart-grid__col">
 									<div class="cart-item__delete">
-										<a class="cart-item__delete-button" href="<?= esc_url( wc_get_cart_remove_url( $cart_item_key ) ) ?>" data-product_id="<?= esc_attr( $product_id ) ?>" data-product_sku="<?= esc_attr( $_product->get_sku() ) ?>">
+										<a class="cart-item__delete-button" href="<?= esc_url( wc_get_cart_remove_url( $cart_item_key ) ) ?>" data-product_id="<?= esc_attr( $product_id ) ?>" data-product_sku="<?= esc_attr( $_product->get_sku() ) ?>" data-cart_item_key="<?= esc_attr( $cart_item_key ) ?>">
 											<svg class="cart-item__delete-icon" width="20" height="24">
 												<use xlink:href="#delete-icon"></use>
 											</svg>

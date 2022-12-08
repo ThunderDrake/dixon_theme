@@ -35,3 +35,4 @@ require __DIR__ . '/functions/questionary/module.php';
 require __DIR__ . '/functions/callback/module.php';
 require __DIR__ . '/functions/pricelist/module.php';
 require __DIR__ . '/functions/repair/module.php';
+require __DIR__ . '/functions/register/module.php';

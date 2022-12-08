@@ -29,7 +29,9 @@ $repair_list = get_field('repair_list_items');
 								<input type="text" class="repair__input-input" name="repair_model">
 							</label>
 						</div>
-						<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						<div class="repair__form-buttons">
+							<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						</div>
 					</div>
 
 					<div class="repair__form-step">
@@ -46,7 +48,10 @@ $repair_list = get_field('repair_list_items');
 								</label>
 							<?php endforeach; ?>
 						</div>
-						<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						<div class="repair__form-buttons">
+							<a class="repair__form-prev-step btn btn--main btn-reset" href="#">Предыдущий вопрос</a>
+							<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						</div>
 					</div>
 
 					<div class="repair__form-step">
@@ -56,7 +61,10 @@ $repair_list = get_field('repair_list_items');
 								<input type="text" class="repair__input-input" name="repair_imei">
 							</label>
 						</div>
-						<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						<div class="repair__form-buttons">
+							<a class="repair__form-prev-step btn btn--main btn-reset" href="#">Предыдущий вопрос</a>
+							<a class="repair__form-next-step btn btn--main btn-reset" href="#">Следующий вопрос</a>
+						</div>
 					</div>
 
 					<div class="repair__form-step">

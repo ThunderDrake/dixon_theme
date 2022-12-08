@@ -35,7 +35,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 					</div>
 
 					<div class="product-header__sort" data-accordion="parent">
-						<div class="product-header__sort-elem" data-accordion="element">
+						<!-- <div class="product-header__sort-elem" data-accordion="element">
 							<div class="custom-select product-header__sort" data-select data-validate-type="select" data-name="sort">
 								<button class="custom-select__button product-header__sort-button" type="button" aria-label="Выберите одну из опций"
 									data-accordion="button">
@@ -53,7 +53,7 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 												<svg width="10" height="9" aria-hidden="true">
 													<use xlink:href="#icon-check"></use>
 												</svg>
-											</div><span>Сначала старые</span>
+											</div><span>Сначала популярные</span>
 										</div>
 										<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
 											data-select-value="new-first">
@@ -61,12 +61,28 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 												<svg width="10" height="9" aria-hidden="true">
 													<use xlink:href="#icon-check"></use>
 												</svg>
-											</div><span>Сначала новые</span>
+											</div><span>Сначала дешевле</span>
+										</div>
+										<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+											data-select-value="new-first">
+											<div class="option-item__check">
+												<svg width="10" height="9" aria-hidden="true">
+													<use xlink:href="#icon-check"></use>
+												</svg>
+											</div><span>Сначала дороже</span>
+										</div>
+										<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+											data-select-value="new-first">
+											<div class="option-item__check">
+												<svg width="10" height="9" aria-hidden="true">
+													<use xlink:href="#icon-check"></use>
+												</svg>
+											</div><span>Сначала с высоким рейтингом</span>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<button class="btn btn-reset catalog__filter-button" data-popup-target="filter">Фильтр</button>
@@ -88,8 +104,8 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 							<form class="filter__form stop-clear" action="<?= home_url(add_query_arg(array(), $wp->request)) ?>/" method="get">
 								<div class="filter__block" data-accordion="parent">
 									<?php 
-		if($attribute_taxonomies):
-			foreach($attribute_taxonomies as $tax):?>
+								if($attribute_taxonomies):
+									foreach($attribute_taxonomies as $tax):?>
 									<div class="filter-button" data-accordion="element">
 										<div class="custom-select" data-select data-multiple="true" data-validate-type="select"
 											data-name="<?= $tax->attribute_name ?>">
@@ -130,9 +146,61 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 										</div>
 									</div>
 									<?php endforeach;
-	endif;
-	?>
+								endif;
+								?>
 								</div>
+
+								<!-- <div class="product-header__sort" data-accordion="parent">
+									<div class="product-header__sort-elem" data-accordion="element">
+										<div class="custom-select product-header__sort" data-select data-validate-type="select" data-name="sort">
+											<button class="custom-select__button product-header__sort-button" type="button" aria-label="Выберите одну из опций"
+												data-accordion="button">
+												<span class="custom-select__label">Сортировка</span>
+												<span class="custom-select__text visually-hidden"></span>
+												<svg class="catalog__sort-icon" width="20" height="17" aria-hidden="true">
+													<use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#sort"></use>
+												</svg>
+											</button>
+											<div data-accordion="content">
+												<div class="custom-select__list product-header__sort-list" data-accordion="content">
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="popular-first">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала популярные</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="cheap-first">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала дешевле</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="expensive-first">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала дороже</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="rating-first">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала с высоким рейтингом</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> -->
+								
 								<div class="filter-popup-buttons filter-popup-buttons--main">
 									<button class="filter-popup-buttons__btn filter-popup-buttons__btn--apply btn" type="button"
 										aria-label="применить" data-popup-close=""><span>применить</span></button>

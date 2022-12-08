@@ -22,23 +22,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<p><?php
-	printf(
-		/* translators: 1: user display name 2: logout url */
-		__( 'Hello %1$s (not %1$s? <a href="%2$s">Log out</a>)', 'woocommerce' ),
-		'<strong>' . esc_html( $current_user->display_name ) . '</strong>',
-		esc_url( wc_logout_url() )
-	);
-?></p>
+<?php 
+$customer_id = get_current_user_id(); 
+$customer = new WC_Customer( $customer_id );
 
-<p><?php
-	printf(
-		__( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">shipping and billing addresses</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' ),
-		esc_url( wc_get_endpoint_url( 'orders' ) ),
-		esc_url( wc_get_endpoint_url( 'edit-address' ) ),
-		esc_url( wc_get_endpoint_url( 'edit-account' ) )
-	);
-?></p>
+?>
+
+<div class="customer__content">
+	<div class="customer__name"><?= $customer->get_first_name() ?> <?= $customer->get_last_name() ?></div>
+	<div class="customer__text">Email: <?= $customer->get_email() ?></div>
+	<div class="customer__text">Телефон: <?= $customer->get_billing_phone() ?></div>
+	<div class="customer__text">Город: <?= $customer->get_billing_city() ?></div>
+</div>
 
 <?php
 	/**

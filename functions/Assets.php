@@ -11,7 +11,7 @@ class Assets {
 	public function attach_assets() {
 		// HTML Love
 		$this->attach_style( '/static/css/vendor.css' );
-		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php', 'templates/contact-page/contact-page.php', 'templates/callback-page/callback-page.php', 'templates/wishlist-page/wishlist-page.php'] )){
+		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php', 'templates/contact-page/contact-page.php', 'templates/callback-page/callback-page.php', 'templates/wishlist-page/wishlist-page.php'] ) || is_page(['privacy-policy', 'offer', 'register']) || is_account_page()){
 			$this->attach_style( '/static/css/main.css' );
 		}
 		if(is_page_template('templates/about-page/about-page.php')) {
@@ -64,9 +64,12 @@ class Assets {
 		// $this->attach_script( '/static/js/add-to-cart-variation.min.js' );
 		$this->attach_script( '/static/js/radio-variation.js' );
 		$this->attach_script( '/static/js/cart-item-remove-ajax.js' );
+		$this->attach_script( '/static/js/product-sort.js' );
 
 		// // Custom
 		$this->attach_style( '/custom/custom.css' );
+		$this->attach_style( '/custom/custom-select.css' );
+		$this->attach_script( '/custom/jquery.custom-select.min.js' );
 		// $this->attach_script( '/custom/custom.js' );
 	}
 

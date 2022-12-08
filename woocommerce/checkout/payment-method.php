@@ -11,7 +11,7 @@
  * the readme will list any important changes.
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
- * @package     WooCommerce/Templates
+ * @package     WooCommerce\Templates
  * @version     3.5.0
  */
 
@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-
 <div class="wc_payment_method payment_method_<?php echo esc_attr( $gateway->id ); ?> update_totals_on_change">
 	<label class="custom-checkbox checkout-form__radio" for="payment_method_<?php echo esc_attr( $gateway->id ); ?>" title="<?=$gateway->get_title()?>">
 		<input id="payment_method_<?php echo esc_attr( $gateway->id ); ?>" type="radio" class="custom-checkbox__field" name="payment_method" data-shipping="<?=$gateway->get_title()?>" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>">

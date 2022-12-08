@@ -65,7 +65,7 @@ function modify_query_product_archive_by_filter_params( $query ) {
 				);
 			}
 		endforeach;
-
+		
 		if ( $metas ) {
 			$query->set( 'tax_query', [
 				'relation' => 'OR',
@@ -73,7 +73,25 @@ function modify_query_product_archive_by_filter_params( $query ) {
 			] );
 		}
 	}
-
 }
 
 add_action( 'pre_get_posts', 'modify_query_product_archive_by_filter_params' );
+
+
+add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
+
+function custom_pre_get_posts_query( $q ) {
+
+	if ( ! $q->is_main_query() ) return;
+	if ( ! $q->is_post_type_archive() ) return;
+	if ( ! is_admin() ) {
+
+	$q->set( 'meta_query', array(array(
+		'key'       => '_stock_status',
+		'value'     => 'outofstock',
+		'compare'   => 'NOT IN'
+	)));
+	}
+	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
+
+}

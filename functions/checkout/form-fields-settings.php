@@ -254,13 +254,34 @@ add_filter( 'woocommerce_checkout_fields', 'override_checkout_fields' );
 function override_checkout_fields( $fields ) {
 	unset( $fields['billing']['billing_company'] );
 	unset( $fields['billing']['billing_address_2'] );
-	// unset( $fields['billing']['billing_country'] );
 	unset( $fields['billing']['billing_email'] );
-	// $fields['billing']['billing_address_1']['required'] = false;
-	// $chosen_methods                                      = WC()->session->get( 'chosen_shipping_methods' );
-	// if ( 'flat_rate:4' !== $chosen_methods[0] ) {
-	// 	unset( $fields['billing']['billing_adress_1'] );
-	// }
 
 	return $fields;
 }
+
+add_action('wp_footer', 'woocommerce_custom_update_checkout', 50);
+
+function woocommerce_custom_update_checkout()
+{
+  if (is_checkout()) {
+?>
+    <script type="text/javascript">
+
+      jQuery(document).ready($ => {
+
+        jQuery(document).on('blur', 'input[name="billing_postcode"]', function () {
+			console.log(123);
+                jQuery(document.body).trigger('update_checkout')
+            });
+
+      });
+
+    </script>
+
+<?php
+
+  }
+
+}
+
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );

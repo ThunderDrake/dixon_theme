@@ -26,6 +26,7 @@ function add_templates_to_dropdown( $templates ) {
 	$templates['templates/repair-page/repair-page.php']             = 'Заявка на ремонт телефона';
 	$templates['templates/repair-status/repair-status.php']         = 'Узнать статус ремонта';
 	$templates['templates/wishlist-page/wishlist-page.php']         = 'Список избранного';
+	$templates['templates/register-page/register-page.php']         = 'Страница регистрации';
 
 	return $templates;
 }

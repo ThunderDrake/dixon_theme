@@ -18,12 +18,16 @@ $info = get_field('contact_info', 'option');
 			<div class="contacts__info">
 				<address class="contacts__text">Адрес: <?= $address ?></address>
 				<p class="contacts__text">График работы: <?= $work_time ?></p>
-				<p class="contacts__text">Продажи:</p>
-				<p class="contacts__text">Телефон: <a class="contacts__phone" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone) ?>"><?= $phone ?></a></p>
-				<p class="contacts__text">Эл. почта: <a class="contacts__mail" href="mailto:<?= $email ?>"><?= $email ?></a></p>
-				<p class="contacts__text">Ремонт и сервис:</p>
-				<p class="contacts__text">Телефон: <a class="contacts__phone" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone_service) ?>"><?= $phone_service ?></a></p>
-				<p class="contacts__text">Эл. почта: <a class="contacts__mail" href="mailto:<?= $email_service ?>"><?= $email_service ?></a></p>
+				<div class="contact__text-group">
+					<p class="contacts__text contacts__text--title">Продажи:</p>
+					<p class="contacts__text">Телефон: <a class="contacts__phone" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone) ?>"><?= $phone ?></a></p>
+					<p class="contacts__text">Эл. почта: <a class="contacts__mail" href="mailto:<?= $email ?>"><?= $email ?></a></p>
+				</div>
+				<div class="contact__text-group">
+					<p class="contacts__text contacts__text--title">Ремонт и сервис:</p>
+					<p class="contacts__text">Телефон: <a class="contacts__phone" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone_service) ?>"><?= $phone_service ?></a></p>
+					<p class="contacts__text">Эл. почта: <a class="contacts__mail" href="mailto:<?= $email_service ?>"><?= $email_service ?></a></p>
+				</div>
 				<div class="contacts__socials">
 					<a class="contacts__socials-link" href="<?= $vk ?>">
 						<svg class="contacts__socials-icon" width="30" height="30">

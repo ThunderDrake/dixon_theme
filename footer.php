@@ -114,34 +114,36 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
           <li class="footer__col-item">
             <a class="footer__col-link" href="/catalog/telefony/">Телефоны</a>
           </li>
-          <!-- <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Хиты продаж</a>
-          </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Акции</a>
+            <a class="footer__col-link" href="/catalog/accessories/">Аксессуары</a>
           </li>
-          <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Новинки</a>
-          </li>
-          <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Распродажа</a>
-          </li> -->
+		 	 <?php 
+			$terms = get_terms( [
+				'taxonomy' => 'product_tag',
+				'hide_empty' => true,
+			] );
+			?>
+			<?php foreach($terms as $term): ?>
+			<li class="footer__col-item">
+				<a class="footer__col-link" href="/tag/<?= $term->slug ?>/"><?= $term->name ?></a>
+			</li>
+			<?php endforeach; ?>
         </ul>
       </div>
-      <!-- <div class="footer__col footer__col--second">
+      <div class="footer__col footer__col--second">
         <div class="footer__col-title">Услуги</div>
         <ul class="footer__col-list list-reset">
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Сдать в ремонт</a>
+            <a class="footer__col-link" href="/repair/">Сдать в ремонт</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Статус ремонта</a>
+            <a class="footer__col-link" href="/work-status/">Статус ремонта</a>
           </li>
           <li class="footer__col-item">
-            <a class="footer__col-link" href="#">Стоимость ремонта</a>
+            <a class="footer__col-link" href="/pricelist/">Стоимость ремонта</a>
           </li>
         </ul>
-      </div> -->
+      </div>
       <div class="footer__col footer__col--third">
         <div class="footer__col-title">Для клиента</div>
         <ul class="footer__col-list list-reset">
@@ -160,11 +162,11 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
           <li class="footer__col-item">
             <a class="footer__col-link" href="/vacancy/">Вакансии</a>
           </li>
-          <li class="footer__col-item footer__col-item--add">
-            <a class="footer__col-link" href="#">Политика конфиденциальности</a>
+          <li class="footer__col-item">
+            <a class="footer__col-link" href="<?= get_privacy_policy_url() ?>">Политика конфиденциальности</a>
           </li>
-          <li class="footer__col-item footer__col-item--add">
-            <a class="footer__col-link" href="#">Договор оферты</a>
+          <li class="footer__col-item">
+            <a class="footer__col-link" href="/offer/">Договор оферты</a>
           </li>
         </ul>
       </div>

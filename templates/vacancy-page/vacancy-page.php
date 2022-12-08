@@ -35,7 +35,7 @@ foreach ($vacancy_array as $vacancy) {
 				</div>
 			</div>
 			<p class="vacancy__section-text">Наша компания более 20 лет является стратегическим партнером операторов мобильной связи на территории
-				Чувашской Республики — МегаФон, Билайн, МТС, Йота, Теле2 и Ростелеком.</p>
+				Чувашской Республики — МегаФон, Билайн, МТС, Йота, Tele2 и Ростелеком.</p>
 			<div class="vacancy__content">
 				<div class="vacancy__list">
 					<div class="vacancy__list-title">Открытые вакансии</div>
@@ -100,7 +100,7 @@ foreach ($vacancy_array as $vacancy) {
 			</div>
 			<?php if($vacancy_partners): ?>
 				<div class="vacancy__partners">
-					<div class="vacancy__partners-title">Нашими партнерами являются все федеральные операторы связи</div>
+					<div class="vacancy__partners-title">Нашими партнерами являются федеральные операторы связи</div>
 					<?php foreach($vacancy_partners as $partner): ?>
 					<img loading="lazy" src="<?= wp_get_attachment_url($partner['image_id']) ?>" class="vacancy__partners-image" width="200" height="36" alt="">
 					<?php endforeach; ?>

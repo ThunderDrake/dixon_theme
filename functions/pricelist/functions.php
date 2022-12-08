@@ -49,7 +49,6 @@ function search_model() {
 	global $post;
     $term_slug = $_POST['term_slug'];
 	$search = $_POST['search_value'];
-	error_log( print_r( $search, true ) );
     $args = array(
         'post_type' => 'models',
 		'tax_query' => [[
