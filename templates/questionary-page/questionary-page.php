@@ -66,8 +66,10 @@ foreach ($vacancy_array as $vacancy) {
           <select class="questionary__select" name="education_position" placeholder="Форма обучения">
             <option placeholder>Форма обучения</option>
             <option value="Среднее">Среднее</option>
+            <option value="Средне-специальное">Средне-специальное</option>
             <option value="Высшее бакалавриат">Высшее бакалавриат</option>
             <option value="Высшее магистратура">Высшее магистратура</option>
+            <option value="Неоконченное высшее">Неоконченное высшее</option>
           </select>
         </label>
 		<input type="checkbox" name="art_anticheck" id="art_anticheck" class="art_anticheck" style="display: none !important;" value="true" checked="checked"/>
@@ -84,7 +86,13 @@ foreach ($vacancy_array as $vacancy) {
           <span class="questionary__item-placeholder">Период работы</span>
           <input class="questionary__input questionary__input--last-work-time" type="text" name="last_work_time">
         </label>
-        <div class="questionary__form-subtitle">Работаете ли Вы сейчас?</div>
+        <div class="questionary__form-subtitle questionary__form-subtitle--radio">
+			<span>Работаете ли Вы сейчас?</span>
+			<div class="questionary__radios">
+				<label>Да <input class="questionary__input questionary__input--radio" type="radio" name="work_already" value="Да"></label>
+				<label>Нет <input class="questionary__input questionary__input--radio" type="radio" name="work_already" value="Нет"></label>
+			</div>
+		</div>
         <label class="questionary__item">
           <span class="questionary__item-placeholder">Ожидаемый уровень дохода</span>
           <input class="questionary__input questionary__input--money" type="text" name="money">

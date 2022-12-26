@@ -43,9 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
 
-			<p class="woocommerce-FormRow form-row" style="width: 100%">
+			<p class="woocommerce-FormRow form-row" style="width: 100%; text-align: center;">
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 				<button type="submit" class="woocommerce-form-login__submit btn btn--main form__button btn-reset" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>" style="margin-top: 0">Войти</button>
+				<a class="form__register" href="/register/" style="margin-top: 15px; font-size: 22px;">Зарегистрироваться</a>
 			</p>
 
 			<!-- <p class="woocommerce-LostPassword lost_password">

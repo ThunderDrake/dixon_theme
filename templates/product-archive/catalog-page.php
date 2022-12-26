@@ -102,6 +102,56 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 								</button>
 							</div>
 							<form class="filter__form stop-clear" action="<?= home_url(add_query_arg(array(), $wp->request)) ?>/" method="get">
+								<div class="product-header__sort" data-accordion="parent">
+									<div class="product-header__sort-elem" data-accordion="element">
+										<div class="custom-select product-header__sort" data-select data-validate-type="select" data-name="sort">
+											<button class="custom-select__button product-header__sort-button" type="button" aria-label="Выберите одну из опций"
+												data-accordion="button">
+												<span class="custom-select__label">Сортировка</span>
+												<span class="custom-select__text visually-hidden"></span>
+												<svg class="catalog__sort-icon" width="20" height="17" aria-hidden="true">
+													<use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#sort"></use>
+												</svg>
+											</button>
+											<div data-accordion="content">
+												<div class="custom-select__list product-header__sort-list" data-accordion="content">
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="popularity">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала популярные</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="price">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала дешевле</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="price-desc">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала дороже</span>
+													</div>
+													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
+														data-select-value="rating">
+														<div class="option-item__check">
+															<svg width="10" height="9" aria-hidden="true">
+																<use xlink:href="#icon-check"></use>
+															</svg>
+														</div><span>Сначала с высоким рейтингом</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="filter__block" data-accordion="parent">
 									<?php 
 								if($attribute_taxonomies):
@@ -149,57 +199,6 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 								endif;
 								?>
 								</div>
-
-								<!-- <div class="product-header__sort" data-accordion="parent">
-									<div class="product-header__sort-elem" data-accordion="element">
-										<div class="custom-select product-header__sort" data-select data-validate-type="select" data-name="sort">
-											<button class="custom-select__button product-header__sort-button" type="button" aria-label="Выберите одну из опций"
-												data-accordion="button">
-												<span class="custom-select__label">Сортировка</span>
-												<span class="custom-select__text visually-hidden"></span>
-												<svg class="catalog__sort-icon" width="20" height="17" aria-hidden="true">
-													<use xlink:href="<?= ct()->get_static_url() ?>/img/sprite.svg#sort"></use>
-												</svg>
-											</button>
-											<div data-accordion="content">
-												<div class="custom-select__list product-header__sort-list" data-accordion="content">
-													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
-														data-select-value="popular-first">
-														<div class="option-item__check">
-															<svg width="10" height="9" aria-hidden="true">
-																<use xlink:href="#icon-check"></use>
-															</svg>
-														</div><span>Сначала популярные</span>
-													</div>
-													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
-														data-select-value="cheap-first">
-														<div class="option-item__check">
-															<svg width="10" height="9" aria-hidden="true">
-																<use xlink:href="#icon-check"></use>
-															</svg>
-														</div><span>Сначала дешевле</span>
-													</div>
-													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
-														data-select-value="expensive-first">
-														<div class="option-item__check">
-															<svg width="10" height="9" aria-hidden="true">
-																<use xlink:href="#icon-check"></use>
-															</svg>
-														</div><span>Сначала дороже</span>
-													</div>
-													<div class="custom-select-item option-item" tabindex="0" aria-checked="false" role="checkbox"
-														data-select-value="rating-first">
-														<div class="option-item__check">
-															<svg width="10" height="9" aria-hidden="true">
-																<use xlink:href="#icon-check"></use>
-															</svg>
-														</div><span>Сначала с высоким рейтингом</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> -->
 								
 								<div class="filter-popup-buttons filter-popup-buttons--main">
 									<button class="filter-popup-buttons__btn filter-popup-buttons__btn--apply btn" type="button"
@@ -258,12 +257,19 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 								<div class="product-card__prices-current">Нет в наличии</div>
 							</div>
 							<?php endif; ?>
-
-							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">В корзину
+							<?php if(!$product_obj->is_type('variable')): ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
 								<svg class="product-card__button-icon">
 									<use xlink:href="#cart-icon"></use>
 								</svg>
 							</a>
+							<?php else: ?>
+								<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+									<svg class="product-card__button-icon">
+										<use xlink:href="#cart-icon"></use>
+									</svg>
+								</a>
+							<?php endif; ?>
 						</article>
 						<?php endwhile; ?>
 						<?php else: ?>
@@ -345,11 +351,19 @@ if(get_class( get_queried_object() ) == 'WP_Term') {
 										</div>
 										<?php endif; ?>
 
-										<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">В корзину
+										<?php if(!$product_obj->is_type('variable')): ?>
+										<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
 											<svg class="product-card__button-icon">
 												<use xlink:href="#cart-icon"></use>
 											</svg>
 										</a>
+										<?php else: ?>
+											<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+												<svg class="product-card__button-icon">
+													<use xlink:href="#cart-icon"></use>
+												</svg>
+											</a>
+										<?php endif; ?>
 									</article>
 									<?php endforeach; ?>
 								</div>

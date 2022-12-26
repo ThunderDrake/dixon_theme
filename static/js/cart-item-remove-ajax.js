@@ -32,7 +32,9 @@ jQuery(document).ready(function($) {
     
                 // Replace fragments
                 if ( fragments ) {
+                  console.log(fragments);
                     $.each( fragments, function( key, value ) {
+                      console.log(key);
                         $( key ).replaceWith( value );
                     });
                 }

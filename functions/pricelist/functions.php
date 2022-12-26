@@ -47,15 +47,9 @@ add_action('wp_ajax_nopriv_filter_model', 'filter_products');
   
 function search_model() {
 	global $post;
-    $term_slug = $_POST['term_slug'];
 	$search = $_POST['search_value'];
     $args = array(
         'post_type' => 'models',
-		'tax_query' => [[
-			'taxonomy' => 'model_type',
-			'field'    => 'slug',
-			'terms'    => $term_slug
-		]],
 		's' => $search
     );
 

@@ -3,7 +3,7 @@
  * @param WP_Query $query
  */
 function modify_query_product_archive_by_filter_params( $query ) {
-	if ( ! is_admin() && $query->is_main_query() && $query->is_tax() ) {
+	if ( ! is_admin() && $query->is_main_query() && $query->is_tax()) {
 
 		$metas = [];
 		$prod_attr = wc_get_attribute_taxonomies();
@@ -42,6 +42,7 @@ function modify_query_product_archive_by_filter_params( $query ) {
 		}
 
 	}
+
 	if ( ! is_admin() && $query->is_main_query() && !$query->is_tax()) {
 		$metas = [];
 		$prod_attr = wc_get_attribute_taxonomies();
@@ -72,10 +73,17 @@ function modify_query_product_archive_by_filter_params( $query ) {
 				$metas,
 			] );
 		}
+
+		$sort = isset($_GET['sort']) ? sanitize_key( $_GET['sort'] ) : '';
+		
+		if($sort) {
+			$query->set('orderby', $sort);
+		}
 	}
+
 }
 
-add_action( 'pre_get_posts', 'modify_query_product_archive_by_filter_params' );
+add_action( 'pre_get_posts', 'modify_query_product_archive_by_filter_params', 1 );
 
 
 add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
@@ -83,7 +91,7 @@ add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
 function custom_pre_get_posts_query( $q ) {
 
 	if ( ! $q->is_main_query() ) return;
-	if ( ! $q->is_post_type_archive() ) return;
+	if ( ! ($q->is_post_type_archive() || $q->is_tax()) ) return;
 	if ( ! is_admin() ) {
 
 	$q->set( 'meta_query', array(array(

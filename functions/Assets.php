@@ -11,7 +11,7 @@ class Assets {
 	public function attach_assets() {
 		// HTML Love
 		$this->attach_style( '/static/css/vendor.css' );
-		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php', 'templates/contact-page/contact-page.php', 'templates/callback-page/callback-page.php', 'templates/wishlist-page/wishlist-page.php'] ) || is_page(['privacy-policy', 'offer', 'register']) || is_account_page()){
+		if(is_front_page() || is_page_template( ['templates/credit-page/credit-page.php', 'templates/delivery-page/delivery-page.php', 'templates/contact-page/contact-page.php', 'templates/callback-page/callback-page.php', 'templates/wishlist-page/wishlist-page.php'] ) || is_page(['privacy-policy', 'offer', 'register']) || is_account_page() || $_GET['wc-api']==='wc_rsbpayment'){
 			$this->attach_style( '/static/css/main.css' );
 		}
 		if(is_page_template('templates/about-page/about-page.php')) {

@@ -53,10 +53,10 @@ get_header();
 
 				<?php do_action( 'woocommerce_register_form' ); ?>
 
-				<p class="woocommerce-FormRow form-row">
+				<p class="woocommerce-FormRow form-row" style="text-align: center">
 					<?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
 					<button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit btn btn--main form__button btn-reset" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>" style="margin-top: 0">Зарегистрироваться</button>
-					<label class="custom-checkbox form__policy">
+					<label class="custom-checkbox form__policy" style="margin: 0 auto;">
 						<input type="checkbox" name="form_policy" class="custom-checkbox__field form__input--policy">
 						<span class="custom-checkbox__content">Согласен на обработку <a href="<?= get_privacy_policy_url() ?>">персональных данных</a></span>
 					</label>

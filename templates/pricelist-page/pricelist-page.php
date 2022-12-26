@@ -38,22 +38,6 @@ $models_list = get_terms([
 							
 						?>
 					<div class="tabs__panel">
-						<div class="header__search-block submenu-search tabs__search">
-							<form method="get" data-term="<?= $term->slug ?>">
-							<div class="submenu-search__form-wrap">
-								<div class="custom-input">
-								<label>
-									<button class="submenu-search__button btn-reset">
-									<svg class="submenu-search__icon" width="20" height="20">
-										<use xlink:href="img/sprite.svg#search"></use>
-									</svg>
-									</button>
-									<input type="search" id="submenu-search" name="s" placeholder="Поиск">
-								</label>
-								</div>
-							</div>
-							</form>
-						</div>
 						<div class="pricelist__grid">
 							<?php foreach($items_list as $post): ?>
 								<?php setup_postdata($post) ?>
@@ -61,9 +45,29 @@ $models_list = get_terms([
 							<?php endforeach; ?>
 							<?php wp_reset_postdata() ?>
 						</div>
-						<button class="pricelist__show-more btn-reset">Показать ещё</button>
+						<!-- <button class="pricelist__show-more btn-reset">Показать ещё</button> -->
 					</div>
 					<?php endforeach; ?>
+				</div>
+			</div>
+			<div class="header__search-block submenu-search tabs__search" style="margin-right: 0;">
+				<form method="get">
+					<div class="submenu-search__form-wrap">
+						<div class="custom-input">
+						<label>
+							<button class="submenu-search__button btn-reset">
+							<svg class="submenu-search__icon" width="20" height="20">
+								<use xlink:href="<?= get_template_directory_uri() ?>/static/img/sprite.svg#search"></use>
+							</svg>
+							</button>
+							<input type="search" id="submenu-search" name="s" placeholder="Поиск">
+							<button class="btn-reset" style="margin-left: 20px; height: 100%; padding: 0 20px; color: #fff; background-color: #3743f9; border-radius: 15px;">Найти</button>
+						</label>
+						</div>
+					</div>
+				</form>
+				<div class="tabs__panel tabs__panel-search">
+					<div class="pricelist__grid"></div>
 				</div>
 			</div>
 			<?php 

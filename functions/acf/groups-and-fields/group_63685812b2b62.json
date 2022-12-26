@@ -196,7 +196,7 @@
             "key": "field_6386a3634ce41",
             "label": "Юридическая информация",
             "name": "contact_info",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -206,10 +206,10 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": "br"
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
@@ -230,5 +230,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669768074
+    "modified": 1672058131
 }

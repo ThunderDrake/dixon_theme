@@ -158,6 +158,12 @@ function ajax_questionary_callback() {
 		$form_work_start = sanitize_text_field( $_POST['work_start'] );
 	}
 
+	if ( empty( $_POST['work_already'] ) || ! isset( $_POST['work_already'] ) ) {
+		$err_message['work_already'] = 'Пожалуйста, введите ваше имя.';
+	} else {
+		$work_already = sanitize_text_field( $_POST['work_already'] );
+	}
+
 	$email_to = '';
 	$art_subject = 'Вакансия на работу';
 	$rn = "\r\n";
@@ -180,6 +186,7 @@ function ajax_questionary_callback() {
 	"Последнее место работы - Должность: ".$form_last_position.$rn.
 	"Последнее место работы - Период работы: ".$form_last_work_time.$rn.
 	"Ожидаемый уровень дохода: ".$form_money.$rn.
+	"Работаете ли сейчас: ".$work_already.$rn.
 	"Когда готовы приступить к работе: ".$form_work_start.$rn;
 	$headers = 'From: ' . $form_name . ' <' . $email_to . '>' . "\r\n" . 'Reply-To: ' . $email_to;
 

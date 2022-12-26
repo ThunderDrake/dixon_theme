@@ -88,11 +88,19 @@ $products_list_sell_out = get_posts( array(
 						</div>
 						<?php endif; ?>
 
-						<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
-						<svg class="product-card__button-icon">
-							<use xlink:href="#cart-icon"></use>
-						</svg>
+						<?php if(!$product_obj->is_type('variable')): ?>
+						<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
+							<svg class="product-card__button-icon">
+								<use xlink:href="#cart-icon"></use>
+							</svg>
 						</a>
+						<?php else: ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+								<svg class="product-card__button-icon">
+									<use xlink:href="#cart-icon"></use>
+								</svg>
+							</a>
+						<?php endif; ?>
 					</article>
 
 					<?php endforeach;
@@ -147,11 +155,19 @@ $products_list_sell_out = get_posts( array(
 						</div>
 						<?php endif; ?>
 
-						<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
-						<svg class="product-card__button-icon">
-							<use xlink:href="#cart-icon"></use>
-						</svg>
+						<?php if(!$product_obj->is_type('variable')): ?>
+						<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
+							<svg class="product-card__button-icon">
+								<use xlink:href="#cart-icon"></use>
+							</svg>
 						</a>
+						<?php else: ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+								<svg class="product-card__button-icon">
+									<use xlink:href="#cart-icon"></use>
+								</svg>
+							</a>
+						<?php endif; ?>
 					</article>
 
 					<?php endforeach;
@@ -206,11 +222,19 @@ $products_list_sell_out = get_posts( array(
 						</div>
 						<?php endif; ?>
 
-						<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
-						<svg class="product-card__button-icon">
-							<use xlink:href="#cart-icon"></use>
-						</svg>
+						<?php if(!$product_obj->is_type('variable')): ?>
+						<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
+							<svg class="product-card__button-icon">
+								<use xlink:href="#cart-icon"></use>
+							</svg>
 						</a>
+						<?php else: ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+								<svg class="product-card__button-icon">
+									<use xlink:href="#cart-icon"></use>
+								</svg>
+							</a>
+						<?php endif; ?>
 					</article>
 
 					<?php endforeach;
@@ -265,11 +289,19 @@ $products_list_sell_out = get_posts( array(
 						</div>
 						<?php endif; ?>
 
-						<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
-						<svg class="product-card__button-icon">
-							<use xlink:href="#cart-icon"></use>
-						</svg>
+						<?php if(!$product_obj->is_type('variable')): ?>
+						<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
+							<svg class="product-card__button-icon">
+								<use xlink:href="#cart-icon"></use>
+							</svg>
 						</a>
+						<?php else: ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+								<svg class="product-card__button-icon">
+									<use xlink:href="#cart-icon"></use>
+								</svg>
+							</a>
+						<?php endif; ?>
 					</article>
 
 					<?php endforeach;
@@ -324,11 +356,19 @@ $products_list_sell_out = get_posts( array(
 						</div>
 						<?php endif; ?>
 
-						<a class="product-card__button btn btn-reset btn--main" href="<?php the_permalink() ?>">В корзину
-						<svg class="product-card__button-icon">
-							<use xlink:href="#cart-icon"></use>
-						</svg>
+						<?php if(!$product_obj->is_type('variable')): ?>
+						<a class="product-card__button btn btn-reset btn--main" href="<?= get_site_url(); ?>/cart/?add-to-cart=<?= $product_obj->get_id(); ?>&quantity=1">В корзину
+							<svg class="product-card__button-icon">
+								<use xlink:href="#cart-icon"></use>
+							</svg>
 						</a>
+						<?php else: ?>
+							<a class="product-card__button btn btn-reset btn--main" href="<?= $product_obj->get_permalink(); ?>">Подробнее
+								<svg class="product-card__button-icon">
+									<use xlink:href="#cart-icon"></use>
+								</svg>
+							</a>
+						<?php endif; ?>
 					</article>
 
 					<?php endforeach;

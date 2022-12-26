@@ -497,3 +497,58 @@ label[for="billing_country"] {
         padding-bottom: 4em;
     }
 }
+
+/* Сортировка */
+.catalog__content-wrapper {
+    position: relative;
+}
+
+.product-header__sort {
+    z-index: 5;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    max-width: 220px;
+    right: 0;
+    transform: translateY(-100%);
+}
+
+.product-header__nav {
+    margin-bottom: 40px;
+}
+
+.tabs__panel-search {
+    display: block;
+}
+
+/* Поиск на странице прайслиста */
+.pricelist .header__search-block {
+    max-width: 100%;
+}
+
+.pricelist .header__search-block form {
+    max-width: 50%;
+    margin-bottom: 20px;
+}
+
+/* Радио-кнопки формы заявки на вакансию */
+.questionary__radios {
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.questionary__radios label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.questionary__radios input {
+    margin-left: 10px;
+}
+
+.questionary__form-subtitle--radio {
+    display: flex;
+}
