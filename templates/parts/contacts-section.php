@@ -16,8 +16,10 @@ $info = get_field('contact_info', 'option');
 		<h2 class="contacts__title h2-title">Контакты</h2>
 		<div class="contacts__content">
 			<div class="contacts__info">
-				<address class="contacts__text">Адрес: <?= $address ?></address>
-				<p class="contacts__text">График работы: <?= $work_time ?></p>
+				<div class="contacts__info-wrapper" style="padding: 20px; background-color: #E6E7FF; border-radius: 20px;">
+					<address class="contacts__text">Адрес: <?= $address ?></address>
+					<p class="contacts__text" style="margin: 0;">График работы: <?= $work_time ?></p>
+				</div>
 				<div class="contact__text-group">
 					<p class="contacts__text contacts__text--title">Продажи:</p>
 					<p class="contacts__text">Телефон: <a class="contacts__phone" href="tel:<?= str_replace([' ', '(', ')', '-'], '', $phone) ?>"><?= $phone ?></a></p>

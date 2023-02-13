@@ -76,3 +76,42 @@ function search_model() {
 
   add_action('wp_ajax_search_model', 'search_model');
   add_action('wp_ajax_nopriv_search_model', 'search_model');
+
+function model_list() {
+	global $post;
+	$term_name = $_POST['term_name'];
+    $args = [
+		'post_type' => 'models',
+		'numberposts' => -1,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'model_type',
+				'field'    => 'slug',
+				'terms'    => $term_name
+			)
+		)
+	];
+
+    $ajaxposts = get_posts($args);
+    $response = ""; // Initialize empty response string
+
+    if ($ajaxposts) {
+		ob_start(); // Start the buffer
+        foreach($ajaxposts as $post) {
+			setup_postdata($post); ?>
+			<div class="pricelist__item" data-post-id="<?= get_the_ID() ?>"><?php the_title(); ?></div>
+			<?php
+        }
+        $response = ob_get_contents(); // Add the buffer contents to $response
+        ob_end_clean(); // Clear the buffer
+    } else {
+        $response = "Ничего не найдено";
+    }
+
+    echo json_encode($response); // Echo the response
+    wp_reset_postdata();
+    exit; // this is required to terminate immediately and return a proper response
+  }
+
+  add_action('wp_ajax_model_list', 'model_list');
+  add_action('wp_ajax_nopriv_model_list', 'model_list');

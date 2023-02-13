@@ -137,7 +137,7 @@ function woocommerce_form_field( $key, $args, $value = null ) {
 
 			} else {
 
-				$field .= '<input type="text" class="input-text checkout__step-input-field ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $value ) . '"  placeholder="' . esc_attr( $args['placeholder'] ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" ' . implode( ' ', $custom_attributes ) . ' data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
+				$field .= '<span class="checkout-form__input-title">'.esc_attr( $args['label'] ).'</span><input type="text" class="checkout-form__input input-text checkout__step-input-field ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" value="' . esc_attr( $value ) . '"  placeholder="' . esc_attr( $args['placeholder'] ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" ' . implode( ' ', $custom_attributes ) . ' data-input-classes="' . esc_attr( implode( ' ', $args['input_class'] ) ) . '"/>';
 
 			}
 
@@ -270,9 +270,8 @@ function woocommerce_custom_update_checkout()
       jQuery(document).ready($ => {
 
         jQuery(document).on('blur', 'input[name="billing_postcode"]', function () {
-			console.log(123);
-                jQuery(document.body).trigger('update_checkout')
-            });
+			jQuery(document.body).trigger('update_checkout')
+		});
 
       });
 

@@ -59,7 +59,7 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
 
 				<div class="cart-grid__col">
 				<div class="cart-item__price">
-				<?= $cart_item['data']-> get_price(); ?> Р.
+					<?= $cart_item['data']-> get_price(); ?>
 				</div>
 				</div>
 
@@ -90,7 +90,7 @@ $whatsapp = get_field('contact_whatsapp_link', 'option');
 							<div class="cart__total">
 								Итого <?= WC()->cart->get_cart_contents_count() ?> товара
 							</div>
-							<div class="cart__total-amount"><?= WC()->cart->get_cart_subtotal() ?> Р.</div>
+							<div class="cart__total-amount"><?= WC()->cart->get_total_ex_tax(); ?></div>
 						</div>
 						<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
 					</div>

@@ -73,7 +73,7 @@
     opacity: 1;
 }
 
-.checkout-form__label  .select2-container {
+.address-field .select2-container {
     border: 1px solid #a4a4a4;
     border-radius: 15px;
     padding: 20px 40px;
@@ -87,19 +87,33 @@
     background: #fff;
 }
 
-.checkout-form__label .select2-container--default .select2-selection--single .select2-selection__arrow {
+.address-field label {
+    padding-left: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0.01em;
+    color: #a4a4a4;
+}
+
+.address-field .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
 }
 
-.checkout-form__label .select2-container--default .select2-selection--single .select2-selection__arrow b {
+.address-field .select2-selection__rendered {
+    padding-left: 0 !important;
+    color: rgb(164, 164, 164) !important;
+}
+
+.address-field .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-width: 10px 6px 0 6px;
 }
 
 
 
-.checkout-form__label  .select2-selection {
+.address-field  .select2-selection {
     border: none;
 }
 
@@ -551,4 +565,78 @@ label[for="billing_country"] {
 
 .questionary__form-subtitle--radio {
     display: flex;
+}
+
+@media (max-width: 1024px) {
+    .hero-slider__button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 801px) {
+    .catalog__list {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+}
+
+@media (max-width: 501px) {
+    .catalog__list {
+        grid-template-columns: none;
+        justify-items: center;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.open-pvz-btn {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    transform: translateX(100%);
+}
+
+@media (max-width: 801px) {
+    .open-pvz-btn {
+        position: relative;
+        top: -40px;
+        right: 0;
+        transform: translateX(0);
+    }
+}
+
+.modal__cart .cart__total-amount .woocommerce-Price-currencySymbol {
+    display: none;
+}
+
+.cart__button-to-cart:hover {
+    color: #fff;
+    background-color: #3743f9;
+}
+@media (max-width: 1024px) {
+    .header__navigation-block {
+        padding: 0;
+        height: auto;
+        overflow: hidden;
+        max-height: 0px;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        display: block;
+        will-change: max-height;
+    }
+    .header__navigation-block.menu--active {
+        padding: 20px;
+        max-height: 400px;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        will-change: max-height;
+    }
+}
+
+.checkout__pickup.hidden {
+    display: none;
+}
+
+.checkout__pickup {
+    font-size: 1.3em;
 }

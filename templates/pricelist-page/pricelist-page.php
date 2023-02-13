@@ -18,9 +18,26 @@ $models_list = get_terms([
 			<div class="pricelist__tabs tabs" data-tabs="pricelist">
 				<ul class="tabs__nav list-reset">
 					<?php foreach($models_list as $term): ?>
-						<li class="tabs__nav-item"><button class="tabs__nav-btn btn-reset" type="button"><?= $term->name ?></button></li>
+						<li class="tabs__nav-item"><button class="tabs__nav-btn btn-reset" type="button" data-term-name="<?= $term->slug ?>"><?= $term->name ?></button></li>
 					<?php endforeach; ?>
 				</ul>
+				<div class="header__search-block submenu-search tabs__search" style="margin-right: 0;">
+					<form method="get">
+						<div class="submenu-search__form-wrap">
+							<div class="custom-input">
+							<label>
+								<button class="submenu-search__button btn-reset">
+								<svg class="submenu-search__icon" width="20" height="20">
+									<use xlink:href="<?= get_template_directory_uri() ?>/static/img/sprite.svg#search"></use>
+								</svg>
+								</button>
+								<input type="search" id="submenu-search" name="s" placeholder="Поиск">
+								<button class="btn-reset" style="margin-left: 20px; height: 100%; padding: 0 20px; color: #fff; background-color: #3743f9; border-radius: 15px;">Найти</button>
+							</label>
+							</div>
+						</div>
+					</form>
+				</div>
 				<div class="tabs__content">
 					<?php foreach($models_list as $term): ?>
 						<?php 
@@ -48,26 +65,6 @@ $models_list = get_terms([
 						<!-- <button class="pricelist__show-more btn-reset">Показать ещё</button> -->
 					</div>
 					<?php endforeach; ?>
-				</div>
-			</div>
-			<div class="header__search-block submenu-search tabs__search" style="margin-right: 0;">
-				<form method="get">
-					<div class="submenu-search__form-wrap">
-						<div class="custom-input">
-						<label>
-							<button class="submenu-search__button btn-reset">
-							<svg class="submenu-search__icon" width="20" height="20">
-								<use xlink:href="<?= get_template_directory_uri() ?>/static/img/sprite.svg#search"></use>
-							</svg>
-							</button>
-							<input type="search" id="submenu-search" name="s" placeholder="Поиск">
-							<button class="btn-reset" style="margin-left: 20px; height: 100%; padding: 0 20px; color: #fff; background-color: #3743f9; border-radius: 15px;">Найти</button>
-						</label>
-						</div>
-					</div>
-				</form>
-				<div class="tabs__panel tabs__panel-search">
-					<div class="pricelist__grid"></div>
 				</div>
 			</div>
 			<?php 

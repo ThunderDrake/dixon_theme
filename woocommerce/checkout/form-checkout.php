@@ -104,6 +104,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 								<?php woocommerce_form_field( "billing_city", $fields["billing_city"], $checkout->get_value( "billing_city" ) ); ?>
 								<?php woocommerce_form_field( "billing_address_1", $fields["billing_address_1"], $checkout->get_value( "billing_address_1" ) ); ?>
 								<?php woocommerce_form_field( "billing_postcode", $fields["billing_postcode"], $checkout->get_value( "billing_postcode" ) ); ?>
+								<div class="checkout__pickup hidden">
+									<?= get_field('contact_address', 'options') ?>
+								</div>
 							</div>
 						</div>
 
@@ -111,6 +114,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 					</div>
 				</div>
 			</form>
+			
 		</div>
 	</section>
 

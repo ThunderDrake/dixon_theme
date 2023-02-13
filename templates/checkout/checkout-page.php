@@ -26,6 +26,7 @@ $checkout = WC()->checkout();
 						<?php ct()->template( '/checkout/parts/checkout__total.php' ) ?>
 
 					<?php endif; ?>
+					
 				</div>
 			</form>
 			<?php do_action( 'woocommerce_after_checkout_billing_form', $checkout ); ?>

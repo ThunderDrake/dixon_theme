@@ -31,7 +31,7 @@ get_header();
 			<div class="cart__ajax-content">
 				<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 					<?php do_action( 'woocommerce_before_cart_table' ); ?>
-					<div class="cart__list cart__list--page">
+					<div class="cart__list cart__list--page" style="margin-bottom: 15px;">
 						<div class="cart__list-header cart-grid cart-grid--header">
 							<div class="cart__col-title">Товар:</div>
 							<div class="cart__col-title">Количество:</div>
@@ -96,7 +96,9 @@ get_header();
 					</div>
 					<?php do_action( 'woocommerce_after_cart_table' ); ?>
 					<?php do_action( 'woocommerce_after_cart' ); ?>
-					<button type="submit" class="cart__refresh btn-reset" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+					<div class="cart__refresh-button-wrapper" style="margin: 0 0 50px auto; display: flex; justify-content: flex-end;">
+						<button type="submit" class="cart__refresh btn-reset cart__button-to-cart" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>" style="width: auto; padding: 10px 20px; height: 55px;"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+					</div>
 				
 					<?php do_action( 'woocommerce_cart_actions' ); ?>
 					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
@@ -115,7 +117,7 @@ get_header();
 									Итого <?= WC()->cart->get_cart_contents_count() ?> товара
 								</div>
 							<?php endif; ?>
-							<div class="cart__total-amount"><?php echo WC()->cart->get_total(); ?></div>
+							<div class="cart__total-amount"><?php echo WC()->cart->get_cart_subtotal(); ?></div>
 						</div>
 						<a class="cart__checkout-btn btn-reset btn btn--main" href="/checkout/">Оформить покупку</a>
 					</div>

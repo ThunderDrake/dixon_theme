@@ -4139,17 +4139,17 @@ function initPricelistTabs() {
       item.classList.add(hiddenClass);
     }
   });
-  loadMore.addEventListener("click", function () {
-    [].forEach.call(document.querySelectorAll("." + hiddenClass), function (item, index) {
-      if (index < loadItems) {
-        item.classList.remove(hiddenClass);
-      }
+//   loadMore.addEventListener("click", function () {
+//     [].forEach.call(document.querySelectorAll("." + hiddenClass), function (item, index) {
+//       if (index < loadItems) {
+//         item.classList.remove(hiddenClass);
+//       }
 
-      if (document.querySelectorAll("." + hiddenClass).length === 0) {
-        loadMore.style.display = "none";
-      }
-    });
-  });
+//       if (document.querySelectorAll("." + hiddenClass).length === 0) {
+//         loadMore.style.display = "none";
+//       }
+//     });
+//   });
   const pricelistItems = document.querySelectorAll('.pricelist__item');
   pricelistItems.forEach(el => {
     el.addEventListener('click', e => {

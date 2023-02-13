@@ -108,9 +108,9 @@ $fields = $checkout->get_checkout_fields( 'billing' );
 		<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
 		<?php woocommerce_form_field( "billing_country", $fields["billing_country"], $checkout->get_value( "billing_country" ) ); ?>
 		<?php woocommerce_form_field( "billing_state", $fields["billing_state"], $checkout->get_value( "billing_state" ) ); ?>
+		<?php woocommerce_form_field( "billing_postcode", $fields["billing_postcode"], $checkout->get_value( "billing_postcode" ) ); ?>
 		<?php woocommerce_form_field( "billing_city", $fields["billing_city"], $checkout->get_value( "billing_city" ) ); ?>
 		<?php woocommerce_form_field( "billing_address_1", $fields["billing_address_1"], $checkout->get_value( "billing_address_1" ) ); ?>
-		<?php woocommerce_form_field( "billing_postcode", $fields["billing_postcode"], $checkout->get_value( "billing_postcode" ) ); ?>
 	</div>
 
 </div>

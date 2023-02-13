@@ -41,4 +41,22 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    $('body').on('change', '.woocommerce-checkout-review-order-table', function () {
+        var method = woocommerce_params.chosen_shipping_method;
+        $('select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]').each(
+            function (index, input) {
+                method = $(this).val();
+            });
+        if (method.indexOf('local_pickup') >= 0) {
+            //Если самовывоз
+            $('label[for="billing_postcode"], label[for="billing_address_1"], label[for="billing_city"]').addClass('hidden'); //Прячем адрес
+            $('.checkout__pickup').removeClass('hidden');
+        } else {
+            // Для всех остальных методов
+            $('label[for="billing_postcode"], label[for="billing_address_1"], label[for="billing_city"]').removeClass(
+            'hidden'); //Показываем адрес
+            $('.checkout__pickup').addClass('hidden');
+        }
+    });
 })
