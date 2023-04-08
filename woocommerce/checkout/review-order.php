@@ -41,29 +41,59 @@ defined( 'ABSPATH' ) || exit;
 
 				?>
 				<?php foreach ( $package['rates'] as $method ) : ?>
-					<div class="checkout-form__shipping-wrapper">
-						<?php
-							printf( '<label class="custom-checkbox checkout-form__radio" for="shipping_method_%1$s_%2$s">', $i, esc_attr( sanitize_title( $method->id ) ) ); // WPCS: XSS ok.
-								if ( 1 < count( $package['rates'] ) ) {
-								printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
-								} else {
-								printf( '<input type="hidden" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ) ); // WPCS: XSS ok.
-								}
-							printf('<span class="custom-checkbox__content">%1$s</span>', wc_cart_totals_shipping_method_label( $method ));
-							printf( '</label>' ); // WPCS: XSS ok.
-							printf('<div class="checkout-form__shipping-popup">');
-								if('rpaefw_post_calc:5' === $method->id){
-								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
-								} else {
-								printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
-								}
-								printf('<div class="checkout-form__shipping-info">');
-									printf('<div class="checkout-form__shipping-price">от %1$s Р</div>', $method->get_cost() );
+					<?php if( count( $package['rates'] ) > 1): ?>
+						<?php if('local_pickup' !== $method->method_id): ?>
+						<div class="checkout-form__shipping-wrapper">
+							<?php
+								printf( '<label class="custom-checkbox checkout-form__radio" for="shipping_method_%1$s_%2$s">', $i, esc_attr( sanitize_title( $method->id ) ) ); // WPCS: XSS ok.
+									if ( 1 < count( $package['rates'] ) ) {
+									printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+									} else {
+										printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+									}
+								printf('<span class="custom-checkbox__content">%1$s</span>', wc_cart_totals_shipping_method_label( $method ));
+								printf( '</label>' ); // WPCS: XSS ok.
+								printf('<div class="checkout-form__shipping-popup">');
+									if('rpaefw_post_calc:5' === $method->id){
+									printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+									} else {
+									printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+									}
+									printf('<div class="checkout-form__shipping-info">');
+										printf('<div class="checkout-form__shipping-price">от %1$s Р</div>', $method->get_cost() );
+									printf('</div>');
 								printf('</div>');
-							printf('</div>');
-							do_action( 'woocommerce_after_shipping_rate', $method, $i );
-						?>
-					</div>
+								do_action( 'woocommerce_after_shipping_rate', $method, $i );
+							?>
+						</div>
+						<?php endif; ?>
+					<?php else: ?>
+						<?php if('local_pickup' === $method->method_id): ?>
+						<div class="checkout-form__shipping-wrapper hidden">
+							<?php
+								printf( '<label class="custom-checkbox checkout-form__radio" for="shipping_method_%1$s_%2$s">', $i, esc_attr( sanitize_title( $method->id ) ) ); // WPCS: XSS ok.
+									if ( 1 < count( $package['rates'] ) ) {
+									printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+									} else {
+										printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="custom-checkbox__field" %4$s />', $i, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+									}
+								printf('<span class="custom-checkbox__content">%1$s</span>', wc_cart_totals_shipping_method_label( $method ));
+								printf( '</label>' ); // WPCS: XSS ok.
+								printf('<div class="checkout-form__shipping-popup">');
+									if('rpaefw_post_calc:5' === $method->id){
+									printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-pochta.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+									} else {
+									printf('<img loading="lazy" src="'.get_template_directory_uri().'/static/img/cart/delivery-cdek.svg" class="checkout-form__shipping-logo" width="200" height="auto" alt="Доставка Почтой России">');
+									}
+									printf('<div class="checkout-form__shipping-info">');
+										printf('<div class="checkout-form__shipping-price">от %1$s Р</div>', $method->get_cost() );
+									printf('</div>');
+								printf('</div>');
+								do_action( 'woocommerce_after_shipping_rate', $method, $i );
+							?>
+						</div>
+						<?php endif; ?>
+					<?php endif; ?>
 				<?php endforeach; ?>
 				<?php
 			

@@ -17,7 +17,7 @@ $cart_total = WC()->cart->get_total();
 	<div class="checkout__total-table">
 		<div class="checkout__total-row">
 			<div class="checkout__total-position"><?php echo $current_quantity ?> товара на</div>
-			<div class="checkout__total-value"><?php echo $cart_subtotal; ?> Р.</div>
+			<div class="checkout__total-value"><?php echo $cart_subtotal; ?></div>
 		</div>
 		<div class="checkout__total-row">
 			<div class="checkout__total-position">Доставка</div>
@@ -26,7 +26,7 @@ $cart_total = WC()->cart->get_total();
 	</div>
 	<div class="checkout__total-row checkout__amount">
 		<div class="checkout__total-position">Всего к оплате</div>
-		<div class="checkout__total-value"><?php echo $cart_total; ?> Р.</div>
+		<div class="checkout__total-value"><?php echo $cart_total; ?></div>
 	</div>
 	<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="btn btn-reset btn--main checkout__submit" name="woocommerce_checkout_place_order" id="place_order" value="Оформить покупку" data-value="Оформить покупку">Оформить покупку</button>' ); ?>
 	<label class="custom-checkbox checkout__policy">

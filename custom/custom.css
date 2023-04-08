@@ -133,7 +133,26 @@ label[for="billing_country"] {
 }
 
 .submenu {
-    transform: translateY(-25px);
+    transform: translateY(-15px);
+}
+
+@media (min-width: 1024px) {
+    .navigation__item .navigation__link::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #3a4097;
+        transition: all 0.3s ease-in;
+        transform: scale3d(0, 1, 1);
+    }
+
+    .navigation__item:hover .navigation__link::before {
+        transform: scale3d(1, 1, 1);
+    }
 }
 
 @media (max-width: 1024px) {
@@ -639,4 +658,39 @@ label[for="billing_country"] {
 
 .checkout__pickup {
     font-size: 1.3em;
+    padding: 1em;
+    box-shadow: 0 5px 20px rgb(208 255 204 / 10%);
+    background: #eef0ff;
+    border-radius: 30px;
+    margin-bottom: 1.2em;
+}
+@media (min-width: 1024px) {
+    .submenu__list .submenu__item {
+        padding: 0;
+    }
+    
+    .submenu__list .submenu__item a {
+        width: 100%;
+        padding: 10px 25px;
+    }
+    
+    .submenu {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-in;
+        will-change: max-height;
+    }
+    
+    .submenu.is-show {
+        max-height: 200%;
+    }
+}
+
+.pricelist__tabs .tabs__nav-btn--hidden {
+    font-weight: 400;
+    color: #50537d;
+}
+
+.pricelist__tabs .tabs__nav-btn--hidden::before {
+    opacity: 0;
 }

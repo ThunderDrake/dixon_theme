@@ -97,15 +97,47 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 							</div>
 							<div class="checkout-form__group">
 								<div class="checkout-form__group-title"><span class="checkout-form__group-title-number">4</span>Способ получения</div>
-								<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-								<?php $fields = $checkout->get_checkout_fields( 'billing' ); ?>
-								<?php woocommerce_form_field( "billing_country", $fields["billing_country"], $checkout->get_value( "billing_country" ) ); ?>
-								<?php woocommerce_form_field( "billing_state", $fields["billing_state"], $checkout->get_value( "billing_state" ) ); ?>
-								<?php woocommerce_form_field( "billing_city", $fields["billing_city"], $checkout->get_value( "billing_city" ) ); ?>
-								<?php woocommerce_form_field( "billing_address_1", $fields["billing_address_1"], $checkout->get_value( "billing_address_1" ) ); ?>
-								<?php woocommerce_form_field( "billing_postcode", $fields["billing_postcode"], $checkout->get_value( "billing_postcode" ) ); ?>
-								<div class="checkout__pickup hidden">
+								<div class="checkout__pickup checkout__pickup--default">
+									<span style="margin-bottom: 10px; display: block; font-weight: 700;">Адрес для самовывоза:</span>
 									<?= get_field('contact_address', 'options') ?>
+								</div>
+								<div class="checkout-form__shipping-wrapper choose-pickup">
+									<label class="custom-checkbox checkout-form__radio" for="delivery_local">
+										<input 
+											type="radio"
+											name="delivery_type"
+											id="delivery_local" 
+											value="delivery_local"
+											class="custom-checkbox__field"
+										>
+										<span class="custom-checkbox__content">Самовывоз</span>
+									</label>
+								</div>
+								<div class="checkout-form__shipping-wrapper choose-pickup">
+									<label class="custom-checkbox checkout-form__radio" for="delivery_only">
+										<input 
+											type="radio"
+											name="delivery_type"
+											id="delivery_only" 
+											value="delivery_only"
+											class="custom-checkbox__field"
+										>
+										<span class="custom-checkbox__content">Доставка</span>
+									</label>
+								</div>
+								<div class="checkout__packages hidden">
+									<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+								</div>
+								<div class="checkout__pickup checkout__pickup--additional hidden">
+									<?= get_field('contact_address', 'options') ?>
+								</div>
+								<div class="checkout__inputs hidden">
+									<?php $fields = $checkout->get_checkout_fields( 'billing' ); ?>
+									<?php woocommerce_form_field( "billing_country", $fields["billing_country"], $checkout->get_value( "billing_country" ) ); ?>
+									<?php woocommerce_form_field( "billing_state", $fields["billing_state"], $checkout->get_value( "billing_state" ) ); ?>
+									<?php woocommerce_form_field( "billing_city", $fields["billing_city"], $checkout->get_value( "billing_city" ) ); ?>
+									<?php woocommerce_form_field( "billing_address_1", $fields["billing_address_1"], $checkout->get_value( "billing_address_1" ) ); ?>
+									<?php woocommerce_form_field( "billing_postcode", $fields["billing_postcode"], $checkout->get_value( "billing_postcode" ) ); ?>
 								</div>
 							</div>
 						</div>

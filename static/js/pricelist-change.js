@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
                     search_value: $(this).find('#submenu-search').val(),
             },
             success: function(res) {
+                $('.tabs__nav-btn--active').addClass('tabs__nav-btn--hidden');
                 $('.tabs__panel--active').find('.pricelist__grid').html(res);
                 $('.pricelist__item').click(function(e) {
                     $('.pricelist__item').removeClass('pricelist__item--active');
@@ -55,4 +56,10 @@ jQuery(document).ready(function($) {
             }
         })
     });
+
+    $('.tabs__nav-btn').each(function(){
+        $(this).click(function(){
+            $('.tabs__nav-btn--hidden').removeClass('tabs__nav-btn--hidden');
+        })
+    })
 });

@@ -4515,17 +4515,17 @@ function initShippingActivity() {
     return;
   }
 
-  shippingMethod.forEach(el => {
-    el.addEventListener('click', e => {
-      if (e.target.checked) {
-        popups.forEach(el => {
-          el.classList.remove('active');
-        });
-        console.log(el);
-        el.closest('.checkout-form__shipping-wrapper').querySelector('.checkout-form__shipping-popup').classList.add('active');
-      }
-    });
-  });
+//   shippingMethod.forEach(el => {
+//     el.addEventListener('click', e => {
+//       if (e.target.checked) {
+//         popups.forEach(el => {
+//           el.classList.remove('active');
+//         });
+//         console.log(el);
+//         el.closest('.checkout-form__shipping-wrapper').querySelector('.checkout-form__shipping-popup').classList.add('active');
+//       }
+//     });
+//   });
 }
 
 

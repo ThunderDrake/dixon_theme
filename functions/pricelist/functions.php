@@ -49,6 +49,7 @@ function search_model() {
 	global $post;
 	$search = $_POST['search_value'];
     $args = array(
+		'numberposts' => -1,
         'post_type' => 'models',
 		's' => $search
     );

@@ -2307,3 +2307,5 @@ function awrr_regions_cities( $cities ) {
 
 	return $cities;
 }
+
+add_filter('woocommerce_checkout_get_value','__return_empty_string',10);
